@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Matematika SD">
+<meta name="theme-color" content="#FFF6E5">
+<title>Game Matematika SD</title>
+<link rel="icon" href="assets/garuda/garuda-senang.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/garuda/garuda-senang.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="putar-layar">Putar iPad ke posisi <b>mendatar</b> ya.</div>
+
+<!-- Beranda -->
+<section class="layar aktif" id="layar-beranda">
+  <button class="tombol-ikon pojok-kanan" id="tombol-suara" aria-label="Suara">🔊</button>
+  <div class="beranda-isi">
+    <img class="garuda garuda-besar lambai" src="assets/garuda/garuda-semangat.svg" alt="Garuda">
+    <div>
+      <h1>Game<br>Matematika SD</h1>
+      <p class="sub">Main sambil belajar bersama Garuda!</p>
+      <button class="tombol tombol-utama" id="tombol-main">▶ Main</button>
+    </div>
+  </div>
+</section>
+
+<!-- Pilih Kelas -->
+<section class="layar" id="layar-kelas">
+  <header class="atas"><button class="tombol-ikon" data-ke="beranda" aria-label="Kembali">←</button><h2>Pilih Kelas</h2></header>
+  <div class="grid grid-kelas" id="daftar-kelas"></div>
+</section>
+
+<!-- Pilih Bab -->
+<section class="layar" id="layar-bab">
+  <header class="atas"><button class="tombol-ikon" data-ke="kelas" aria-label="Kembali">←</button><h2 id="judul-bab">Kelas 4 · Pilih Bab</h2></header>
+  <div class="grid grid-bab" id="daftar-bab"></div>
+</section>
+
+<!-- Peta Bab -->
+<section class="layar" id="layar-peta">
+  <header class="atas"><button class="tombol-ikon" data-ke="bab" aria-label="Kembali">←</button><h2 id="judul-peta">Bab</h2>
+    <button class="tombol-ikon pojok-kanan" id="tombol-video" aria-label="Video">🎬</button></header>
+  <div class="peta" id="peta"></div>
+  <p class="catatan" id="catatan-peta"></p>
+</section>
+
+<!-- Ronde -->
+<section class="layar" id="layar-ronde">
+  <header class="atas ronde-atas">
+    <button class="tombol-ikon" id="tombol-keluar" aria-label="Keluar">✕</button>
+    <h2 id="judul-ronde"></h2>
+    <div class="titik-titik" id="titik-titik"></div>
+  </header>
+  <div class="ronde-isi" id="ronde-isi"></div>
+  <img class="garuda garuda-pojok" id="garuda-ronde" src="assets/garuda/garuda-semangat.svg" alt="Garuda">
+  <div class="umpan" id="umpan" hidden>
+    <div class="umpan-kartu">
+      <div class="umpan-judul" id="umpan-judul"></div>
+      <div class="umpan-isi" id="umpan-isi"></div>
+      <button class="tombol tombol-utama" id="tombol-lanjut">Lanjut ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- Hasil -->
+<section class="layar" id="layar-hasil">
+  <div class="hasil-isi">
+    <img class="garuda garuda-besar" id="garuda-hasil" src="assets/garuda/garuda-senang.svg" alt="Garuda">
+    <div>
+      <div class="bintang-besar" id="hasil-bintang"></div>
+      <h2 id="hasil-judul"></h2>
+      <p class="sub" id="hasil-sub"></p>
+      <div class="baris-tombol">
+        <button class="tombol tombol-utama" id="tombol-lagi">↻ Main lagi</button>
+        <button class="tombol" id="tombol-ke-peta">Ke Peta</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jendela pilih tingkat -->
+<div class="jendela" id="jendela-mulai" hidden>
+  <div class="jendela-kartu">
+    <div class="jendela-ikon" id="mulai-ikon"></div>
+    <h2 id="mulai-judul"></h2>
+    <p id="mulai-ingat"></p>
+    <div class="pilih-tingkat" id="pilih-tingkat"></div>
+    <div class="baris-tombol">
+      <button class="tombol" id="tombol-batal">Nanti</button>
+      <button class="tombol tombol-utama" id="tombol-mulai">▶ Mulai</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/simpan.js"></script>
+<script src="js/suara.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/kelas-4/bab-3/prima.js"></script>
+<script src="js/kelas-4/bab-3/bab.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
