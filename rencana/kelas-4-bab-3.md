@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 3 (Faktor & Kelipatan)
 
-Status: **disetujui Ayah 2 Nov 2026**, belum dibangun. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`.
+Status: **disetujui Ayah 2 Nov 2026**. Dibangun: kerangka + mesin ronde + 🧱 Prima atau Bukan (POC, 2 Nov 2026). Berikutnya: 🍬 Bagi Rata, 🐸 Katak Loncat, Halaman Ayah/Bunda. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`.
 
 Pos di peta: 🍬 Bagi Rata → 🐸 Katak Loncat → 🧱 Prima atau Bukan (Tahap 1) → 🐸🐸 Ketemu di Mana? → 🌳 Pohon Faktor → 📖 Soal Cerita → 🏆 Tantangan Akhir (Tahap 2).
 

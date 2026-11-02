@@ -7,7 +7,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 ## Isi
 | Kelas | Bab | Mini game | Status |
 |---|---|---|---|
-| 4 | 3 · Faktor & Kelipatan | Bagi Rata · Katak Loncat · Prima atau Bukan | 🚧 dalam pembuatan |
+| 4 | 3 · Faktor & Kelipatan | 🧱 Prima atau Bukan | ✅ POC (bisa dicoba) |
+| 4 | 3 · Faktor & Kelipatan | 🍬 Bagi Rata · 🐸 Katak Loncat | 🚧 segera |
 
 ## Cara main
 1. Buka link di Safari/Chrome, putar perangkat ke landscape.
@@ -16,3 +17,10 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 4. Tips iPad: Share → **Add to Home Screen** supaya seperti aplikasi.
 
 Progres tersimpan di perangkat (tanpa login).
+
+## Coba di komputer
+Jalankan server kecil di folder ini, lalu buka `http://localhost:8000/`:
+```
+python -m http.server 8000
+```
+Cek logika soal (jawaban dihitung kode): `node tools/cek-prima.js`.
