@@ -18,6 +18,14 @@ for (let n = 1; n <= 100; n++) {
   cek((p === 1) === (n === 1 || L.isPrime(n)), 'persegi panjang hanya untuk bukan prima: ' + n);
 }
 
+// 2b. susunan kotak: bukan prima pas p x q; prima > 3 selalu bersisa
+for (let n = 1; n <= 100; n++) {
+  const { p, q, sisa } = L.susunan(n);
+  cek(p * q + sisa === n, 'susunan jumlah ' + n);
+  if (L.isPrime(n) && n > 3) cek(sisa > 0 && p >= 2, 'prima bersisa ' + n);
+  else cek(sisa === 0, 'tanpa sisa ' + n);
+}
+
 // 3. 200 ronde per tingkat
 const statistik = {};
 for (const t of [1, 2, 3]) {

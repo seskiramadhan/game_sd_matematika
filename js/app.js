@@ -118,13 +118,12 @@
         Suara.efek('pop'); bukaJendelaMulai(p);
       };
       peta.appendChild(el);
-      if (terbuka) posGaruda = titik[i];
+      if (terbuka) posGaruda = el;
     });
     if (posGaruda) {
       const g = document.createElement('img');
-      g.className = 'garuda garuda-peta lambai'; g.src = GARUDA('semangat'); g.alt = 'Garuda';
-      g.style.left = (posGaruda.x - 9) + '%'; g.style.top = (posGaruda.y - 6) + '%';
-      peta.appendChild(g);
+      g.className = 'garuda garuda-peta lambai'; g.src = GARUDA('semangat'); g.alt = '';
+      posGaruda.appendChild(g);
     }
   }
 

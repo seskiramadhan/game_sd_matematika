@@ -48,7 +48,7 @@ h1, h2 { margin: 0; }
 /* ---------- Garuda ---------- */
 .garuda { display: block; pointer-events: none; }
 .garuda-besar { width: min(38vh, 320px); height: auto; }
-.garuda-pojok { position: absolute; left: 18px; bottom: 12px; width: 130px; transition: transform .2s; z-index: 2; }
+.garuda-pojok { position: absolute; left: 18px; bottom: 12px; width: 130px; transition: transform .2s; z-index: 6; }
 .lambai { animation: lambai 2.2s ease-in-out infinite; transform-origin: 50% 90%; }
 .lompat { animation: lompat .6s ease-out; }
 .goyang { animation: goyang .5s ease-in-out; }
@@ -95,7 +95,7 @@ h1, h2 { margin: 0; }
 .pos .label-segera { font-size: 16px; font-weight: 700; background: #ddd; border-radius: 10px; padding: 2px 10px; }
 .pos.aktif .bulat { animation: denyut 1.6s ease-in-out infinite; }
 @keyframes denyut { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-.garuda-peta { position: absolute; width: 110px; transform: translate(-50%, -100%); transition: left .8s, top .8s; }
+.pos .garuda-peta { position: absolute; width: 100px; left: 50%; bottom: 100%; margin-left: -50px; margin-bottom: -6px; }
 .catatan { text-align: center; font-size: 18px; opacity: .7; margin: 0; }
 
 /* ---------- Ronde ---------- */
@@ -118,6 +118,7 @@ h1, h2 { margin: 0; }
 .chip {
   width: 84px; height: 84px; border-radius: 22px; border: 4px solid transparent; background: var(--kartu); box-shadow: var(--bayang);
   font-size: 34px; font-weight: 800; transition: background .15s, transform .08s;
+  display: flex; align-items: center; justify-content: center; padding: 0;
 }
 .chip.dipilih { background: var(--kuning); border-color: #E0A800; }
 .chip.ok { background: var(--hijau); color: #fff; }
@@ -139,11 +140,12 @@ h1, h2 { margin: 0; }
 .umpan-judul.salah { color: #E04466; }
 .umpan-isi { font-size: 22px; margin: 6px 0 10px; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
 .umpan .tombol { align-self: flex-end; }
-.umpan.benar-saja .umpan-kartu { width: auto; padding: 18px 36px 18px 170px; }
+.umpan.benar-saja .umpan-kartu { width: auto; padding: 18px 36px; text-align: center; }
 .umpan.benar-saja .tombol { display: none; }
 
 /* Kotak-kotak (persegi panjang) */
 .kotak-wadah { position: relative; width: 100%; height: 250px; }
+.kotak.sisa { outline: 3px dashed #E04466; outline-offset: 1px; }
 .kotak { position: absolute; border-radius: 4px; transition: left .9s ease-in-out, top .9s ease-in-out, width .9s, height .9s; }
 .kotak-teks { font-size: 22px; line-height: 1.35; }
 .kotak-teks b { color: var(--biru); }

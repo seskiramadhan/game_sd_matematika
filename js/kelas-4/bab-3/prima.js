@@ -92,7 +92,7 @@
     return { benar: !salahPilih.length && !terlewat.length, salahPilih, terlewat, dipilih: [...set] };
   }
 
-  const logika = { isPrime, pasanganFaktor, hasilKaliPenekanan, buatRonde, soalMirip, soalTanya, soalKetuk, periksaKetuk, MAKS, MIN, PENEKANAN };
+  const logika = { isPrime, pasanganFaktor, susunan, hasilKaliPenekanan, buatRonde, soalMirip, soalTanya, soalKetuk, periksaKetuk, MAKS, MIN, PENEKANAN };
 
   if (typeof module !== 'undefined' && module.exports) { module.exports = logika; return; }
 
@@ -142,22 +142,34 @@
     return 'Primanya: ' + soal.primaList.join(', ') + '.';
   }
 
-  // Kotak-kotak n disusun: mulai 1 baris, lalu (bila bisa) pindah jadi persegi panjang p x q.
+  // Susunan kotak untuk n: bukan prima -> p x q pas; prima (> 3) -> coba p baris, ada sisa.
+  function susunan(n) {
+    if (n > 3 && isPrime(n)) {
+      let p = 2;
+      for (let d = 2; d * d <= n; d++) if (n % d <= n % p) p = d;
+      return { p, q: Math.floor(n / p), sisa: n % p };
+    }
+    const [p, q] = pasanganFaktor(n);
+    return { p, q, sisa: 0 };
+  }
+
+  // Kotak-kotak n: mulai 1 baris, lalu pindah jadi persegi panjang p x q (sisa ditandai merah).
   function gambarKotak(n, wadah) {
     const kotak = el('div', 'kotak-wadah');
     wadah.appendChild(kotak);
     const W = kotak.clientWidth || 800, H = kotak.clientHeight || 220;
     const gap = 3;
-    const [p, q] = pasanganFaktor(n);
+    const { p, q, sisa } = susunan(n);
+    const baris = p + (sisa ? 1 : 0);
     const satuBaris = Math.min(40, (W - gap * n) / n);
-    const s = Math.min(40, (W - gap * q) / q, (H - gap * p) / p);
+    const s = Math.min(40, (W - gap * q) / q, (H - gap * baris) / baris);
     const lebarBaris = n * (satuBaris + gap), x0 = (W - lebarBaris) / 2, y0 = (H - satuBaris) / 2;
-    const lebarGrid = q * (s + gap), tinggiGrid = p * (s + gap);
-    const gx = (W - lebarGrid) / 2, gy = (H - tinggiGrid) / 2;
+    const gx = (W - q * (s + gap)) / 2, gy = (H - baris * (s + gap)) / 2;
     const isi = [];
     for (let i = 0; i < n; i++) {
-      const k = el('div', 'kotak');
-      k.style.background = WARNA[Math.floor(i / q) % WARNA.length];
+      const lebih = i >= p * q;
+      const k = el('div', 'kotak' + (lebih && p > 1 ? ' sisa' : ''));
+      k.style.background = lebih && p > 1 ? '#C9C2B4' : WARNA[Math.floor(i / q) % WARNA.length];
       k.style.width = k.style.height = satuBaris + 'px';
       k.style.left = x0 + i * (satuBaris + gap) + 'px';
       k.style.top = y0 + 'px';
@@ -167,7 +179,7 @@
     if (p > 1) {
       setTimeout(() => {
         isi.forEach((k, i) => {
-          const r = Math.floor(i / q), c = i % q;
+          const r = Math.floor(i / q), c = i - r * q;
           k.style.transitionDelay = (r * 0.12) + 's';
           k.style.width = k.style.height = s + 'px';
           k.style.left = gx + c * (s + gap) + 'px';
@@ -179,7 +191,11 @@
 
   function teksKotak(n) {
     if (n === 1) return '<b>1</b> hanya punya <b>satu</b> faktor, yaitu 1. Bilangan prima harus punya tepat 2 faktor. Jadi <b>1 bukan prima</b>.';
-    if (isPrime(n)) return '<b>' + n + '</b> kotak hanya bisa disusun <b>1 baris</b>. Faktornya cuma 1 dan ' + n + '. Jadi <b>' + n + ' prima</b>' + (n === 2 ? ' (satu-satunya prima yang genap)' : '') + '.';
+    if (isPrime(n)) {
+      const { p, sisa } = susunan(n);
+      const coba = sisa ? 'Dicoba ' + p + ' baris: <b>sisa ' + sisa + '</b>, tidak pas. ' : '';
+      return coba + '<b>' + n + '</b> kotak hanya pas disusun <b>1 baris</b>. Faktornya cuma 1 dan ' + n + '. Jadi <b>' + n + ' prima</b>' + (n === 2 ? ' (satu-satunya prima yang genap)' : '') + '.';
+    }
     const [p, q] = pasanganFaktor(n);
     return '<b>' + n + '</b> kotak bisa disusun jadi <b>' + p + ' baris × ' + q + ' kotak</b>. Jadi ' + n + ' = ' + p + ' × ' + q + ', punya faktor lain selain 1 dan ' + n + '. <b>Bukan prima</b>.';
   }
