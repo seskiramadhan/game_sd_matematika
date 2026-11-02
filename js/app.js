@@ -114,7 +114,7 @@
       let bawah;
       if (p.segera) bawah = '<span class="label-segera">🔒 Segera</span>';
       else if (!terbuka) bawah = '<span class="label-segera">🔒</span>';
-      else bawah = '<span class="bintang-kecil">' + bintangTeks(prog.bintang) + '</span>';
+      else bawah = '<span class="label-tingkat">Tingkat ' + prog.tingkat + '</span><span class="bintang-kecil">' + bintangTeks(prog.bintangT[prog.tingkat] || 0) + '</span>';
       el.innerHTML = '<span class="bulat">' + p.ikon + '</span><span class="nama">' + p.nama + '</span>' + bawah;
       el.onclick = () => {
         if (p.segera) { Suara.efek('boing'); toast(p.nama + ' segera hadir.'); return; }
