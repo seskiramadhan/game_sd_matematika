@@ -38,12 +38,12 @@ Untuk tiap mini game di rencana (urutan sesuai rencana, yang paling sederhana du
 1. Buat `js/kelas-<k>/bab-<n>/<nama>.js`: generator soal per tingkat, pemeriksa jawaban, tampilan, dan visual "kalau salah".
 2. Tes generator dengan Node (`node -e ...`): 200 soal acak per tingkat, pastikan jawaban benar menurut pemeriksa dan angka dalam batas tingkat.
 3. Tes tampilan dengan Playwright (sudah terpasang: `require('playwright')`, `chromium.launch()`), viewport **1180×820** dan **1024×768**: screenshot tiap layar penting, mainkan 1 ronde otomatis. Lihat screenshot-nya, perbaiki yang terpotong/bertumpuk.
-4. Commit kecil ke `main` setelah mini game itu lolos tes.
+4. Commit kecil ke `master` setelah mini game itu lolos tes.
 
 ## Langkah 5 — Rilis & catat
-1. Push ke `main`. Bila GitHub Pages belum aktif, pandu Ayah: Settings → Pages → Source: branch `main`, folder `/ (root)` → Save. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
+1. Push ke `master`. Bila GitHub Pages belum aktif, pandu Ayah: Settings → Pages → Source: branch `master`, folder `/ (root)` → Save. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
 2. Update `README.md` (tabel isi) dan status di `rencana/kelas-<k>-bab-<n>.md`.
-3. Bila repo konten tersedia: update kolom Game di `../konten_sd_matematika/STATUS.md` dan centang di `NEXT.md`, commit & push di repo itu (branch `main`).
+3. Bila repo konten tersedia: update kolom Game di `../konten_sd_matematika/STATUS.md` dan centang di `NEXT.md`, commit & push di repo itu (branch `master`).
 
 ## Langkah 6 — Laporkan
 Ringkas dalam Bahasa Indonesia: link game, mini game yang selesai, 2–3 screenshot, hal yang belum. Minta Ayah mencoba bersama anak; reaksi dan soal yang sering salah dicatat Ayah/Claude di catatan progres anak (repo privat), **bukan** di repo ini.

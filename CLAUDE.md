@@ -7,7 +7,7 @@ Web game gratis (HTML + CSS + JavaScript, tanpa build step) untuk latihan Matema
 
 ## Teknis
 - Dibuka di Safari iPad, **landscape**, layar sentuh, tombol besar. Juga jalan di HP/laptop.
-- Host: **GitHub Pages** dari branch `main`, root folder. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
+- Host: **GitHub Pages** dari branch `master`, root folder. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
 - Progres & bintang: `localStorage` (bungkus try/catch). Tanpa login, tanpa server.
 - Gaya sama dengan video: latar krem `#FFF6E5`, teks `#1F2A44`, font Poppins (Google Fonts), permen/katak/kotak warna-warni.
 - Suara: file audio pendek (dibuat dengan TTS di repo konten) di `audio/`.
@@ -32,4 +32,4 @@ audio/kelas-4/bab-3/*.mp3
 - Tombol 🎬 di peta bab mengarah ke video.
 
 ## Git
-- Branch: **`main`**. Commit kecil & sering. Tes di browser (Playwright tersedia di ruang kerja Claude) sebelum push.
+- Branch: **`master`**. Commit kecil & sering. Tes di browser (Playwright tersedia di ruang kerja Claude) sebelum push.
