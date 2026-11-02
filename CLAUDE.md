@@ -1,6 +1,6 @@
 # CLAUDE.md — Game Matematika SD (repo PUBLIK)
 
-⚠️ Repo ini **publik**. Jangan menaruh data pribadi: nama anak, catatan kelemahan anak, email, isi buku penerbit. Rencana produk, ROADMAP, dan NEXT ada di repo privat `konten_sd_matematika` (pusat komando).
+⚠️ Repo ini **publik**. Jangan menaruh data pribadi: nama anak, catatan kelemahan anak, email, isi buku penerbit. Rencana produk, ROADMAP, dan NEXT ada di repo privat `konten_sd_matematika` (pusat komando). **Rencana detail game Tahap 1 + maskot Garuda: `RENCANA.md`.**
 
 ## Tujuan
 Web game gratis (HTML + CSS + JavaScript, tanpa build step) untuk latihan Matematika SD. Etalase gratis; video & PDF berbayar dijual terpisah.
