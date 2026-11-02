@@ -38,6 +38,8 @@ Untuk tiap mini game di rencana (urutan sesuai rencana, yang paling sederhana du
 1. Buat `js/kelas-<k>/bab-<n>/<nama>.js`: generator soal per tingkat, pemeriksa jawaban, tampilan, dan visual "kalau salah".
 2. Tes generator dengan Node (`node -e ...`): 200 soal acak per tingkat, pastikan jawaban benar menurut pemeriksa dan angka dalam batas tingkat.
 3. Tes tampilan dengan Playwright (sudah terpasang: `require('playwright')`, `chromium.launch()`), viewport **1180×820** dan **1024×768**: screenshot tiap layar penting, mainkan 1 ronde otomatis. Lihat screenshot-nya, perbaiki yang terpotong/bertumpuk.
+   - **Mainkan dengan ketukan sentuh sungguhan** (Playwright `page.touchscreen.tap(x, y)` / CDP `Input.dispatchTouchEvent` dengan emulasi sentuh), bukan `el.click()` lewat script: klik script lolos walau tombol bergeser saat ditekan. Di laptop tanpa Playwright: Chrome headless + CDP (Node 18+ punya `fetch` & `WebSocket`).
+   - Jangan memakai `transform` untuk efek `:active` pada elemen yang posisinya sudah memakai `transform` (mis. pos peta `translate(-50%,-50%)`): tombol melompat dari jari dan ketukan hilang di iPad.
 4. Commit kecil ke `master` setelah mini game itu lolos tes.
 
 ## Langkah 5 — Rilis & catat
