@@ -36,7 +36,9 @@ h1, h2 { margin: 0; }
   background: var(--kartu); box-shadow: var(--bayang); min-height: 72px;
   transition: transform .08s;
 }
-.tombol:active, .tombol-ikon:active, .pos:active, .kartu-pilih:active, .chip:active { transform: translateY(3px); }
+.tombol:active, .tombol-ikon:active, .kartu-pilih:active, .chip:active { transform: translateY(3px); }
+/* .pos sudah memakai transform untuk posisi: jangan ditimpa, atau pos melompat dari jari dan ketukan hilang */
+.pos:active { transform: translate(-50%, calc(-50% + 3px)); }
 .tombol-utama { background: var(--hijau); color: #fff; }
 .tombol[disabled] { opacity: .45; }
 .tombol-ikon {
