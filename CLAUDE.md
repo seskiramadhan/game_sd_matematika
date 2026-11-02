@@ -33,3 +33,4 @@ audio/kelas-4/bab-3/*.mp3
 
 ## Git
 - Branch: **`master`**. Commit kecil & sering. Tes di browser (Playwright tersedia di ruang kerja Claude) sebelum push.
+- **Sebelum push: `node tools/versi.js`** (menulis `versi.json` + `?v=` di index.html). Game mengecek `versi.json` dan menampilkan tombol "🔄 Perbarui" bila ada versi baru, jadi pemain tidak perlu hapus cache.

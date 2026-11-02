@@ -43,7 +43,7 @@ Untuk tiap mini game di rencana (urutan sesuai rencana, yang paling sederhana du
 4. Commit kecil ke `master` setelah mini game itu lolos tes.
 
 ## Langkah 5 — Rilis & catat
-1. Push ke `master`. Bila GitHub Pages belum aktif, pandu Ayah: Settings → Pages → Source: branch `master`, folder `/ (root)` → Save. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
+1. Jalankan **`node tools/versi.js`** (naikkan versi → tombol "🔄 Perbarui" muncul di iPad yang masih versi lama), commit, lalu push ke `master`. File css/js baru di `index.html` otomatis ikut diberi `?v=`. Bila GitHub Pages belum aktif, pandu Ayah: Settings → Pages → Source: branch `master`, folder `/ (root)` → Save. URL: `https://seskiramadhan.github.io/game_sd_matematika/`.
 2. Update `README.md` (tabel isi) dan status di `rencana/kelas-<k>-bab-<n>.md`.
 3. Bila repo konten tersedia: update kolom Game di `../konten_sd_matematika/STATUS.md` dan centang di `NEXT.md`, commit & push di repo itu (branch `master`).
 
