@@ -71,12 +71,15 @@
   // ---------- Peta bab ----------
   function posTerbuka(bab) {
     // Pos terbuka bila tidak "segera" dan pos aktif sebelumnya sudah >= 1 bintang.
+    // Pos yang sudah pernah dimainkan selalu tetap terbuka, supaya progres lama tidak terkunci
+    // bila urutan pos berubah (mis. pos baru ditambahkan di depan).
     const hasil = {};
     let sebelumnyaLulus = true;
     bab.pos.forEach((p) => {
       if (p.segera) { hasil[p.id] = false; return; }
-      hasil[p.id] = sebelumnyaLulus;
-      sebelumnyaLulus = sebelumnyaLulus && Simpan.pos(state.babId, p.id).bintang >= 1;
+      const prog = Simpan.pos(state.babId, p.id);
+      hasil[p.id] = sebelumnyaLulus || prog.main >= 1 || prog.bintang >= 1;
+      sebelumnyaLulus = prog.bintang >= 1;
     });
     return hasil;
   }
@@ -100,6 +103,7 @@
 
     const buka = posTerbuka(bab);
     let posGaruda = null;
+    const posTerbukaEl = [];
     bab.pos.forEach((p, i) => {
       const prog = Simpan.pos(state.babId, p.id);
       const terbuka = buka[p.id];
@@ -118,8 +122,10 @@
         Suara.efek('pop'); bukaJendelaMulai(p);
       };
       peta.appendChild(el);
-      if (terbuka) posGaruda = el;
+      if (terbuka) { posTerbukaEl.push(el); if (prog.bintang < 1 && !posGaruda) posGaruda = el; }
     });
+    // Garuda berdiri di pos terbuka pertama yang belum berbintang (bila semua berbintang: pos terbuka terakhir)
+    if (!posGaruda) posGaruda = posTerbukaEl[posTerbukaEl.length - 1] || null;
     if (posGaruda) {
       const g = document.createElement('img');
       g.className = 'garuda garuda-peta lambai'; g.src = GARUDA('semangat'); g.alt = '';
