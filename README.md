@@ -11,6 +11,10 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 3 · Faktor & Kelipatan | 🐸 Katak Loncat (kelipatan) | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🧱 Prima atau Bukan | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🐸🐸 Ketemu di Mana? · 🌳 Pohon Faktor · 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 4 · Pecahan (1) | 🍕 Potong Pizza (pembilang & penyebut) | ✅ bisa dicoba |
+| 4 | 4 · Pecahan (1) | 🍫 Cokelat Kembar (senilai, sederhanakan sampai habis) | ✅ bisa dicoba |
+| 4 | 4 · Pecahan (1) | ⚖️ Mana Lebih Besar (bandingkan & urutkan) | ✅ bisa dicoba |
+| 4 | 4 · Pecahan (1) | 📖 Soal Cerita · Pecahan di Garis Bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 
 ## Cara main
 1. Buka link di Safari/Chrome, putar perangkat ke landscape.
@@ -25,6 +29,6 @@ Jalankan server kecil di folder ini, lalu buka `http://localhost:8000/`:
 ```
 python -m http.server 8000
 ```
-Cek logika soal (jawaban dihitung kode): `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat).
+Cek logika soal (jawaban dihitung kode): `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat), `node tools/cek-bab4.js` (Pecahan: Potong Pizza, Cokelat Kembar, Mana Lebih Besar).
 
 Urutan pos di peta: pos berikutnya terbuka setelah pos sebelumnya dapat ≥ 1 ⭐. Pos yang sudah pernah dimainkan selalu tetap terbuka (progres lama tidak terkunci bila ada pos baru).

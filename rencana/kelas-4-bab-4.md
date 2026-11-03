@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 4 (Pecahan 1)
 
-Status: **disetujui Ayah 3 Nov 2026**, belum dibangun. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3 (`rencana/kelas-4-bab-3.md`).
+Status: **disetujui Ayah 3 Nov 2026**. **Tahap 1 selesai 3 Nov 2026** (3 mini game bisa dicoba; cek logika `node tools/cek-bab4.js`). Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3 (`rencana/kelas-4-bab-3.md`).
 
 Topik: A. Pembilang & penyebut · B. Pecahan senilai (termasuk menyederhanakan) · C. Membandingkan & mengurutkan pecahan.
 
@@ -20,3 +20,9 @@ Semua jawaban dihitung kode (FPB untuk menyederhanakan, perkalian silang/samakan
 
 ## Tahap 2 (belum)
 📖 Soal Cerita (model batang, mulai dari cerita tanpa angka) · Pecahan di garis bilangan · 🏆 Tantangan Akhir.
+
+## Catatan pembangunan Tahap 1
+- Kode: `js/kelas-4/bab-4/` (`pecahan.js` alat bersama: FPB, KPK, bandingkan, gambar pizza/kue/batang SVG, pecahan bertumpuk).
+- 🍕 Penyebut > 12 (tingkat 3) digambar sebagai **kue persegi panjang** (mis. 24 = 4 × 6) supaya potongan tetap mudah diketuk. Penyebut prima > 12 tidak dipakai. Mewarnai: potongan mana saja boleh, yang dihitung banyaknya.
+- 🍫 Soal 4–5: anak mengetuk tombol pembagi (:2 … :9) berulang kali, lalu "Sudah paling sederhana". Berhenti di tengah (mis. 12/16 → 6/8) = belum selesai, dengan pesan "Hampir! … belum habis". Mengetuk pembagi yang tidak membagi atas **dan** bawah = salah (dijelaskan). FPB soal hanya memuat faktor 2, 3, 5, 7.
+- ⚖️ Semua penyebut ≤ 12; tingkat 3 hanya pasangan yang KPK-nya ≤ 24 (batang bisa disamakan). ± 55% soal tingkat 3 memakai jebakan "penyebut besar = lebih besar"; ± 17% jawabannya "=".
