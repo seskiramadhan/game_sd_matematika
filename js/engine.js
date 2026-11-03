@@ -4,7 +4,8 @@
 //   buatRonde(tingkat) -> array 5 soal
 //   soalMirip(soal, tingkat) -> soal baru yang mirip (untuk ulangan)
 //   tampilkan(soal, wadah, kirim)   kirim({ benar: bool, ... }) dipanggil sekali saat anak menjawab
-//   alasan(soal, jawaban, wadah)    gambar/penjelasan saat salah (boleh juga saat benar: pujian)
+//   alasan(soal, jawaban, wadah)    gambar/penjelasan saat salah
+//   pujian(soal, jawaban) (opsional) -> teks, atau { html } untuk isi ber-HTML (mis. pecahan bertumpuk)
 (function () {
   const $ = (id) => document.getElementById(id);
   const JUMLAH = 5;
@@ -81,7 +82,7 @@
       garuda('senang', 'lompat');
       judul.className = 'umpan-judul benar';
       judul.textContent = '✓ ' + TEKS_PUJIAN[k];
-      if (sesi.game.pujian) { const p = sesi.game.pujian(soal, jawaban); if (p) { const d = document.createElement('div'); d.textContent = p; isi.appendChild(d); } }
+      if (sesi.game.pujian) { const p = sesi.game.pujian(soal, jawaban); if (p) { const d = document.createElement('div'); if (p.html) d.innerHTML = p.html; else d.textContent = p; isi.appendChild(d); } }
       umpan.classList.add('benar-saja');
       umpan.hidden = false;
       gambarTitik();
