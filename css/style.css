@@ -501,3 +501,15 @@ h1, h2 { margin: 0; }
   .susun-tile { width: 24px; }
   .bil-opsi { gap: 12px; }
 }
+.ronde-isi:has(.susun-papan) { gap: 12px; }
+.ronde-isi:has(.susun-papan) .bil-kata { padding: 8px 30px; font-size: 32px; }
+.ronde-isi:has(.susun-papan) .bil-kata-angka { font-size: 50px; }
+.ronde-isi:has(.susun-papan) .soal-teks.soal-sedang { font-size: 26px; }
+.susun-tiles { min-height: 42px; }
+.banding-baris:has(.bil-angka) { flex-wrap: wrap; justify-content: center; }
+@media (max-width: 1100px) {
+  .banding-baris:has(.bil-angka) { gap: 20px; }
+  .banding-baris:has(.bil-angka) .kotak-tanda { width: 88px; height: 88px; font-size: 46px; }
+  .bil-raksasa { font-size: 56px; }
+  .bil-bentuk { font-size: 28px; }
+}

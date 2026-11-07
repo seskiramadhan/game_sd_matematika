@@ -7,6 +7,10 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 ## Isi
 | Kelas | Bab | Mini game | Status |
 |---|---|---|---|
+| 4 | 1 · Bilangan Cacah | 🧱 Susun Angka (nilai tempat, membaca & menulis bilangan sampai 100.000) | ✅ bisa dicoba |
+| 4 | 1 · Bilangan Cacah | 🏔️ Mana Lebih Besar (bandingkan & urutkan bilangan cacah) | ✅ bisa dicoba |
+| 4 | 1 · Bilangan Cacah | 🎯 Bulatkan! (pembulatan, teka-teki batas, taksiran) | ✅ bisa dicoba |
+| 4 | 1 · Bilangan Cacah | 📖 Soal Cerita · pola bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 3 · Faktor & Kelipatan | 🍬 Bagi Rata (faktor) | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🐸 Katak Loncat (kelipatan) | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🧱 Prima atau Bukan | ✅ bisa dicoba |
@@ -37,6 +41,6 @@ Jalankan server kecil di folder ini, lalu buka `http://localhost:8000/`:
 ```
 python -m http.server 8000
 ```
-Cek logika soal (jawaban dihitung kode): `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat), `node tools/cek-bab4.js` (Pecahan: Potong Pizza, Cokelat Kembar, Mana Lebih Besar), `node tools/cek-bab5.js` (Pecahan 2: Roti Utuh, Tukar Bentuk, Bagi Kelompok), `node tools/cek-bab6.js` (Desimal: Kotak Seratus, Garis Desimal, Mana Lebih Besar).
+Cek logika soal (jawaban dihitung kode): `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat), `node tools/cek-bab4.js` (Pecahan: Potong Pizza, Cokelat Kembar, Mana Lebih Besar), `node tools/cek-bab5.js` (Pecahan 2: Roti Utuh, Tukar Bentuk, Bagi Kelompok), `node tools/cek-bab6.js` (Desimal: Kotak Seratus, Garis Desimal, Mana Lebih Besar), `node tools/cek-bab1.js` (Bilangan Cacah: Susun Angka, Mana Lebih Besar, Bulatkan!; juga menjalankan cek Bab 3-6).
 
 Urutan pos di peta: pos berikutnya terbuka setelah pos sebelumnya dapat ≥ 1 ⭐. Pos yang sudah pernah dimainkan selalu tetap terbuka (progres lama tidak terkunci bila ada pos baru).

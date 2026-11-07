@@ -134,7 +134,7 @@
   function garisBulat(n, lo, hi) {
     const W = 900, X0 = 90, X1 = 810, yG = 96;
     const x = (v) => X0 + ((v - lo) / (hi - lo)) * (X1 - X0);
-    const svg = svgEl('svg', { viewBox: '0 0 ' + W + ' 160', class: 'bil-garis-svg' });
+    const svg = svgEl('svg', { viewBox: '0 0 ' + W + ' 184', class: 'bil-garis-svg' });
     const tengah = (lo + hi) / 2;
     svg.appendChild(svgEl('rect', { x: x(lo), y: yG - 26, width: x(tengah) - x(lo), height: 52, rx: 8, fill: '#FFE3C8', opacity: 0.85 }));
     svg.appendChild(svgEl('rect', { x: x(tengah), y: yG - 26, width: x(hi) - x(tengah), height: 52, rx: 8, fill: '#D6F2E3', opacity: 0.95 }));
