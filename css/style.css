@@ -323,3 +323,22 @@ h1, h2 { margin: 0; }
   .ronde-isi { gap: 20px; }
   .susun-utuh { width: 330px; }
 }
+/* 🔄 Tukar Bentuk */
+.tukar-soal { font-size: 64px; font-weight: 800; display: flex; align-items: center; gap: 18px; line-height: 1.05; }
+.tukar-soal .campuran { margin: 0; }
+.tukar-soal .sama { opacity: .6; }
+.tukar-soal .tanya { width: 120px; height: 120px; border-radius: 24px; border: 5px dashed var(--emas); background: #fff; color: var(--emas); display: flex; align-items: center; justify-content: center; }
+.kotak-isi { display: inline-flex; align-items: center; justify-content: center; min-width: 1.6em; height: 1.15em; margin-bottom: 6px; border-radius: 16px; border: 4px dashed var(--emas); background: #fff; color: var(--emas); }
+.kotak-isi.terisi { border-style: solid; border-color: var(--biru); color: var(--biru); }
+.tukar-baris { display: flex; align-items: center; justify-content: center; gap: 56px; }
+.papan-angka { display: grid; grid-template-columns: repeat(3, 88px); gap: 10px; }
+.tombol-angka { min-height: 70px; padding: 0; font-size: 34px; }
+.tombol-angka.hapus { background: #F4EDE0; }
+.tombol-angka-cek { min-height: 70px; padding: 0; font-size: 24px; }
+.alasan-hitung { font-size: 30px; font-weight: 700; background: #FFF6E5; border-radius: 16px; padding: 4px 22px; }
+.alasan-hitung b { color: var(--biru); }
+.alasan-hitung b.merah { color: #E04466; }
+@media (max-height: 790px) {
+  .tukar-soal { font-size: 56px; }
+  .tombol-angka, .tombol-angka-cek { min-height: 62px; }
+}
