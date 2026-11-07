@@ -12,7 +12,7 @@
   const MAKS_JUMLAH = { 1: 24, 2: 48, 3: 96 };
   // penyebut = banyak kelompok (6, 7, 8, 12 diulang supaya lebih sering). Minimal 3 supaya pembilang >= 2.
   const PENYEBUT = {
-    1: [3, 3, 4, 4, 5, 6, 6, 6, 8, 8],
+    1: [3, 4, 4, 5, 6, 6, 6, 6, 8, 8, 8],
     2: [3, 4, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 12, 12],
     3: [4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 10, 12, 12, 12],
   };
