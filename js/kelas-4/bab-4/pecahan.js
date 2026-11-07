@@ -47,7 +47,7 @@
   const html = (p, kelas) => '<span class="pec' + (kelas ? ' ' + kelas : '') + '"><span class="pec-a">' + p[0] + '</span><span class="pec-b">' + p[1] + '</span></span>';
 
   // Pizza (b <= 12) atau kue persegi panjang (b > 12). diwarnai: Set indeks potongan.
-  // opsi: ukuran (px), nomor (tulis nomor 1..b, yang diwarnai lebih dulu), urutNomor (array indeks sesuai urutan nomor)
+  // opsi: ukuran (px), warna, topping (warna topping, atau false), nomor (tulis nomor 1..b, yang diwarnai lebih dulu), urutNomor (array indeks sesuai urutan nomor)
   function potongan(b, diwarnai, opsi) {
     opsi = opsi || {};
     const U = opsi.ukuran || 260;
@@ -77,9 +77,9 @@
         const g = svgEl('g', { 'data-i': i, class: 'potong' });
         g.appendChild(svgEl('path', { d, fill: isi(i), stroke: '#fff', 'stroke-width': 3, 'stroke-linejoin': 'round' }));
         // topping kecil di potongan yang diwarnai
-        if (diwarnai.has(i) && !opsi.nomor) {
+        if (diwarnai.has(i) && !opsi.nomor && opsi.topping !== false) {
           const am = (a0 + a1) / 2;
-          g.appendChild(svgEl('circle', { cx: c + r * 0.62 * Math.cos(am), cy: c + r * 0.62 * Math.sin(am), r: Math.max(4, Math.min(10, 60 / b)), fill: '#C83A2A', 'pointer-events': 'none' }));
+          g.appendChild(svgEl('circle', { cx: c + r * 0.62 * Math.cos(am), cy: c + r * 0.62 * Math.sin(am), r: Math.max(4, Math.min(10, 60 / b)), fill: opsi.topping || '#C83A2A', 'pointer-events': 'none' }));
         }
         const am = (a0 + a1) / 2;
         const t = huruf(c + r * 0.68 * Math.cos(am), c + r * 0.68 * Math.sin(am), i, b > 8 ? 15 : 20);
