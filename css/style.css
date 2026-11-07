@@ -433,3 +433,71 @@ h1, h2 { margin: 0; }
 }
 .kartu-slot .des-angka { font-size: 34px; }
 .label-kecil.redup { font-weight: 600; opacity: .75; }
+
+/* ---------- Kelas 4 Bab 1: Bilangan Cacah ---------- */
+.bil-opsi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.bil-opsi-enam { grid-template-columns: repeat(3, 1fr); }
+.tombol-bil { font-size: 38px; min-width: 190px; padding: 14px 20px; }
+.tombol-bil-kecil { font-size: 34px; min-width: 150px; }
+.tombol-cek.dipilih { background: var(--kuning); color: var(--teks); box-shadow: 0 0 0 5px #E0A800 inset; }
+.ket-kecil { font-size: 20px; font-weight: 600; opacity: .7; }
+.bil-gambar { display: flex; justify-content: center; max-width: 100%; }
+.bil-gambar svg { max-width: 100%; height: auto; }
+.bil-garis-svg { width: min(820px, 100%); display: block; }
+.bil-angka { font-weight: 800; white-space: nowrap; }
+.bil-raksasa { font-size: 76px; line-height: 1.1; }
+.bil-besar-teks { font-size: 60px; }
+.bil-bentuk { font-size: 38px; font-weight: 800; white-space: nowrap; color: var(--biru); }
+.bil-kata { font-size: 38px; font-weight: 700; text-align: center; background: #fff; border: 4px dashed var(--emas); border-radius: 24px; padding: 14px 36px; max-width: 860px; }
+.bil-kata-angka { font-size: 64px; font-weight: 800; }
+.bil-besar { display: flex; align-items: flex-end; gap: 4px; }
+.bil-ch { font-size: 84px; font-weight: 800; line-height: 1.1; padding: 0 8px; border-radius: 16px; }
+.bil-ch.tanda { background: var(--kuning); color: #1F2A44; box-shadow: 0 0 0 4px #E0A800; }
+.bil-titik { font-size: 84px; font-weight: 800; line-height: 1.1; opacity: .6; margin: 0 -2px; }
+.kartu-slot .bil-angka { font-size: 30px; }
+.susun-papan { display: flex; gap: 12px; }
+.susun-kolom { width: 142px; background: #fff; border: 4px solid var(--wt, #ccc); border-radius: 20px; padding: 8px 8px 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: var(--bayang); }
+.susun-kepala { text-align: center; line-height: 1.1; }
+.susun-kepala b { font-size: 24px; display: block; }
+.susun-kepala small { font-size: 14px; font-weight: 700; opacity: .65; }
+.susun-kolom .tombol { width: 100%; min-height: 56px; padding: 4px; font-size: 36px; line-height: 1; background: var(--wt, var(--biru)); color: #fff; }
+.susun-kolom .tombol[disabled] { opacity: .3; }
+.susun-kolom .susun-kurang { background: #E9DFCB; color: var(--teks); }
+.susun-angka { font-size: 46px; font-weight: 800; line-height: 1; }
+.susun-kolom.kosong .susun-angka { opacity: .35; }
+.susun-tiles { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; width: 100px; min-height: 40px; align-content: flex-start; }
+.susun-tile { width: 28px; height: 11px; border-radius: 3px; background: var(--wt); }
+.susun-total { font-size: 26px; font-weight: 700; }
+.susun-total b { font-size: 36px; color: var(--biru); }
+.bil-tabel { border-collapse: separate; border-spacing: 4px; font-size: 24px; }
+.bil-tabel th { font-size: 14px; font-weight: 700; opacity: .7; padding: 0 4px; }
+.bil-tabel th.sorot { opacity: 1; color: #E04466; }
+.bil-tabel td { min-width: 70px; height: 38px; text-align: center; font-weight: 800; background: #fff; border-radius: 10px; }
+.bil-tabel td.asli { background: none; text-align: right; font-size: 24px; padding-right: 10px; color: var(--biru); }
+.bil-tabel td.kosong { background: none; }
+.bil-tabel td.sama { background: #D6F2E3; }
+.bil-tabel td.nol { background: #FFF0E3; color: var(--oranye); }
+.bil-tabel td.sorot { background: var(--kuning); color: var(--teks); }
+.bil-chip-baris { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.bil-chip { font-size: 20px; font-weight: 700; padding: 4px 14px; border-radius: 14px; background: #fff; }
+.bil-chip.ok { background: #D6F2E3; }
+.bil-chip.tidak { background: #F1E9D8; opacity: .8; }
+.bil-chip.keliru { box-shadow: 0 0 0 3px #E04466 inset; opacity: 1; }
+@media (max-height: 790px) {
+  .bil-raksasa { font-size: 64px; }
+  .bil-ch, .bil-titik { font-size: 66px; }
+  .tombol-bil { font-size: 34px; padding: 10px 16px; }
+  .bil-kata { font-size: 32px; padding: 10px 28px; }
+  .bil-kata-angka { font-size: 54px; }
+  .susun-kolom .tombol { min-height: 50px; }
+  .susun-angka { font-size: 38px; }
+  .bil-tabel td { height: 30px; }
+  .bil-tabel { font-size: 20px; }
+}
+@media (max-width: 1100px) {
+  .tombol-bil { min-width: 150px; }
+  .susun-kolom { width: 124px; }
+  .susun-tiles { width: 88px; }
+  .susun-tile { width: 24px; }
+  .bil-opsi { gap: 12px; }
+}
