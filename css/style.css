@@ -342,3 +342,45 @@ h1, h2 { margin: 0; }
   .tukar-soal { font-size: 56px; }
   .tombol-angka, .tombol-angka-cek { min-height: 62px; }
 }
+/* 🍓 Bagi Kelompok */
+.kelompok-soal .kata { font-size: .55em; font-weight: 700; opacity: .8; }
+.buah { font-size: 20px; line-height: 1; }
+.buah.besar { font-size: .8em; }
+.bagi-baris { display: flex; align-items: center; justify-content: center; gap: 28px; }
+.tumpukan {
+  width: 150px; height: 170px; border-radius: 28px; border: 5px dashed #E04466; background: #FFF0F3; box-shadow: var(--bayang);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; flex: none; transition: transform .08s;
+}
+.tumpukan:active { transform: translateY(3px); }
+.tumpukan .buah.besar { font-size: 54px; }
+.tumpukan b { font-size: 36px; line-height: 1.1; }
+.tumpukan small { font-size: 15px; font-weight: 700; opacity: .7; line-height: 1.2; }
+.tumpukan.habis { border-style: solid; border-color: #D9C9A8; background: #F4EDE0; }
+.piring-grid { display: grid; gap: 10px; }
+.kelompok {
+  width: 104px; min-height: 92px; border-radius: 24px; border: 4px solid #E3D6BD; background: #fff; box-shadow: inset 0 0 0 6px #F7EFDF;
+  display: flex; align-items: center; justify-content: center; padding: 8px; transition: transform .08s;
+}
+.kelompok.siap { border-color: var(--biru); border-style: dashed; }
+.kelompok.diambil { border: 4px solid var(--hijau); background: #E3F7EC; box-shadow: none; }
+.kelompok:active { transform: translateY(3px); }
+.buah-isi { display: grid; grid-template-columns: repeat(4, 20px); gap: 1px 2px; justify-content: center; }
+.buah-ringkas { font-size: 20px; font-weight: 800; white-space: nowrap; }
+.bagi-info { padding: 6px 22px; }
+.bagi-info b { font-size: 30px; }
+.bagi-tombol { margin-top: 0; }
+.piring-alasan { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 760px; }
+.kelompok.kecil { width: 88px; min-height: 64px; padding: 4px; border-radius: 16px; }
+.kelompok.kecil .buah { font-size: 16px; }
+.kelompok.kecil .buah-isi { grid-template-columns: repeat(4, 16px); }
+.kelompok.kecil .buah-ringkas { font-size: 16px; }
+@media (max-height: 790px) {
+  .kelompok { width: 96px; min-height: 84px; }
+  .tumpukan { height: 150px; }
+}
+.alasan-dua { flex-direction: column; gap: 4px; align-items: stretch; }
+.alasan-dua .alasan-gambar { flex-direction: row; justify-content: flex-start; gap: 14px; }
+.alasan-dua .alasan-gambar > .label-kecil { order: -1; width: 150px; text-align: right; flex: none; }
+.alasan-dua .roti-baris { gap: 8px; flex-wrap: nowrap; }
+.buah-isi { display: flex; flex-wrap: wrap; justify-content: center; gap: 1px 2px; width: 88px; }
+.kelompok.kecil .buah-isi { width: 72px; }

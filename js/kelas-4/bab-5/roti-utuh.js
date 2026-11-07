@@ -189,10 +189,10 @@
     if (pu || jawaban.potong) {
       punyamu.appendChild(C.barisRoti(pu, jawaban.potong, soal.b, { ukuranUtuh: kecil(pu), ukuranSisa: 84, plus: true, warnaSisa: '#FF8A3D' }));
     } else punyamu.appendChild(el('div', 'susun-kosong', 'kosong'));
-    punyamu.appendChild(el('div', 'label-kecil', 'Punyamu: ' + pu + ' utuh + ' + jawaban.potong + ' potong'));
+    punyamu.appendChild(el('div', 'label-kecil', 'Punyamu:<br>' + pu + ' utuh + ' + jawaban.potong + ' potong'));
     const benar = el('div', 'alasan-gambar');
     benar.appendChild(C.barisRoti(soal.u, soal.a, soal.b, { ukuranUtuh: kecil(soal.u), ukuranSisa: 84, plus: true, warnaUtuh: '#2BB673', warnaSisa: '#2BB673' }));
-    benar.appendChild(el('div', 'label-kecil', 'Yang benar: ' + soal.u + ' utuh + ' + soal.a + ' potong'));
+    benar.appendChild(el('div', 'label-kecil', 'Yang benar:<br>' + soal.u + ' utuh + ' + soal.a + ' potong'));
     baris.append(punyamu, benar);
     const kolomAlasan = el('div', 'alasan-kolom');
     kolomAlasan.appendChild(baris);
