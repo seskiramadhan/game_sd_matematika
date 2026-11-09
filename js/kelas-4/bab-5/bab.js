@@ -4,7 +4,7 @@ window.DAFTAR_BAB['k4b5'] = {
   kelas: 4,
   bab: 5,
   judul: 'Pecahan (2)',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/ArB0NQrLwHM',
   catatan: 'Pos lain (Soal Cerita, Pecahan Campuran di Garis Bilangan, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'roti-utuh', ikon: '🥐', nama: 'Roti Utuh', warna: '#F5A93A', game: () => window.GameRotiUtuh },

@@ -4,7 +4,7 @@ window.DAFTAR_BAB['k4b6'] = {
   kelas: 4,
   bab: 6,
   judul: 'Desimal',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/vXqNbhMcNV8',
   catatan: 'Pos lain (Soal Cerita, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'kotak-seratus', ikon: '🟦', nama: 'Kotak Seratus', warna: '#3A86FF', game: () => window.GameKotakSeratus },

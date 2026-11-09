@@ -4,7 +4,7 @@ window.DAFTAR_BAB['k4b1'] = {
   kelas: 4,
   bab: 1,
   judul: 'Bilangan Cacah',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/rIiEmOYlpTg',
   catatan: 'Pos lain (Soal Cerita, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'susun-angka', ikon: '🧱', nama: 'Susun Angka', warna: '#FF8A3D', game: () => window.GameSusunAngka },

@@ -4,7 +4,7 @@ window.DAFTAR_BAB['k4b2'] = {
   kelas: 4,
   bab: 2,
   judul: 'Perkalian & Pembagian',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/yhRL7vz3NTI',
   catatan: 'Pos lain (Soal Cerita, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'tabel-kilat', ikon: '🧮', nama: 'Tabel Kilat', warna: '#FF8A3D', game: () => window.GameTabelKilat },

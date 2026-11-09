@@ -4,7 +4,7 @@ window.DAFTAR_BAB['k4b4'] = {
   kelas: 4,
   bab: 4,
   judul: 'Pecahan (1)',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/k1Jb4Ta8EPg',
   catatan: 'Pos lain (Soal Cerita, Pecahan di Garis Bilangan, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'potong-pizza', ikon: '🍕', nama: 'Potong Pizza', warna: '#FF8A3D', game: () => window.GamePotongPizza },

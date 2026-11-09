@@ -9,7 +9,7 @@ window.DAFTAR_BAB['k4b3'] = {
   kelas: 4,
   bab: 3,
   judul: 'Faktor & Kelipatan',
-  video: null, // link video menyusul
+  video: 'https://youtu.be/hGTMpisXvpY',
   catatan: 'Pos lain (Ketemu di Mana?, Pohon Faktor, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'bagi-rata', ikon: '🍬', nama: 'Bagi Rata', warna: '#FF6384', game: () => window.GameBagiRata },
