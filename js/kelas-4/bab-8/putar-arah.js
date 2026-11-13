@@ -89,7 +89,7 @@
       wadah.appendChild(el('div', 'soal-teks soal-sedang',
         'Garuda menghadap <b>' + teksArah(soal.dari) + '</b>, lalu <b>' + arahTeks + '</b>.<br>Sekarang menghadap ke mana?'));
       const m = mawar({ ukuran, semua: set, aktif: true, bearing: soal.dari * 45,
-        onKetuk: (i) => kirim(periksaTuju(soal, i)) });
+        onKetuk: (i) => kirim(periksaPutar(soal, i)) });
       m.tandai(soal.dari, 'mulai');
       wadah.appendChild(m.el);
       return;
@@ -105,7 +105,7 @@
     const opsi = el('div', 'des-opsi des-opsi-baris');
     soal.opsi.forEach((v) => {
       const b = el('button', 'tombol tombol-des', v + '\xb0');
-      b.onclick = () => kirim(periksaHitung(soal, v));
+      b.onclick = () => kirim(periksaBerapa(soal, v));
       opsi.appendChild(b);
     });
     wadah.appendChild(opsi);
@@ -124,7 +124,7 @@
     const m = mawar({ ukuran, semua: set, aktif: false, bearing: soal.dari * 45 });
     m.tandai(soal.dari, 'mulai');
     m.tandai(soal.ke, 'benar-arah');
-    if (soal.jenis === 'tuju' && jawaban.pilih !== soal.ke) m.tandai(jawaban.pilih, 'salah-arah');
+    if (soal.jenis === 'putar' && jawaban.pilih !== soal.ke) m.tandai(jawaban.pilih, 'salah-arah');
     wadah.appendChild(m.el);
     const arahK = soal.kanan ? 'kanan' : 'kiri';
     const langkah = el('div', 'putar-langkah');
