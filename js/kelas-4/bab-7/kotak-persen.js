@@ -154,7 +154,7 @@
     const { kolom, sisa } = P.kolomSisa(n);
     const baris = el('div', 'alasan-baris');
     const gambar = D.kotakSeratus({ ukuran: 220, warnaFn: (i) => (i < kolom * 10 ? MERAH : i < n ? ORANYE : null) }).svg;
-    let kata = '<span class="merah-t"><b>' + kolom + ' kolom</b> penuh</span> = ' + kolom + ' &times; 10% = ' + (kolom * 10) + '%<br>' +
+    let kata = (kolom ? '<span class="merah-t"><b>' + kolom + ' kolom</b> penuh</span> = ' + kolom + ' &times; 10% = ' + (kolom * 10) + '%<br>' : '') +
       (sisa ? '<span class="oranye-t"><b>' + sisa + ' kotak</b></span> lagi = ' + sisa + '%<br>' : '') +
       'Jumlahnya: <b>' + n + '%</b>';
     if (soal.jenis === 'sisa') kata += '<br>Yang tidak berwarna: 100 &minus; ' + n + ' = <b>' + (100 - n) + '%</b>';
