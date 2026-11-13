@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 8 (Sudut)
 
-Status: **disetujui Ayah 13 Nov 2026**; Tahap 1 belum dibangun. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–7 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-7/`.
+Status: **disetujui Ayah 13 Nov 2026**; **Tahap 1 dibangun 13 Nov 2026** (3 mini game, lihat catatan di bawah); Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–7 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-7/`.
 
 Topik: A. Menamai & jenis sudut · B. Mengukur sudut dengan busur derajat · C. Putaran & 8 arah mata angin.
 Format: derajat menempel pada angka (90°), simbol sudut ∠, titik sudut selalu huruf tengah (∠PQR, titik sudut Q).
