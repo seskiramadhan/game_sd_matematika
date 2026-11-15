@@ -35,7 +35,7 @@
   // ---------- Pilih kelas ----------
   function isiKelas() {
     const wadah = $('daftar-kelas'); wadah.innerHTML = '';
-    for (let k = 1; k <= 6; k++) {
+    for (let k = 4; k <= 6; k++) {   // produk hanya kelas 4–6 (keputusan Ayah 15 Nov 2026)
       const ada = Object.values(DAFTAR_BAB).some((b) => b.kelas === k);
       const t = document.createElement('button');
       t.className = 'kartu-pilih' + (ada ? '' : ' kunci');
