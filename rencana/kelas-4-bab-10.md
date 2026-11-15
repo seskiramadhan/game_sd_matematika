@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 10 (Segi Banyak)
 
-Status: **DRAF, menunggu persetujuan Ayah** (dibuat 15 Nov 2026); Tahap 1 belum dibangun. Lanjutan Bab 8 (Sudut) dan Bab 9 (Garis & Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–9 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-9/`.
+Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); Tahap 1 belum dibangun. Lanjutan Bab 8 (Sudut) dan Bab 9 (Garis & Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–9 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-9/`.
 
 Topik: A. Mengenal segi banyak: segitiga, segi empat, segi lima, segi enam, segi delapan; jumlah sisi = jumlah titik sudut; beraturan vs tidak beraturan · B. Jenis segitiga menurut sisi (sama sisi, sama kaki, sembarang) dan sudut (siku-siku, lancip, tumpul) · C. Jenis segi empat dari sifat sisi sejajar / tegak lurus / sama panjang (persegi, persegi panjang, jajargenjang, belah ketupat, layang-layang, trapesium) · D. Menyusun bangun dari potongan (tangram) dan segi banyak di benda sekitar.
 Format: panjang sisi dalam cm bilangan bulat (5 cm), sudut menempel pada angka (90°), titik sudut diberi huruf besar (segitiga ABC, segi empat PQRS) seperti Bab 8–9. Arti kata selalu tampil: **segi banyak** = bangun datar tertutup yang semua sisinya garis lurus; **titik sudut** = tempat dua sisi bertemu; **beraturan** = semua sisi sama panjang **dan** semua sudut sama besar. Tanda di gambar (sama seperti buku): garis kecil di sisi yang sama panjang, panah kecil di sisi yang sejajar, kotak pojok di sudut siku-siku.
@@ -34,8 +34,8 @@ Contoh kunci yang sudah dihitung ulang:
 ## Tahap 2 (belum)
 📖 Soal Cerita (segi banyak di benda & denah: ubin, taman, bendera, kebun; cerita tanpa angka dulu; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir.
 
-## Pertanyaan untuk Ayah
-1. **Nama paling tepat untuk segi empat** (persegi juga persegi panjang, belah ketupat, dan jajargenjang): usulan default **kunci tunggal nama paling khusus** (persegi), sama seperti keputusan "Tegak lurus" di Bab 9. Memilih "Persegi panjang" untuk persegi = salah, dengan penjelasan "benar sifatnya, tapi ada nama yang lebih tepat".
-2. **Arti trapesium**: usulan default **tepat satu pasang sisi sejajar** (seperti kebanyakan buku SD), jadi jajargenjang bukan trapesium.
-3. **Cara memindah potongan di 🧩 Susun Bangun**: usulan default **ketuk potongan lalu ketuk tempatnya** + tombol ↻ putar 90° dan ⇋ balik (lebih mudah di iPad daripada menyeret dan memutar dua jari); seret tetap boleh sebagai cara tambahan.
-4. **Jumlah sudut segitiga = 180°**: usulan default **hanya sebagai info** di penjelasan (label sudut selalu lengkap, jumlahnya 180°), **belum jadi soal** "cari sudut ketiga" di Tahap 1; bisa masuk 🏆 Tantangan Akhir bila Ayah setuju.
+## Keputusan Ayah (15 Nov 2026)
+1. **Nama segi empat**: **kunci tunggal nama paling khusus** (persegi). Memilih "Persegi panjang" untuk persegi = salah, dengan penjelasan "benar sifatnya, tapi ada nama yang lebih tepat".
+2. **Trapesium**: **tepat satu pasang sisi sejajar**; jajargenjang bukan trapesium.
+3. **Memindah potongan di 🧩 Susun Bangun**: **ketuk potongan lalu ketuk tempatnya** + tombol ↻ putar 90° dan ⇋ balik; seret tetap boleh sebagai cara tambahan.
+4. **Jumlah sudut segitiga = 180°**: **hanya info** di penjelasan; soal "cari sudut ketiga" masuk 🏆 Tantangan Akhir (Tahap 2).
