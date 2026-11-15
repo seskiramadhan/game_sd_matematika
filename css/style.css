@@ -671,3 +671,13 @@ button.mawar-btn:active { background: var(--kuning); }
 @media (max-height: 790px) { .tombol-jg { font-size: 28px; padding: 8px 12px; } .tombol-jg small { font-size: 15px; } .kertas-info { font-size: 20px; } }
 .des-opsi-baris.dua { grid-template-columns: repeat(2, 1fr); }
 .des-opsi-baris.dua .tombol-des { font-size: 30px; }
+
+/* ---------- Bab 10 · Segi Banyak ---------- */
+.gambar-bangun, .gambar-papan, .gambar-potongan { display: block; filter: drop-shadow(0 6px 0 rgba(31,42,68,.12)); }
+.hs-opsi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: min(980px, 100%); }
+.hs-opsi.dua { grid-template-columns: repeat(2, 1fr); width: min(620px, 100%); }
+.hs-opsi .tombol { font-size: 30px; padding: 12px 10px; min-width: 0; }
+.hs-info { font-size: 24px; font-weight: 700; text-align: center; min-height: 72px; }
+.hs-info b { color: var(--biru); font-size: 1.3em; }
+.hs-opsi .tombol small, .soal-teks small { font-size: 20px; font-weight: 600; opacity: .8; }
+@media (max-height: 790px) { .hs-opsi .tombol { font-size: 26px; padding: 8px 8px; min-height: 64px; } .hs-info { font-size: 20px; min-height: 60px; } .soal-teks small { font-size: 17px; } }

@@ -121,7 +121,8 @@
   // ---------- Kertas bertitik ----------
   // opsi: { A, B, C, sp (jarak titik px), ketuk(P), perpanjangAB, tarik: {P, warna} (garis dari C lewat P), kunci: [titik] (hijau),
   //         pojok: {X:[x,y] float grid, e1, e2} , pilihan: P merah, geser: bool }
-  function kertasSvg({ A, B, C, sp = 64, ketuk = null, perpanjangAB = false, tarik = null, kunciTampil = null, pilihanSalah = null, pojok = null, langkah = false }) {
+  function kertasSvg({ A, B, C, sp = 64, ketuk = null, perpanjangAB = false, tarik = null, kunciTampil = null, pilihanSalah = null, pojok = null, langkah = false, kosong = false, lapisan = null }) {
+    // kosong: tanpa garis AB & titik C (dipakai Bab 10) ; lapisan(svg, px, py): gambar tambahan di atas titik-titik, di bawah lapisan ketuk
     const m = 34;
     const w = (KOLOM - 1) * sp + 2 * m, h = (BARIS - 1) * sp + 2 * m;
     const px = (x) => m + x * sp, py = (y) => m + (BARIS - 1 - y) * sp;
@@ -139,23 +140,26 @@
       g.appendChild(svgEl('line', { x1: px(a[0]), y1: py(a[1]), x2: px(b[0]), y2: py(b[1]), stroke: warna, 'stroke-width': lebar, 'stroke-linecap': 'round', 'stroke-dasharray': putus || 'none', 'stroke-opacity': putus ? 0.7 : 1 }));
       svg.appendChild(g);
     };
-    if (perpanjangAB) garisPanjang(A, B, '#6E8FBF', 4, '10 8');
+    if (perpanjangAB && !kosong) garisPanjang(A, B, '#6E8FBF', 4, '10 8');
     if (kunciTampil) kunciTampil.forEach((P) => svg.appendChild(svgEl('circle', { cx: px(P[0]), cy: py(P[1]), r: 15, fill: '#2BB673', 'fill-opacity': 0.35, stroke: '#2BB673', 'stroke-width': 3 })));
     if (tarik) garisPanjang(C, tarik.P, tarik.warna, 6);
     if (pilihanSalah) svg.appendChild(svgEl('circle', { cx: px(pilihanSalah[0]), cy: py(pilihanSalah[1]), r: 15, fill: '#E04466', 'fill-opacity': 0.3, stroke: '#E04466', 'stroke-width': 3 }));
-    svg.appendChild(svgEl('line', { x1: px(A[0]), y1: py(A[1]), x2: px(B[0]), y2: py(B[1]), stroke: '#1F2A44', 'stroke-width': 7, 'stroke-linecap': 'round' }));
-    if (pojok) {
-      const [X, e1, e2] = [pojok.X, pojok.e1, pojok.e2], k = 0.5;
-      const a = tambah(X, e1, k), b = tambah(a, e2, k), c = tambah(X, e2, k);
-      svg.appendChild(svgEl('path', { d: 'M ' + px(X[0]) + ' ' + py(X[1]) + ' L ' + px(a[0]) + ' ' + py(a[1]) + ' L ' + px(b[0]) + ' ' + py(b[1]) + ' L ' + px(c[0]) + ' ' + py(c[1]) + ' Z', fill: '#FF8A3D', 'fill-opacity': 0.35, stroke: '#FF8A3D', 'stroke-width': 3.5 }));
+    if (lapisan) lapisan(svg, px, py);
+    if (!kosong) {
+      svg.appendChild(svgEl('line', { x1: px(A[0]), y1: py(A[1]), x2: px(B[0]), y2: py(B[1]), stroke: '#1F2A44', 'stroke-width': 7, 'stroke-linecap': 'round' }));
+      if (pojok) {
+        const [X, e1, e2] = [pojok.X, pojok.e1, pojok.e2], k = 0.5;
+        const a = tambah(X, e1, k), b = tambah(a, e2, k), c = tambah(X, e2, k);
+        svg.appendChild(svgEl('path', { d: 'M ' + px(X[0]) + ' ' + py(X[1]) + ' L ' + px(a[0]) + ' ' + py(a[1]) + ' L ' + px(b[0]) + ' ' + py(b[1]) + ' L ' + px(c[0]) + ' ' + py(c[1]) + ' Z', fill: '#FF8A3D', 'fill-opacity': 0.35, stroke: '#FF8A3D', 'stroke-width': 3.5 }));
+      }
+      [[A, B, 'A'], [B, A, 'B']].forEach(([P, lain, h2]) => {
+        svg.appendChild(svgEl('circle', { cx: px(P[0]), cy: py(P[1]), r: 9, fill: '#1F2A44' }));
+        const dx = px(P[0]) - px(lain[0]), dy = py(P[1]) - py(lain[1]), n = Math.hypot(dx, dy); // huruf di ujung, menjauhi garis
+        teks(svg, px(P[0]) + (dx / n) * 24, py(P[1]) + (dy / n) * 24, h2, 24, '#1F2A44');
+      });
+      svg.appendChild(svgEl('circle', { cx: px(C[0]), cy: py(C[1]), r: 11, fill: '#E04466', stroke: '#fff', 'stroke-width': 2 }));
+      teks(svg, px(C[0]) - 16, py(C[1]) - 18, 'C', 26, '#E04466');
     }
-    [[A, B, 'A'], [B, A, 'B']].forEach(([P, lain, h2]) => {
-      svg.appendChild(svgEl('circle', { cx: px(P[0]), cy: py(P[1]), r: 9, fill: '#1F2A44' }));
-      const dx = px(P[0]) - px(lain[0]), dy = py(P[1]) - py(lain[1]), n = Math.hypot(dx, dy); // huruf di ujung, menjauhi garis
-      teks(svg, px(P[0]) + (dx / n) * 24, py(P[1]) + (dy / n) * 24, h2, 24, '#1F2A44');
-    });
-    svg.appendChild(svgEl('circle', { cx: px(C[0]), cy: py(C[1]), r: 11, fill: '#E04466', stroke: '#fff', 'stroke-width': 2 }));
-    teks(svg, px(C[0]) - 16, py(C[1]) - 18, 'C', 26, '#E04466');
     if (ketuk) {
       for (let x = 0; x < KOLOM; x++) for (let y = 0; y < BARIS; y++) {
         const t = svgEl('circle', { cx: px(x), cy: py(y), r: sp / 2, fill: '#fff', 'fill-opacity': 0, class: 'kertas-ketuk' });
