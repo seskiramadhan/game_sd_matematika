@@ -656,3 +656,18 @@ button.mawar-btn:active { background: var(--kuning); }
 .teks-nilai-busur { font: 800 32px 'Poppins', sans-serif; color: var(--teks); min-width: 80px; text-align: center; }
 .putar-cek { align-self: center; }
 @media (max-height: 790px) { .tombol-putar { min-height: 68px; font-size: 26px; } .putar-langkah { min-height: 100px; font-size: 18px; } }
+
+/* ---------- Bab 9 · Garis & Sudut ---------- */
+.gambar-garis, .gambar-kertas, .gambar-silang { display: block; filter: drop-shadow(0 6px 0 rgba(31,42,68,.12)); }
+.jg-baris { display: flex; align-items: center; justify-content: center; gap: 30px; }
+.jg-opsi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: min(940px, 100%); }
+.tombol-jg { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 32px; padding: 12px 14px; min-width: 0; border-bottom: 8px solid var(--wj, var(--biru)); }
+.tombol-jg small { font-size: 17px; font-weight: 600; opacity: .8; line-height: 1.2; }
+.tombol-jg .simbol { font-size: .7em; opacity: .75; }
+.kertas-ketuk { cursor: pointer; }
+.kertas-info { font-size: 24px; font-weight: 700; text-align: center; }
+.kertas-info b { color: var(--biru); }
+.tg-baris { display: flex; align-items: center; justify-content: center; gap: 22px; }
+@media (max-height: 790px) { .tombol-jg { font-size: 28px; padding: 8px 12px; } .tombol-jg small { font-size: 15px; } .kertas-info { font-size: 20px; } }
+.des-opsi-baris.dua { grid-template-columns: repeat(2, 1fr); }
+.des-opsi-baris.dua .tombol-des { font-size: 30px; }

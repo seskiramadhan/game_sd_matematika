@@ -64,7 +64,7 @@
     svg.appendChild(svgEl('rect', { x: 2, y: 2, width: 296, height: 296, rx: 22, fill: '#FFFFFF', stroke: '#E9DFCB', 'stroke-width': 3 }));
     lengkung.forEach((g) => {
       svg.appendChild(svgEl('path', { d: jalurLengkung(C, C, g.r || 52, g.a, g.s, true), fill: g.warna, 'fill-opacity': 0.28, stroke: g.warna, 'stroke-width': 3 }));
-      if (g.teks) { const [tx, ty] = titik(C, C, g.a + g.s / 2, (g.r || 52) * 0.62); teks(svg, tx, ty, g.teks, 22, '#1F2A44'); }
+      if (g.teks) { const [tx, ty] = titik(C, C, g.a + g.s / 2, g.rTeks || (g.r || 52) * 0.62); teks(svg, tx, ty, g.teks, 22, '#1F2A44'); }
     });
     if (pojok != null) {
       const p1 = titik(0, 0, pojok, 40), p2 = titik(0, 0, pojok + 90, 40), p3 = [p1[0] + p2[0], p1[1] + p2[1]];
@@ -174,5 +174,5 @@
     return o;
   }
 
-  root.Sudut = Object.assign({ svgEl, el, sudutSvg, busurSvg, mawar }, logika);
+  root.Sudut = Object.assign({ svgEl, el, sudutSvg, busurSvg, mawar, titik, jalurLengkung, teks }, logika); // titik, jalurLengkung, teks: tambahan untuk Bab 9
 })(typeof window !== 'undefined' ? window : globalThis);
