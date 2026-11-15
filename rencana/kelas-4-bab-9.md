@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 9 (Garis & Sudut)
 
-Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); Tahap 1 belum dibangun. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
+Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); **Tahap 1 dibangun 15 Nov 2026** (3 mini game, lihat catatan pembangunan di bawah); Tahap 2 belum. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
 
 Topik: A. Garis sejajar, berpotongan, tegak lurus · B. Menggambar garis sejajar & tegak lurus (kertas bertitik) · C. Sudut pada garis berpotongan, sudut lurus = 180° · D. Mengenali garis pada benda di sekitar.
 Format: derajat menempel pada angka (90°), garis diberi nama dua huruf (garis AB), titik sudut huruf tengah (∠PQR) seperti Bab 8. Arti kata selalu tampil: **sejajar** = tidak pernah bertemu walau diperpanjang; **berpotongan** = bertemu di satu titik; **tegak lurus** = berpotongan dan membentuk sudut siku-siku (90°).
@@ -35,3 +35,15 @@ Contoh kunci yang sudah dihitung ulang: 180° − 70° = 110° · 180° − 65°
 2. **Sudut seberang (bertolak belakang) sama besar**: **masuk Tahap 1** (soal 4–5 ✖️ Sudut Silang & tingkat 3).
 3. **Simbol ∥ dan ⊥**: **ditampilkan kecil di samping kata** (AB sejajar CD, AB ∥ CD); kata tetap utama.
 4. **Urutan pos**: 🛤️ Jenis Garis → ✏️ Tarik Garis → ✖️ Sudut Silang.
+
+## Catatan pembangunan Tahap 1 (15 Nov 2026)
+File: `js/kelas-4/bab-9/` = `garis.js` (alat bersama `window.Garis`), `jenis-garis.js`, `tarik-garis.js`, `sudut-silang.js`, `bab.js`; cek logika `tools/cek-bab9.js` (200 ronde x 3 tingkat x 3 mini game, kunci dihitung ulang dengan cara lain, contoh rencana dicek satu per satu). Di `bab-8/sudut.js` hanya ada **tambahan**: ekspor `titik`, `jalurLengkung`, `teks`, dan parameter opsional `rTeks` pada `lengkung` (letak teks); perilaku Bab 8 tidak berubah (`cek-bab8.js` lulus). Video bab ini belum ada: tombol 🎬 menampilkan "segera hadir".
+
+Keputusan Ayah yang dijalankan: kunci tunggal **Tegak lurus** untuk garis siku (memilih "Berpotongan" = salah, penjelasan "tegak lurus juga berpotongan"); sudut seberang masuk Tahap 1; simbol ∥ dan ⊥ kecil di samping kata (tombol & penjelasan); urutan pos 🛤️ → ✏️ → ✖️.
+
+Hal yang diputuskan saat membangun (di luar tabel rencana):
+- **Jenis Garis**: soal 4-5 memakai 7 gambar benda original (rel, jendela berkisi, zebra cross, gunting terbuka, tanda tambah, atap rumah, tangga), kunci dari vektor bulat. Tingkat 3 soal 5 = tiga garis a, b, c (3 varian: dua-tegak -> sejajar, dua-sejajar -> sejajar, sejajar-tegak -> tegak lurus). Tombol Perpanjang ada di semua tingkat; di tingkat 3 gambar memperkecil (zoom) secukupnya supaya titik potong yang di luar bingkai terlihat. Garis putus & hampir sejajar (beda 6-12 derajat) hanya di tingkat 3.
+- **Tarik Garis**: kertas 10x6, jarak titik 64 px (tepat di batas target sentuh). Kunci = semua titik kertas P (selain C) dengan P - C sejajar (silang = 0) atau tegak lurus (titik = 0) terhadap AB; C selalu di luar garis AB. Info "Langkah AB: 2 kanan, 1 atas" selalu tampil; tombol "Perpanjang AB" memanjangkan AB sampai tepi kertas. Penjelasan salah: garis hijau dari C + titik hijau (semua titik benar), titik merah pilihan anak, kotak pojok 90 derajat di titik potong (tegak lurus), langkah "diputar" (2 kanan 1 atas -> 1 kanan 2 bawah).
+- **Sudut Silang**: tingkat 1 = 3 soal sudut lurus 1 sinar (kelipatan 10) + 2 soal ketuk; tingkat 2 = 3 soal sudut sebelah di dua garis (kelipatan 5; tepat satu soal garis tegak lurus = 90) + 2 ketuk; tingkat 3 = 2 soal sudut lurus 3 bagian (180 - x - y), 1 soal sudut sebelah (1 derajat), 1 ketuk, 1 soal "isi keempat sudut" (pilih urutan sudut ① ② ③; jumlah 360). Ketuk memilih daerah dari arah ketukan terhadap titik potong; sudut kecil dibatasi >= 35 derajat supaya daerahnya >= 80 px di iPad 1024 px. Mengetuk sudut yang sudah diketahui tidak dihitung (hanya bunyi). Soal ketuk: "yang besarnya (180 - a)" (dua daerah benar) atau "yang juga a" (sudut seberang, satu daerah benar); a = 90 tidak dipakai di ketuk. Penjelasan: pengecoh 90 - a, 360 - a, a dijelaskan satu per satu; pada dua garis berpotongan garis "diputar sedikit" (animasi nilai berubah, sudut seberang ikut sama).
+- Tes tampilan: Chrome headless + CDP dengan ketukan sentuh sungguhan, 1180x820 dan 1024x768, ronde penuh tiap mini game termasuk jawaban salah, tanpa error konsol.
+

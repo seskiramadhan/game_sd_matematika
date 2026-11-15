@@ -32,6 +32,14 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 7 · Persentase | 🔄 Tukar Bentuk (persen ↔ pecahan ↔ desimal) | ✅ bisa dicoba |
 | 4 | 7 · Persentase | 🏷️ Persen dari… (persen dari suatu banyak, cerita diskon/kelas/kebun) | ✅ bisa dicoba |
 | 4 | 7 · Persentase | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 8 · Sudut | 📐 Jenis Sudut (lancip, siku-siku, tumpul, nama ∠PQR) | ✅ bisa dicoba |
+| 4 | 8 · Sudut | 🔍 Baca Busur (busur derajat dua skala) | ✅ bisa dicoba |
+| 4 | 8 · Sudut | 🧭 Putar Arah (putaran & 8 arah mata angin) | ✅ bisa dicoba |
+| 4 | 8 · Sudut | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 9 · Garis & Sudut | 🛤️ Jenis Garis (sejajar, berpotongan, tegak lurus) | ✅ bisa dicoba |
+| 4 | 9 · Garis & Sudut | ✏️ Tarik Garis (kertas bertitik: garis sejajar & tegak lurus) | ✅ bisa dicoba |
+| 4 | 9 · Garis & Sudut | ✖️ Sudut Silang (sudut lurus 180°, sudut bersebelahan & seberang) | ✅ bisa dicoba |
+| 4 | 9 · Garis & Sudut | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 2 · Perkalian & Pembagian | 🧮 Tabel Kilat (fakta, kali puluhan/ratusan, keluarga fakta) | ✅ bisa dicoba |
 | 4 | 2 · Perkalian & Pembagian | 🟦 Kali Kotak (model luas, perkalian bersusun) | ✅ bisa dicoba |
 | 4 | 2 · Perkalian & Pembagian | 🍰 Bagi Bersusun (porogapit, sisa, cek) | ✅ bisa dicoba |
