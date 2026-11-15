@@ -681,3 +681,22 @@ button.mawar-btn:active { background: var(--kuning); }
 .hs-info b { color: var(--biru); font-size: 1.3em; }
 .hs-opsi .tombol small, .soal-teks small { font-size: 20px; font-weight: 600; opacity: .8; }
 @media (max-height: 790px) { .hs-opsi .tombol { font-size: 26px; padding: 8px 8px; min-height: 64px; } .hs-info { font-size: 20px; min-height: 60px; } .soal-teks small { font-size: 17px; } }
+.cs-alat { display: flex; flex-direction: column; gap: 12px; align-items: stretch; width: 270px; }
+.cs-tombol-alat { display: flex; flex-direction: column; align-items: center; font-size: 22px; min-height: 70px; padding: 8px 14px; }
+.cs-tombol-alat small { font-size: 14px; font-weight: 600; opacity: .75; }
+.cs-opsi { display: grid; gap: 14px; width: min(940px, 100%); }
+.cs-opsi.empat { grid-template-columns: repeat(4, 1fr); }
+.cs-opsi.enam { grid-template-columns: repeat(3, 1fr); }
+.cs-opsi .tombol { font-size: 28px; padding: 12px 8px; min-width: 0; min-height: 66px; }
+.cs-dua-kolom { display: flex; flex-direction: column; gap: 10px; width: 600px; }
+.cs-dua-judul { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.cs-dua .jg-opsi { width: 100%; gap: 10px; }
+.cs-dua .tombol-jg { font-size: 24px; padding: 8px 8px; min-height: 0; }
+.cs-dua .tombol-jg small { font-size: 14px; }
+.tombol-jg.dipilih { outline: 5px solid var(--kuning); background: #FFF3C4; }
+.cs-cek { align-self: center; min-height: 64px; padding: 10px 36px; }
+.cek-daftar { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+.cek-baris { opacity: 0; animation: munculBaris .45s ease-out forwards; animation-delay: calc(var(--i) * .7s); }
+@keyframes munculBaris { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+.cs-catatan { margin: 6px 0; padding: 6px 12px; background: #FFF3C4; border-radius: 12px; font-weight: 600; }
+@media (max-height: 790px) { .cs-opsi .tombol { font-size: 24px; min-height: 58px; padding: 8px 6px; } .cs-alat { width: 250px; } .cs-tombol-alat { min-height: 62px; font-size: 20px; } .cs-dua-kolom { width: 520px; } .cs-dua .tombol-jg { font-size: 21px; } .cs-dua .tombol-jg small { font-size: 13px; } .cs-dua-judul { font-size: 19px; } }

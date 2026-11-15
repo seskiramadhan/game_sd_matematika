@@ -3,6 +3,7 @@
 // tepat satu pilihan benar, tidak ada pilihan kembar, contoh di rencana dicek satu per satu.
 const B = require('../js/kelas-4/bab-10/bangun.js');
 const HS = require('../js/kelas-4/bab-10/hitung-sisi.js');
+const CS = require('../js/kelas-4/bab-10/cek-sifat.js');
 let gagal = 0;
 const cek = (kond, pesan) => { if (!kond) { gagal++; if (gagal < 300) console.log('GAGAL:', pesan); } };
 const RONDE = 200;
@@ -133,6 +134,115 @@ for (let t = 1; t <= 3; t++) {
   const lihat = new Set();
   for (let r = 0; r < RONDE; r++) HS.buatRonde(3).forEach((s) => { if (s.jenis === 'hitung') lihat.add(s.templat); });
   cek(lihat.has('bintang') && lihat.has('huruf-L') && lihat.has('panah'), 'hitung t3 memuat L, panah, bintang');
+}
+
+
+// ================= Cek Sifat =================
+// pembanding independen untuk segi empat: jajargenjang <=> titik tengah kedua diagonal sama; persegi panjang <=> diagonal sama panjang
+function jenisAlt(P) {
+  const l = [0, 1, 2, 3].map((i) => B.panjang2(P[i], P[(i + 1) % 4]));
+  const d1 = B.panjang2(P[0], P[2]), d2 = B.panjang2(P[1], P[3]);
+  const jajar = P[0][0] + P[2][0] === P[1][0] + P[3][0] && P[0][1] + P[2][1] === P[1][1] + P[3][1];
+  if (jajar) {
+    const sikuA = d1 === d2, belah = l[0] === l[1];
+    return sikuA && belah ? 'persegi' : sikuA ? 'persegi-panjang' : belah ? 'belah-ketupat' : 'jajargenjang';
+  }
+  const par = (a, b) => (P[(a + 1) % 4][0] - P[a][0]) * (P[(b + 1) % 4][1] - P[b][1]) - (P[(a + 1) % 4][1] - P[a][1]) * (P[(b + 1) % 4][0] - P[b][0]) === 0;
+  if (par(0, 2) !== par(1, 3)) return 'trapesium';
+  if ((l[0] === l[1] && l[2] === l[3]) || (l[1] === l[2] && l[3] === l[0])) return 'layang-layang';
+  return 'sembarang';
+}
+// pembanding independen segitiga: sudut terbesar dari hukum kosinus (desimal, hanya untuk cek)
+function sudutBesar(a, b, c) { const m = Math.max(a, b, c), y = Math.min(a, b, c), x = a + b + c - m - y; const cosb = (x * x + y * y - m * m) / (2 * x * y); return Math.acos(cosb) * 180 / Math.PI; }
+const NAMA_SISI = ['sama-sisi', 'sama-kaki', 'sembarang'];
+NAMA_SISI.forEach((nama) => CS.SISI3[nama].forEach(([a, b, c]) => cek(B.bisaSegitiga(a, b, c) && B.jenisSisi(a, b, c) === nama, 'SISI3 ' + [a, b, c])));
+CS.SUDUT_CM.forEach(([a, b, c]) => {
+  const g = sudutBesar(a, b, c), j = B.jenisSudutDariSisi(a, b, c);
+  cek(B.bisaSegitiga(a, b, c) && (j === 'siku' ? Math.abs(g - 90) < 1e-9 : j === 'lancip' ? g < 90 - 1e-9 : g > 90 + 1e-9), 'SUDUT_CM ' + [a, b, c] + ' ' + g);
+});
+CS.DERAJAT.forEach((d) => {
+  cek(d[0] + d[1] + d[2] === 180 && d.every((x) => x > 0 && Number.isInteger(x)), 'DERAJAT jumlah 180 ' + d);
+  // sisi di depan sudut: sebanding dengan sin(sudut) (hukum sinus, desimal): sudut sama <=> sisi sama
+  const sisi = d.map((x) => Math.sin(x * Math.PI / 180)), sm = (p, q) => Math.abs(p - q) < 1e-9;
+  const banyakSama = (sm(sisi[0], sisi[1]) ? 1 : 0) + (sm(sisi[1], sisi[2]) ? 1 : 0) + (sm(sisi[0], sisi[2]) ? 1 : 0);
+  const alt = banyakSama === 3 ? 'sama-sisi' : banyakSama >= 1 ? 'sama-kaki' : 'sembarang';
+  cek(alt === B.jenisSisiDariDerajat(d), 'sisi dari sudut ' + d + ' ' + alt);
+});
+const gridSemua = []; for (let x = 0; x < B.KOLOM; x++) for (let y = 0; y < B.BARIS; y++) gridSemua.push([x, y]);
+const poinBaik = (P) => P.every(B.dalamKertas) && unik(P.map((p) => p.join(',')));
+const miringSisi = (P) => P.some((p, i) => { const d = B.kurang(P[(i + 1) % 4], p); return d[0] !== 0 && d[1] !== 0; });
+const tegakSemua = (P) => P.every((p, i) => { const d = B.kurang(P[(i + 1) % 4], p); return d[0] === 0 || d[1] === 0; });
+const FAMILI_JAJAR = ['jajargenjang', 'persegi-panjang', 'belah-ketupat', 'persegi'];
+for (let t = 1; t <= 3; t++) {
+  const cacah = {}, jenisSE = {}, miringPersegi = { n: 0 };
+  for (let r = 0; r < RONDE; r++) {
+    const ronde = CS.buatRonde(t);
+    cek(ronde.length === 5 && unik(ronde.map((s) => s.kode)), 'sifat ronde 5 soal berbeda t' + t);
+    ronde.forEach((s, i) => {
+      const jn = s.jenis + (s.mode || ''); cacah[jn] = (cacah[jn] || 0) + 1;
+      if (s.jenis === 'tri') {
+        cek(i <= 2, 'segitiga soal 1-3');
+        if (s.mode === 'sisi') {
+          const [a, b, c] = s.sisi, urut = [a, b, c].slice().sort((x, y) => x - y);
+          const alt = urut[0] === urut[2] ? 'sama-sisi' : (urut[0] === urut[1] || urut[1] === urut[2]) ? 'sama-kaki' : 'sembarang';
+          cek(B.bisaSegitiga(a, b, c) && s.kunci === alt, 'tri sisi kunci ' + s.sisi);
+          cek(s.opsi.length === 3 && s.opsi.filter((o) => CS.periksa(s, o).benar).length === 1, 'tri sisi opsi');
+          if (t === 1) cek(s.rot === 0, 'tri t1 tidak diputar');
+        } else if (s.mode === 'sudut') {
+          cek(s.sudut[0] + s.sudut[1] + s.sudut[2] === 180, 'tri sudut jumlah');
+          cek(s.opsi.filter((o) => CS.periksa(s, o).benar).length === 1 && s.kunci === B.jenisSudutDariDerajat(s.sudut), 'tri sudut kunci');
+          cek(t === 2 && i === 2, 'tri sudut hanya t2 soal 3');
+        } else if (s.mode === 'sudutCm') {
+          const g = sudutBesar(s.sisi[0], s.sisi[1], s.sisi[2]);
+          cek(B.bisaSegitiga(...s.sisi) && (s.kunci === 'siku' ? Math.abs(g - 90) < 1e-9 : s.kunci === 'lancip' ? g < 90 : g > 90), 'tri sudutCm kunci ' + s.sisi);
+          cek(t === 3 && i === 2, 'tri sudutCm t3 soal 3');
+        } else {
+          cek(t === 3 && i < 2 && s.sudut[0] + s.sudut[1] + s.sudut[2] === 180, 'tri dua t3');
+          let benar = 0; for (const a of NAMA_SISI) for (const b of ['siku', 'lancip', 'tumpul']) if (CS.periksa(s, { sisi: a, sudut: b }).benar) benar++;
+          cek(benar === 1, 'tri dua tepat satu kombinasi benar');
+          cek(s.kunci.sisi === B.jenisSisiDariDerajat(s.sudut) && s.kunci.sudut === B.jenisSudutDariDerajat(s.sudut), 'tri dua kunci');
+        }
+      } else if (s.jenis === 'se') {
+        cek(i >= 3, 'segi empat soal 4-5');
+        jenisSE[s.nama] = (jenisSE[s.nama] || 0) + 1;
+        cek(poinBaik(s.pts) && s.pts.length === 4, 'se titik di kertas ' + s.pts);
+        cek(B.jenisSegiEmpat(s.pts) === s.kunci && jenisAlt(s.pts) === s.kunci && s.kunci === s.nama, 'se kunci ' + s.nama + ' ' + s.pts + ' alt=' + jenisAlt(s.pts));
+        cek(s.opsi.includes(s.kunci) && unik(s.opsi) && s.opsi.filter((o) => CS.periksa(s, o).benar).length === 1, 'se opsi');
+        const f = B.sifatSegiEmpat(s.pts);
+        // sama panjang = kuadrat panjang, sejajar = silang 0, siku = titik 0 (integer)
+        cek(f.l.every((v, k) => v === B.panjang2(s.pts[k], s.pts[(k + 1) % 4])), 'se panjang kuadrat');
+        if (t === 1) cek(CS.NAMA_SE4.includes(s.nama) && s.opsi.length === 4 && (['persegi', 'persegi-panjang'].includes(s.nama) ? tegakSemua(s.pts) : true), 'se t1 empat nama, tegak');
+        else cek(s.opsi.length === 6, 'se enam nama');
+        if (t === 2) cek(!['persegi', 'persegi-panjang'].includes(s.nama) || tegakSemua(s.pts), 'se t2 persegi tegak');
+        if (t === 3) { cek(i === 3, 'se t3 soal 4'); if (s.nama === 'persegi' && miringSisi(s.pts)) miringPersegi.n++; }
+        // kunci tunggal nama paling khusus: nama yang lebih umum salah
+        (B.LEBIH_UMUM[s.kunci] || []).forEach((u) => { if (s.opsi.includes(u)) cek(!CS.periksa(s, u).benar, 'se nama lebih umum salah ' + u); });
+        if (s.kunci === 'persegi') cek(s.opsi.includes('persegi-panjang') && !CS.periksa(s, 'persegi-panjang').benar && !CS.periksa(s, 'belah-ketupat').benar, 'persegi bukan persegi panjang / belah ketupat');
+        if (s.kunci === 'trapesium') { cek(f.cacahSejajar === 1, 'trapesium tepat satu pasang sejajar'); cek(!CS.periksa(s, 'jajargenjang').benar, 'trapesium bukan jajargenjang'); }
+        if (s.kunci === 'jajargenjang') cek(f.cacahSejajar === 2 && f.cacahSiku === 0 && !f.semuaSama, 'jajargenjang sifat');
+        if (s.kunci === 'layang-layang') cek(f.cacahSejajar === 0 && f.layang && !f.semuaSama, 'layang-layang sifat');
+        if (s.kunci === 'belah-ketupat') cek(f.cacahSiku === 0 && f.semuaSama, 'belah ketupat sifat');
+      } else {
+        cek(t === 3 && i === 4, 'titikD t3 soal 5');
+        const D = B.titikKeempat(s.A, s.B, s.C);
+        cek(D[0] === s.kunci[0] && D[1] === s.kunci[1] && B.dalamKertas(D), 'titikD kunci = A + C - B ' + [s.A, s.B, s.C]);
+        cek(poinBaik([s.A, s.B, s.C, D]) && B.silang(B.kurang(s.A, s.B), B.kurang(s.C, s.B)) !== 0, 'titikD titik baik');
+        // tepat satu titik di kertas membuat ABCD jajargenjang
+        const jajar = gridSemua.filter((P) => !B.sama(P, s.A) && !B.sama(P, s.B) && !B.sama(P, s.C) && FAMILI_JAJAR.includes(jenisAlt([s.A, s.B, s.C, P])));
+        cek(jajar.length === 1 && B.sama(jajar[0], s.kunci), 'titikD tepat satu titik benar ' + jajar.length);
+        cek(gridSemua.filter((P) => CS.periksa(s, P).benar).length === 1, 'titikD periksa tepat satu');
+        if (s.bentuk === 'persegi') cek(jenisAlt([s.A, s.B, s.C, D]) === 'persegi' && B.jenisSegiEmpat([s.A, s.B, s.C, D]) === 'persegi', 'titikD persegi');
+        else cek(FAMILI_JAJAR.includes(B.jenisSegiEmpat([s.A, s.B, s.C, D])), 'titikD jajargenjang');
+      }
+    });
+    if (t === 1) cek(ronde.slice(0, 3).every((s) => s.jenis === 'tri' && s.mode === 'sisi') && unik(ronde.slice(0, 3).map((s) => s.kunci)) && ronde[3].jenis === 'se' && ronde[4].jenis === 'se' && ronde[3].nama !== ronde[4].nama, 'sifat t1 susunan');
+    if (t === 2) cek(ronde[0].mode === 'sisi' && ronde[1].mode === 'sisi' && ronde[2].mode === 'sudut' && ronde[3].nama !== ronde[4].nama, 'sifat t2 susunan');
+    if (t === 3) cek(ronde[0].mode === 'dua' && ronde[1].mode === 'dua' && ronde[2].mode === 'sudutCm' && ronde[3].jenis === 'se' && ronde[4].jenis === 'titikD', 'sifat t3 susunan');
+    ronde.forEach((s) => { const m = CS.soalMirip(s, t); cek(m.jenis === s.jenis && m.kode !== s.kode && (s.jenis !== 'se' || m.nama === s.nama), 'sifat mirip'); });
+  }
+  console.log('Cek Sifat t' + t + ': ' + JSON.stringify(cacah) + ' ' + JSON.stringify(jenisSE) + (t === 3 ? ', persegi diputar=' + miringPersegi.n : ''));
+  if (t === 3) cek(miringPersegi.n >= 1 && Object.keys(jenisSE).length === 6, 'sifat t3 memuat persegi diputar & 6 jenis');
+  if (t === 2) cek(Object.keys(jenisSE).length === 6, 'sifat t2 memuat 6 jenis');
 }
 
 // @@AKHIR

@@ -7,7 +7,7 @@ window.DAFTAR_BAB['k4b10'] = {
   catatan: 'Pos lain (Soal Cerita, Tantangan Akhir) segera hadir.',
   pos: [
     { id: 'hitung-sisi', ikon: '🔷', nama: 'Hitung Sisi', warna: '#3A86FF', game: () => window.GameHitungSisi },
-    { id: 'cek-sifat', ikon: '🔍', nama: 'Cek Sifat', warna: '#FF8A3D', segera: true, game: () => window.GameCekSifat },
+    { id: 'cek-sifat', ikon: '🔍', nama: 'Cek Sifat', warna: '#FF8A3D', game: () => window.GameCekSifat },
     { id: 'susun-bangun', ikon: '🧩', nama: 'Susun Bangun', warna: '#9B5DE5', segera: true, game: () => window.GameSusunBangun },
   ],
 };

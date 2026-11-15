@@ -271,7 +271,7 @@
   const WARNA_KELAS = ['#E04466', '#2A7BE8', '#2BB673', '#FF8A3D'];
 
   // tanda di sisi: garis kecil (sama panjang), panah (sejajar), kotak pojok (siku). P = titik layar (px).
-  function lapisanTanda(svg, P, { kelasSisi = null, sejajar = null, siku = null, u = 1 }) {
+  function lapisanTanda(svg, P, { kelasSisi = null, sejajar = null, siku = null, banding = null, u = 1 }) {
     const n = P.length;
     const sisi = (i) => { const a = P[i], b = P[(i + 1) % n], d = [b[0] - a[0], b[1] - a[1]], L = Math.hypot(d[0], d[1]); return { m: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], e: [d[0] / L, d[1] / L], nr: [-d[1] / L, d[0] / L] }; };
     if (kelasSisi) {
@@ -299,6 +299,16 @@
             svg.appendChild(svgEl('path', { d: 'M ' + a[0] + ' ' + a[1] + ' L ' + tip[0] + ' ' + tip[1] + ' L ' + b[0] + ' ' + b[1], fill: 'none', stroke: '#2A7BE8', 'stroke-width': 4 * u, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
           }
         });
+      });
+    }
+    if (banding) { // kotak pojok 90 derajat ditempel pada satu kaki (ke titik berikutnya), menghadap ke dalam bangun: pembanding sudut
+      banding.forEach((i) => {
+        const V = P[i], A = P[(i + 1) % n], Bk = P[(i + n - 1) % n];
+        const ua = [A[0] - V[0], A[1] - V[1]], la = Math.hypot(ua[0], ua[1]), ub = [Bk[0] - V[0], Bk[1] - V[1]];
+        const e1 = [ua[0] / la, ua[1] / la];
+        let e2 = [-e1[1], e1[0]]; if (e2[0] * ub[0] + e2[1] * ub[1] < 0) e2 = [-e2[0], -e2[1]];
+        const k = 44 * u, a = [V[0] + e1[0] * k, V[1] + e1[1] * k], b = [a[0] + e2[0] * k, a[1] + e2[1] * k], c = [V[0] + e2[0] * k, V[1] + e2[1] * k];
+        svg.appendChild(svgEl('path', { d: 'M ' + V[0] + ' ' + V[1] + ' L ' + a[0] + ' ' + a[1] + ' L ' + b[0] + ' ' + b[1] + ' L ' + c[0] + ' ' + c[1] + ' Z', fill: '#FF8A3D', 'fill-opacity': 0.2, stroke: '#FF8A3D', 'stroke-width': 3.5 * u, 'stroke-dasharray': (9 * u) + ' ' + (6 * u) }));
       });
     }
     if (siku) {
@@ -370,7 +380,7 @@
   }
 
   // Segitiga berlabel. Dari sisi (cm bulat: sisi[i] = panjang P_i P_(i+1)) atau sudut (derajat bulat: sudut[i] di titik P_i). tampil: 'sisi' | 'sudut' | null.
-  function segitigaSvg({ sisi = null, sudut = null, tampil = null, rot = 0, ukuran = 380, tanda = false, siku = null, pojok = false }) {
+  function segitigaSvg({ sisi = null, sudut = null, tampil = null, rot = 0, ukuran = 380, tanda = false, siku = null, banding = null }) {
     let P; // koordinat math (y ke atas)
     if (sisi) {
       const [s0, s1, s2] = sisi, x = (s0 * s0 + s2 * s2 - s1 * s1) / (2 * s0);
@@ -389,13 +399,21 @@
     svg.appendChild(svgEl('polygon', { points: Q.map((p) => p.join(',')).join(' '), fill: '#BFDCFF', 'fill-opacity': 0.85, stroke: '#1F2A44', 'stroke-width': 7, 'stroke-linejoin': 'round' }));
     const pusat = [(Q[0][0] + Q[1][0] + Q[2][0]) / 3, (Q[0][1] + Q[1][1] + Q[2][1]) / 3];
     const keluar = (t, jarak) => { const d = [t[0] - pusat[0], t[1] - pusat[1]], l = Math.hypot(d[0], d[1]); return [t[0] + (d[0] / l) * jarak, t[1] + (d[1] / l) * jarak]; };
+    const keluarSisi = (a, b) => { // label sisi: di luar sisi, menjauhi pusat, cukup jauh supaya teks tidak menimpa garis miring
+      const d = [b[0] - a[0], b[1] - a[1]], l = Math.hypot(d[0], d[1]); let nr = [-d[1] / l, d[0] / l];
+      const m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+      if (nr[0] * (m[0] - pusat[0]) + nr[1] * (m[1] - pusat[1]) < 0) nr = [-nr[0], -nr[1]];
+      const j = 18 + 32 * Math.abs(nr[0]) + 12 * Math.abs(nr[1]);
+      return [m[0] + nr[0] * j, m[1] + nr[1] * j];
+    };
     if (tanda) {
       const nilai = sisi ? sisi : [sudut[2], sudut[0], sudut[1]]; // sisi i berhadapan dengan titik i+2
       lapisanTanda(svg, Q, { kelasSisi: kelasNilai(nilai) });
     }
     if (siku) lapisanTanda(svg, Q, { siku });
+    if (banding) lapisanTanda(svg, Q, { banding });
     Q.forEach((p) => svg.appendChild(svgEl('circle', { cx: p[0], cy: p[1], r: 8, fill: '#1F2A44' })));
-    if (tampil === 'sisi') Q.forEach((p, i) => { const m = [(p[0] + Q[(i + 1) % 3][0]) / 2, (p[1] + Q[(i + 1) % 3][1]) / 2], t = keluar(m, 30); teks(svg, t[0], t[1], sisi[i] + ' cm', 26, '#1F2A44'); });
+    if (tampil === 'sisi') Q.forEach((p, i) => { const t = keluarSisi(p, Q[(i + 1) % 3]); teks(svg, t[0], t[1], sisi[i] + ' cm', 26, '#1F2A44'); });
     if (tampil === 'sudut') Q.forEach((p, i) => { const t = keluar(p, 36); teks(svg, t[0], t[1], sudut[i] + '°', 26, '#1F2A44'); });
     return svg;
   }
