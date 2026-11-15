@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 11 (Luas & Keliling)
 
-Status: **DRAF, menunggu persetujuan Ayah** (dibuat 15 Nov 2026); Tahap 1 belum dibangun. Lanjutan Bab 9 (Garis & Sudut, kertas bertitik) dan Bab 10 (Segi Banyak). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–10 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-9/`.
+Status: **disetujui Ayah 15 Nov 2026 dengan usulan default** (Ayah: "lanjut aja tanpa konfirmasi"; keputusan di bagian akhir, bisa diubah setelah dicoba); Tahap 1 belum dibangun. Lanjutan Bab 9 (Garis & Sudut, kertas bertitik) dan Bab 10 (Segi Banyak). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–10 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-9/`.
 
 Topik: A. Keliling = jumlah panjang **semua** sisi (segitiga, segi empat, segi banyak tak beraturan, bangun huruf L) · B. Luas = banyak **persegi satuan** yang menutupi bangun (menghitung petak utuh dan setengah petak) · C. Rumus persegi & persegi panjang: luas = p × l (persegi: s × s), keliling = 2 × (p + l) (persegi: 4 × s); satuan cm / cm², m / m² · D. Bangun gabungan (huruf L, T) dipecah jadi persegi panjang · E. Jebakan klasik: luas sama tapi keliling beda, keliling sama tapi luas beda.
 Format: panjang sisi dalam cm atau m bilangan bulat (7 cm, 12 m), luas memakai satuan persegi (48 cm², 84 m²), angka format Indonesia. Di kertas petak: **1 petak = 1 persegi satuan**, sisi petak = 1 satuan. Arti kata selalu tampil: **keliling** = panjang jalan mengelilingi tepi bangun sampai kembali ke awal; **luas** = banyak petak yang menutupi bagian dalam bangun; **cm²** = petak persegi bersisi 1 cm. Warna tetap: keliling = garis tepi **oranye** (jalan Garuda), luas = petak **biru** (diisi). Tanda di gambar sama dengan Bab 10: kotak pojok di sudut siku-siku, garis kecil di sisi yang sama panjang.
@@ -39,8 +39,8 @@ Contoh kunci yang sudah dihitung ulang:
 ## Tahap 2 (belum)
 📖 Soal Cerita (pagar kebun, bingkai foto, ubin lantai, karpet kamar, taman bermain; cerita tanpa angka dulu; model gambar denah; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir (biaya pagar per meter, ubin yang dibutuhkan, cari sisi dari luas dan keliling).
 
-## Pertanyaan untuk Ayah
-1. **Cara menjawab angka**: usul **4 pilihan dengan pengecoh dari salah umum** (p + l, luas ditukar keliling, sisi terlewat), seperti bab-bab sebelumnya. Alternatif: papan angka (anak mengetik sendiri).
-2. **Satuan sebagai bagian kunci**: usul tingkat 1–2 satuan sudah tertulis di tombol (yang dinilai angkanya), tingkat 3 ada pengecoh beda satuan (48 cm vs 48 cm²) dan memilih satuan yang salah = salah, dengan penjelasan "angkanya benar, satuannya untuk keliling". Alternatif: satuan dinilai sejak tingkat 1.
-3. **Menghitung petak**: usul **wajib ketuk tiap petak** di tingkat 1 (petak bernomor), tingkat 2–3 boleh langsung memilih jawaban (ketuk petak tetap tersedia sebagai bantuan). Alternatif: wajib ketuk di semua tingkat.
-4. **Cara kurang** (persegi panjang besar dikurangi lubang) untuk bangun gabungan: usul **hanya tingkat 3 dan di penjelasan** (cara utama tetap memotong). Alternatif: tidak dipakai sama sekali di game, cukup di video.
+## Keputusan (15 Nov 2026, usulan default; Ayah boleh ubah setelah mencoba)
+1. **Cara menjawab angka**: **4 pilihan dengan pengecoh dari salah umum** (p + l, luas ditukar keliling, sisi terlewat).
+2. **Satuan**: tingkat 1–2 satuan tertulis di tombol (yang dinilai angkanya); **tingkat 3** ada pengecoh beda satuan (48 cm vs 48 cm²), satuan salah = salah, dengan penjelasan.
+3. **Menghitung petak**: **wajib ketuk tiap petak di tingkat 1**; tingkat 2–3 boleh langsung memilih (ketuk petak tetap ada sebagai bantuan).
+4. **Cara kurang**: **hanya tingkat 3 dan di penjelasan**; cara utama tetap memotong.
