@@ -168,14 +168,14 @@
     cacheOri[id] = hasil;
     return hasil;
   }
-  // Susun daftar potongan (id berulang boleh) menutup bayangan (array kuartal) tepat. Hasil: [{idx, id, rot, balik, tx, ty}] atau null.
+  // Susun SEMUA potongan (id berulang boleh) menutup bayangan (array kuartal) tepat. Hasil: [{idx, id, rot, balik, tx, ty}] atau null.
   function selesaikan(bayangan, daftar, batasNode = 300000) {
     const target = new Set(bayangan.map((k) => kk(k[0], k[1], k[2])));
     const urutan = bayangan.slice().sort((a, b) => a[1] - b[1] || a[0] - b[0] || a[2] - b[2]);
     const pakai = daftar.map(() => false), isi = new Set(), hasil = [];
     let node = 0;
     const dfs = () => {
-      if (isi.size === target.size) return true;
+      if (isi.size === target.size) return pakai.every(Boolean); // semua potongan harus terpakai
       if (++node > batasNode) return false;
       const t = urutan.find((k) => !isi.has(kk(k[0], k[1], k[2])));
       const lihat = new Set();

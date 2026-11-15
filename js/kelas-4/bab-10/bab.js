@@ -8,6 +8,6 @@ window.DAFTAR_BAB['k4b10'] = {
   pos: [
     { id: 'hitung-sisi', ikon: '🔷', nama: 'Hitung Sisi', warna: '#3A86FF', game: () => window.GameHitungSisi },
     { id: 'cek-sifat', ikon: '🔍', nama: 'Cek Sifat', warna: '#FF8A3D', game: () => window.GameCekSifat },
-    { id: 'susun-bangun', ikon: '🧩', nama: 'Susun Bangun', warna: '#9B5DE5', segera: true, game: () => window.GameSusunBangun },
+    { id: 'susun-bangun', ikon: '🧩', nama: 'Susun Bangun', warna: '#9B5DE5', game: () => window.GameSusunBangun },
   ],
 };

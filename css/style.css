@@ -700,3 +700,19 @@ button.mawar-btn:active { background: var(--kuning); }
 @keyframes munculBaris { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
 .cs-catatan { margin: 6px 0; padding: 6px 12px; background: #FFF3C4; border-radius: 12px; font-weight: 600; }
 @media (max-height: 790px) { .cs-opsi .tombol { font-size: 24px; min-height: 58px; padding: 8px 6px; } .cs-alat { width: 250px; } .cs-tombol-alat { min-height: 62px; font-size: 20px; } .cs-dua-kolom { width: 520px; } .cs-dua .tombol-jg { font-size: 21px; } .cs-dua .tombol-jg small { font-size: 13px; } .cs-dua-judul { font-size: 19px; } }
+.sb-baris { display: flex; align-items: center; justify-content: center; gap: 28px; }
+.sb-baki { display: flex; flex-wrap: wrap; gap: 10px; width: 400px; justify-content: center; }
+.sb-baki-datar { width: auto; }
+.sb-potong { border: 0; border-radius: 18px; background: #fff; box-shadow: var(--bayang); padding: 0; display: flex; align-items: center; justify-content: center; }
+button.sb-potong.dipilih { box-shadow: 0 0 0 5px var(--kuning), var(--bayang); background: #FFF9E0; }
+.sb-potong.terpakai { opacity: .18; }
+.sb-potong.tetap { box-shadow: none; background: transparent; }
+.sb-kontrol { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.sb-info { font-size: 20px; font-weight: 700; min-width: 230px; text-align: center; }
+.sb-info b { color: var(--merah); font-size: 1.2em; }
+.sb-pilihan { display: flex; gap: 16px; justify-content: center; }
+.sb-kartu { padding: 8px 10px; min-height: 0; display: flex; align-items: center; justify-content: center; border-bottom: 8px solid var(--biru); }
+.sb-kartu .gambar-papan { filter: none; }
+.papan-potongan.muncul, .gambar-papan text.muncul { opacity: 0; animation: munculPot .5s ease-out forwards; }
+@keyframes munculPot { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: none; } }
+@media (max-height: 790px) { .sb-baki { width: 340px; } .sb-info { font-size: 17px; min-width: 200px; } .sb-kontrol .tombol-bantu { min-height: 56px; font-size: 19px; padding: 8px 14px; } }

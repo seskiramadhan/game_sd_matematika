@@ -245,6 +245,101 @@ for (let t = 1; t <= 3; t++) {
   if (t === 2) cek(Object.keys(jenisSE).length === 6, 'sifat t2 memuat 6 jenis');
 }
 
+
+// ================= Susun Bangun =================
+const SB = require('../js/kelas-4/bab-10/susun-bangun.js');
+const luasShoelace = (P) => { let a = 0; for (let i = 0; i < P.length; i++) { const q = P[(i + 1) % P.length]; a += P[i][0] * q[1] - q[0] * P[i][1]; } return Math.abs(a) / 2; }; // luas dalam petak
+// luas dalam seperempat petak (kuartal) = 4 x luas rumus tali sepatu (pembanding independen)
+Object.keys(B.POTONGAN).forEach((id) => {
+  const pts = B.POTONGAN[id].pts;
+  cek(pts.every((p) => Number.isInteger(p[0]) && Number.isInteger(p[1])), 'potongan titik bulat ' + id);
+  cek(B.kuartalPoligon(pts).length === luasShoelace(pts) * 4, 'potongan luas kuartal ' + id);
+});
+cek(B.luasPetak(B.kuartalPoligon(B.POTONGAN.seg4.pts)) === 4 && SB.luasPot('seg1') === 1 && SB.luasPot('seg2') === 2 && SB.luasPot('pers2') === 4 && SB.luasPot('miring2') === 2 && SB.luasPot('jajar2') === 2, 'luas potongan (petak)');
+cek(sama2(B.POTONGAN.seg4.pts, [[0, 0], [4, 0], [2, 2]]), 'segitiga besar (0,0)(4,0)(2,2)');
+const TG7 = ['seg4', 'seg4', 'seg2', 'seg1', 'seg1', 'miring2', 'jajar2'];
+cek(TG7.reduce((a, id) => a + SB.luasPot(id), 0) === 16 && 4 + 4 + 2 + 1 + 1 + 2 + 2 === 16, 'tangram 16 petak');
+cek(B.orientasi('pers2').length === 1 && B.orientasi('miring2').length === 1 && B.orientasi('seg2').length === 4 && B.orientasi('seg1').length === 4 && B.orientasi('seg4').length === 4 && B.orientasi('jajar2').length === 4, 'jumlah orientasi berbeda (jajargenjang punya bayangan cermin)');
+// contoh rencana: dua segitiga -> jajargenjang (0,0)(2,0)(4,2)(2,2), luas 2 + 2 = 4 = alas 2 x tinggi 2; trapesium (0,0)(6,0)(4,2)(2,2) = 2 + 4 + 2 = 8 = (6 + 2) x 2 : 2
+cek(luasShoelace([[0, 0], [2, 0], [4, 2], [2, 2]]) === 4 && 2 + 2 === 4 && 2 * 2 === 4, 'jajargenjang 4 petak');
+cek(luasShoelace([[0, 0], [6, 0], [4, 2], [2, 2]]) === 8 && 2 + 4 + 2 === 8 && (6 + 2) * 2 / 2 === 8, 'trapesium 8 petak');
+cek(B.namaBangun([[2, 0], [4, 2], [2, 4], [0, 2]]) === 'Persegi', 'persegi miring tetap persegi');
+
+const semuaPuzzle = B.PUZZLE.concat(B.PUZZLE_BESAR.map((p) => Object.assign({ t: 0 }, p)));
+semuaPuzzle.forEach((pz) => {
+  const q = B.kuartalDari(pz.sil), set = new Set(q.map((k) => B.kk(k[0], k[1], k[2])));
+  cek(pz.sil.every((p) => Number.isInteger(p[0]) && Number.isInteger(p[1])) && q.length === luasShoelace(pz.sil) * 4, 'sil luas kuartal ' + pz.id);
+  cek(pz.p.reduce((a, id) => a + B.kuartalPoligon(B.POTONGAN[id].pts).length, 0) === q.length, 'luas potongan = luas bangun ' + pz.id);
+  const sol = B.selesaikan(q, pz.p);
+  cek(sol && sol.length === pz.p.length, 'puzzle bisa disusun ' + pz.id);
+  if (sol) {
+    const dipakai = new Set(); let ok = true;
+    sol.forEach((s) => {
+      const ori = B.orientasi(s.id).find((o) => o.rot === s.rot && o.balik === s.balik);
+      ori.kuartal.forEach((k) => { const key = B.kk(k[0] + s.tx, k[1] + s.ty, k[2]); if (!set.has(key) || dipakai.has(key)) ok = false; dipakai.add(key); });
+    });
+    cek(ok && dipakai.size === set.size, 'solusi tidak tumpang tindih dan menutup penuh ' + pz.id);
+    cek(sama2(sol.map((s) => s.id).sort(), pz.p.slice().sort()), 'solusi memakai semua potongan ' + pz.id);
+  }
+});
+cek(B.PUZZLE.filter((p) => p.t === 1).every((p) => p.p.length === 2 && sama2(p.p, ['seg2', 'seg2'])) && B.PUZZLE.filter((p) => p.t === 1).length === 3, 'puzzle t1: 2 segitiga');
+cek(B.PUZZLE.filter((p) => p.t === 2).every((p) => p.p.length >= 3 && p.p.length <= 4) && B.PUZZLE.filter((p) => p.t === 2).length >= 4, 'puzzle t2: 3-4 potongan');
+cek(B.PUZZLE.filter((p) => p.t === 3).every((p) => sama2(p.p, TG7)) && B.PUZZLE.filter((p) => p.t === 3).length >= 4, 'puzzle t3: tangram 7 potongan');
+cek(B.namaBangun(B.PUZZLE.find((p) => p.id === 'rumah-12').sil) === 'Segi lima' && B.namaBangun(B.PUZZLE.find((p) => p.id === 'segi-besar').sil) === 'Segitiga' && B.namaBangun(B.PUZZLE.find((p) => p.id === 'tg-persegi').sil) === 'Persegi', 'nama puzzle');
+// pengecoh: bukan bangun yang bisa dibuat dari 2 segitiga / segitiga + persegi / dua segitiga besar
+B.PENGECOH.forEach((c) => cek(B.kuartalDari(c.sil).length === luasShoelace(c.sil) * 4, 'pengecoh luas ' + c.id));
+
+for (let t = 1; t <= 3; t++) {
+  const cacah = {}, pakaiBalik = { n: 0 };
+  for (let r = 0; r < RONDE; r++) {
+    const ronde = SB.buatRonde(t);
+    cek(ronde.length === 5 && unik(ronde.map((s) => s.kode)), 'susun ronde 5 soal berbeda t' + t);
+    cek(ronde.slice(0, 3).every((s) => s.jenis === 'susun') && unik(ronde.slice(0, 3).map((s) => s.puzzle)), 'susun soal 1-3 teka-teki berbeda t' + t);
+    cek(t === 3 ? ronde[3].jenis === 'nama' && ronde[4].jenis === 'tidakBisa' : ronde[3].jenis === 'tidakBisa' && ronde[4].jenis === 'nama', 'susun soal 4-5 t' + t);
+    ronde.forEach((s) => {
+      cacah[s.jenis] = (cacah[s.jenis] || 0) + 1;
+      if (s.jenis === 'susun') {
+        cek(s.awal.length === s.p.length && s.awal.every((a) => a.rot >= 0 && a.rot <= 3), 'susun awal');
+        cek(s.batas === SB.BATAS[t] && s.solusi.length === s.p.length, 'susun batas & solusi');
+        if (t === 3) cek(s.p.length === 7, 'tangram 7 potongan'); else cek(s.p.length === (t === 1 ? 2 : s.p.length), 'jumlah potongan');
+        s.awal.forEach((a, k) => { if (a.balik) { pakaiBalik.n++; cek(t === 3 && s.p[k] === 'jajar2', 'balik hanya jajargenjang tangram'); } });
+        // simulasi: tempatkan potongan satu per satu di titik pusatnya (urutan acak) lewat carriTempat -> harus tepat di tempat solusi
+        const q = B.kuartalDari(s.sil), target = new Set(q.map((k) => B.kk(k[0], k[1], k[2]))), isi = new Set();
+        B.kocok(s.solusi.slice()).forEach((pl) => {
+          const pts = B.geserPoligon(B.ubahPoligon(B.POTONGAN[pl.id].pts, pl.rot, pl.balik), pl.tx, pl.ty);
+          const cx = pts.reduce((a, p) => a + p[0], 0) / pts.length, cy = pts.reduce((a, p) => a + p[1], 0) / pts.length;
+          const tap = B.kuartalDiPoint(cx, cy), hasil = B.carriTempat(pl.id, pl.rot, pl.balik, tap, target, isi, cx, cy);
+          cek(hasil && B.kuartalDari(hasil.pts.map((p) => p), hasil.tx, hasil.ty).length > 0, 'ketuk di pusat potongan menempel ' + pl.id);
+          if (hasil) hasil.kuartal.forEach((k) => isi.add(B.kk(k[0] + hasil.tx, k[1] + hasil.ty, k[2])));
+        });
+        cek(isi.size === target.size, 'susun simulasi mengisi penuh ' + s.puzzle);
+        // potongan yang tidak muat tidak menempel: ketuk di luar bayangan dan di bagian yang sudah terisi
+        cek(B.carriTempat(s.p[0], 0, false, [50, 50, 0], target, new Set(), 50.5, 50.2) === null, 'di luar bayangan tidak menempel');
+        cek(B.carriTempat(s.solusi[0].id, s.solusi[0].rot, s.solusi[0].balik, B.kuartalDari(s.sil)[0], target, new Set(target), 0.5, 0.5) === null, 'tempat terisi tidak menempel');
+      } else if (s.jenis === 'tidakBisa') {
+        cek(s.opsi.length === 4 && unik(s.opsi.map((o) => o.id)), 'tidakBisa 4 gambar');
+        cek(s.opsi.filter((o) => SB.periksa(s, o.id).benar).length === 1, 'tidakBisa tepat satu benar');
+        const total = s.potongan.reduce((a, id) => a + SB.luasPot(id), 0);
+        cek(total === s.total, 'tidakBisa total');
+        s.opsi.forEach((o) => {
+          const q = B.kuartalDari(o.sil), tileable = B.selesaikan(q, s.potongan) !== null;
+          cek(o.bisa === tileable, 'tidakBisa solver ' + o.id + ' ' + tileable);
+          if (o.bisa) cek(luasShoelace(o.sil) === total, 'tidakBisa bangun bisa luas sama ' + o.id);
+          else { cek(luasShoelace(o.sil) !== total && o.id === s.kunci && luasShoelace(o.sil) === s.luasSalah, 'tidakBisa pengecoh luas beda ' + o.id); cek(!tileable, 'pengecoh tidak bisa dibuat'); }
+        });
+        cek(s.opsi.filter((o) => !o.bisa).length === 1, 'tidakBisa satu pengecoh');
+      } else {
+        const alt = s.sil.length === 4 ? ({ persegi: 'Persegi', 'persegi-panjang': 'Persegi panjang', jajargenjang: 'Jajargenjang', 'belah-ketupat': 'Belah ketupat', 'layang-layang': 'Layang-layang', trapesium: 'Trapesium', sembarang: 'Segi empat sembarang' })[jenisAlt(s.sil)] : s.sil.length === 3 ? 'Segitiga' : 'Segi lima';
+        cek(s.kunci === alt, 'nama kunci ' + s.puzzle + ' ' + s.kunci + ' vs ' + alt);
+        cek(s.opsi.length === 4 && unik(s.opsi) && s.opsi.includes(s.kunci) && s.opsi.filter((o) => SB.periksa(s, o).benar).length === 1, 'nama opsi');
+      }
+    });
+    ronde.forEach((s) => { const m = SB.soalMirip(s, t); cek(m.jenis === s.jenis && m.kode !== s.kode, 'susun mirip'); });
+  }
+  console.log('Susun Bangun t' + t + ': ' + JSON.stringify(cacah) + (t === 3 ? ', potongan jajargenjang terbalik=' + pakaiBalik.n : ''));
+  if (t === 3) cek(pakaiBalik.n > 0, 'tangram: ada potongan jajargenjang yang perlu dibalik');
+}
+
 // @@AKHIR
 console.log(gagal ? gagal + ' GAGAL' : 'Semua cek Bab 10 lulus.');
 process.exit(gagal ? 1 : 0);
