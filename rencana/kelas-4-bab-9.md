@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 9 (Garis & Sudut)
 
-Status: **DRAF, menunggu persetujuan Ayah** (dibuat 15 Nov 2026); Tahap 1 belum dibangun. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
+Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); Tahap 1 belum dibangun. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
 
 Topik: A. Garis sejajar, berpotongan, tegak lurus · B. Menggambar garis sejajar & tegak lurus (kertas bertitik) · C. Sudut pada garis berpotongan, sudut lurus = 180° · D. Mengenali garis pada benda di sekitar.
 Format: derajat menempel pada angka (90°), garis diberi nama dua huruf (garis AB), titik sudut huruf tengah (∠PQR) seperti Bab 8. Arti kata selalu tampil: **sejajar** = tidak pernah bertemu walau diperpanjang; **berpotongan** = bertemu di satu titik; **tegak lurus** = berpotongan dan membentuk sudut siku-siku (90°).
@@ -30,8 +30,8 @@ Contoh kunci yang sudah dihitung ulang: 180° − 70° = 110° · 180° − 65°
 ## Tahap 2 (belum)
 📖 Soal Cerita (garis di denah jalan & kelas, sudut lurus pada benda; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir.
 
-## Pertanyaan untuk Ayah
-1. **Tegak lurus vs berpotongan** di 🛤️ Jenis Garis: kunci tunggal "Tegak lurus" (nama paling tepat, "Berpotongan" dianggap salah dengan penjelasan), atau "Berpotongan" untuk garis siku dianggap benar juga?
-2. **Sudut seberang (bertolak belakang) sama besar**: masuk Tahap 1 (soal 4–5 ✖️ Sudut Silang & tingkat 3), atau cukup sudut lurus 180° dan sudut sebelah saja, sudut seberang ditunda ke Tahap 2?
-3. **Simbol ∥ dan ⊥**: ditampilkan kecil di samping kata (AB ∥ CD), atau hanya kata "sejajar / tegak lurus" untuk kelas 4?
-4. **Urutan pos**: 🛤️ → ✏️ → ✖️ seperti di atas, atau ✖️ Sudut Silang lebih dulu karena paling dekat dengan Bab 8?
+## Keputusan Ayah (15 Nov 2026)
+1. **Tegak lurus vs berpotongan** di 🛤️ Jenis Garis: kunci tunggal **"Tegak lurus"**; "Berpotongan" untuk garis siku dianggap salah, dengan penjelasan bahwa tegak lurus juga berpotongan.
+2. **Sudut seberang (bertolak belakang) sama besar**: **masuk Tahap 1** (soal 4–5 ✖️ Sudut Silang & tingkat 3).
+3. **Simbol ∥ dan ⊥**: **ditampilkan kecil di samping kata** (AB sejajar CD, AB ∥ CD); kata tetap utama.
+4. **Urutan pos**: 🛤️ Jenis Garis → ✏️ Tarik Garis → ✖️ Sudut Silang.
