@@ -269,6 +269,15 @@ h1, h2 { margin: 0; }
 /* posisi tanpa transform: .tombol:active memakai transform */
 .tombol-perbarui { position: fixed; left: 0; right: 0; margin: 0 auto; width: max-content; bottom: 100px; z-index: 25; font-size: 22px; padding: 12px 26px; background: var(--teks); color: #fff; }
 .tombol-perbarui[hidden] { display: none; }
+/* Untuk Ayah/Bunda */
+.tombol-ortu { position: absolute; right: 18px; bottom: 14px; border: 0; background: none; font: inherit; font-size: 16px; font-weight: 700; color: var(--teks); opacity: .7; padding: 8px 10px; text-decoration: underline; }
+.ortu-isi { flex: 1; overflow-y: auto; max-width: 820px; margin: 0 auto; padding: 8px 8px 24px; font-size: 20px; line-height: 1.5; }
+.ortu-lead { margin-bottom: 12px; }
+.ortu-daftar { margin: 0 0 12px 1.2em; }
+.ortu-daftar li { margin-bottom: 6px; }
+.ortu-gratis { opacity: .75; font-size: 17px; margin-bottom: 20px; }
+.ortu-pesan { display: inline-block; text-decoration: none; font-size: 24px; padding: 14px 36px; }
+.ortu-pesan[aria-disabled="true"] { opacity: .5; }
 .versi-kecil { position: absolute; left: 18px; bottom: 14px; border: 0; background: none; font: inherit; font-size: 15px; color: var(--teks); opacity: .55; padding: 8px 10px; }
 
 #putar-layar { display: none; }

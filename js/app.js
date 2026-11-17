@@ -32,6 +32,19 @@
   $('tombol-main').onclick = () => { Suara.efek('pop'); tampil('kelas'); };
   document.querySelectorAll('[data-ke]').forEach((b) => { b.onclick = () => { Suara.efek('pop'); tampil(b.dataset.ke); }; });
 
+  // ---------- Untuk Ayah/Bunda ----------
+  // Link pemesanan paket (Lynk). Kosong = placeholder "segera hadir".
+  const LINK_PESAN = '';
+  (function aturPesan() {
+    const b = $('tombol-pesan');
+    if (LINK_PESAN) {
+      b.href = LINK_PESAN; b.target = '_blank'; b.rel = 'noopener';
+      b.removeAttribute('aria-disabled'); b.textContent = 'Lihat & pesan paket';
+    } else {
+      b.onclick = (e) => { e.preventDefault(); Suara.efek('boing'); toast('Link pemesanan segera hadir.'); };
+    }
+  })();
+
   // ---------- Pilih kelas ----------
   function isiKelas() {
     const wadah = $('daftar-kelas'); wadah.innerHTML = '';
