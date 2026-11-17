@@ -206,6 +206,39 @@
     return { benar, pilihan: kocok(pilihan) };
   }
 
+  // Diagram batang bernomor sumbu (skala). d = { nama:[...], nilai:[...], garis (jarak garis sumbu), ymax }.
+  // o.sorot = [indeks batang yang disorot; batang lain dipudarkan]; o.mode: 'beda' (dua batang dibandingkan: selisih ditandai "?"),
+  // 'gabung' (batang yang disorot ditambah: tanda +), 'satu' (satu batang saja). Tanpa o: semua batang biasa. Tinggi batang = nilai asli.
+  const WARNA_BATANG = ['#3A86FF', '#FF8A3D', '#2BB673', '#9B5DE5', '#FF6384'];
+  GAMBAR.diagramBatang = function (d, o) {
+    o = o || {};
+    const n = d.nama.length, kiri = 34, kanan = 8, atas = 12, bawah = 38, pw = 320 - kiri - kanan, ph = 190 - atas - bawah, kol = pw / n;
+    const y = (v) => atas + ph - (v / d.ymax) * ph, bw = Math.min(kol * 0.58, 52), cx = (i) => kiri + i * kol + kol / 2;
+    const sorot = o.sorot || null, tampak = (i) => !sorot || sorot.includes(i);
+    let s = '<rect x="1" y="1" width="318" height="188" rx="14" fill="#FFFFFF" stroke="#E9DFCB" stroke-width="3"/>';
+    for (let v = 0; v <= d.ymax; v += d.garis) {
+      s += '<line x1="' + kiri + '" y1="' + y(v) + '" x2="' + (320 - kanan) + '" y2="' + y(v) + '" stroke="' + (v === 0 ? WARNA.teks : '#C9D6E8') + '" stroke-width="' + (v === 0 ? 3 : 1.4) + '"/>';
+      s += '<text x="' + (kiri - 6) + '" y="' + (y(v) + 4) + '" font-size="11" font-weight="700" text-anchor="end" fill="#4A5878">' + v + '</text>';
+    }
+    s += '<line x1="' + kiri + '" y1="' + (atas - 4) + '" x2="' + kiri + '" y2="' + y(0) + '" stroke="' + WARNA.teks + '" stroke-width="3"/>';
+    d.nilai.forEach((v, i) => {
+      const x = cx(i) - bw / 2, ada = tampak(i);
+      s += '<rect x="' + x + '" y="' + y(v) + '" width="' + bw + '" height="' + (y(0) - y(v)) + '" rx="4" fill="' + WARNA_BATANG[i % 5] + '" fill-opacity="' + (ada ? 0.95 : 0.28) + '"' + (sorot && ada ? ' stroke="#E0A800" stroke-width="4"' : '') + '/>';
+      const kata = d.nama[i].split(' ');
+      kata.forEach((k, j) => { s += '<text x="' + cx(i) + '" y="' + (190 - bawah + 14 + j * 12) + '" font-size="' + (kol < 58 ? 10 : 11.5) + '" font-weight="700" text-anchor="middle" fill="' + WARNA.teks + '" fill-opacity="' + (ada ? 1 : 0.45) + '">' + k + '</text>'; });
+    });
+    if (sorot && o.mode === 'beda' && sorot.length === 2) {
+      const [a, b] = d.nilai[sorot[0]] >= d.nilai[sorot[1]] ? sorot : [sorot[1], sorot[0]], kecil = d.nilai[b];
+      s += '<line x1="' + (cx(b) - bw / 2) + '" y1="' + y(kecil) + '" x2="' + (cx(a) + bw / 2) + '" y2="' + y(kecil) + '" stroke="' + WARNA.merah + '" stroke-width="3" stroke-dasharray="7 5"/>';
+      s += '<rect x="' + (cx(a) - bw / 2 + 3) + '" y="' + (y(d.nilai[a]) + 2) + '" width="' + (bw - 6) + '" height="' + Math.max(0, y(kecil) - y(d.nilai[a]) - 4) + '" rx="3" fill="#FFFFFF" fill-opacity="0.55" stroke="' + WARNA.merah + '" stroke-width="3" stroke-dasharray="6 4"/>';
+      s += '<text x="' + cx(a) + '" y="' + ((y(d.nilai[a]) + y(kecil)) / 2 + 8) + '" font-size="24" font-weight="800" text-anchor="middle" fill="' + WARNA.merah + '">?</text>';
+    } else if (sorot && o.mode === 'gabung') {
+      const urut = sorot.slice().sort((p, q) => p - q);
+      for (let k = 0; k + 1 < urut.length; k++) s += '<text x="' + ((cx(urut[k]) + cx(urut[k + 1])) / 2) + '" y="' + (y(0) - 8) + '" font-size="26" font-weight="800" text-anchor="middle" fill="' + WARNA.teks + '" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">+</text>';
+    }
+    return svg(s);
+  };
+
   // Tiga pilihan gambar standar (garis, bagi, batang) dengan keterangan. benarId = id gambar yang cocok.
   const KET = {
     garis: 'Dua katak loncat dari 0',
@@ -291,7 +324,7 @@
 
       // --- 2 Tandai ---
       function langkahTandai() {
-        isi.appendChild(el('div', 'sc-arah', 'Ketuk <span class="tok-contoh angka">angka penting</span> dan <span class="tok-contoh tanya">kalimat pertanyaan</span>, lalu tekan Sudah.'));
+        isi.appendChild(el('div', 'sc-arah', 'Ketuk <span class="tok-contoh angka">' + (soal.arahAngka || 'angka penting') + '</span> dan <span class="tok-contoh tanya">kalimat pertanyaan</span>, lalu tekan Sudah.'));
         const cerita = el('div', 'sc-cerita sc-tandai');
         const tok = [];
         soal.segmen.forEach((s) => {
@@ -302,14 +335,15 @@
           cerita.appendChild(b);
         });
         isi.appendChild(cerita);
+        if (soal.diagram) isi.appendChild(el('div', 'sc-diagram', soal.diagram));
         const sudah = el('button', 'tombol tombol-utama sc-sudah', 'Sudah ✓');
         sudah.onclick = () => {
           const dipilih = (t) => t.b.classList.contains('tanda');
           const lebih = tok.filter((t) => t.s.k === 'angka' && !t.s.penting && dipilih(t));
           const kurang = tok.filter((t) => t.s.k === 'angka' && t.s.penting && !dipilih(t));
           const tanyaKurang = tok.filter((t) => t.s.k === 'tanya' && !dipilih(t));
-          if (lebih.length) { efek('boing'); hint('Angka <b>' + lebih[0].s.t + '</b> tidak dipakai untuk menghitung, jadi tidak perlu ditandai. Ketuk lagi untuk melepas.'); return; }
-          if (kurang.length) { efek('boing'); hint('Masih ada angka penting yang belum kuning. Angka penting = angka yang dipakai untuk menghitung.'); return; }
+          if (lebih.length) { efek('boing'); hint('<b>' + lebih[0].s.t + '</b> tidak dipakai untuk menghitung, jadi tidak perlu ditandai. Ketuk lagi untuk melepas.'); return; }
+          if (kurang.length) { efek('boing'); hint(soal.hintKurang || 'Masih ada angka penting yang belum kuning. Angka penting = angka yang dipakai untuk menghitung.'); return; }
           if (tanyaKurang.length) { efek('boing'); hint('Kalimat pertanyaan belum biru. Ketuk kalimat yang bertanya "kapan" atau "berapa".'); return; }
           efek('ding'); langkah(2, PUJI[1]);
         };
@@ -336,7 +370,9 @@
       function langkahHitung() {
         const ringkas = el('div', 'sc-cerita sc-kecil');
         ringkas.innerHTML = soal.segmen.map((s) => (s.k === 'teks' ? s.t : '<b class="sc-m-' + s.k + '">' + s.t + '</b>')).join('');
-        isi.append(ringkas, el('div', 'sc-tanya', soal.tanya4.teks));
+        isi.append(ringkas);
+        if (soal.diagram) isi.appendChild(el('div', 'sc-diagram', soal.diagram));
+        isi.append(el('div', 'sc-tanya', soal.tanya4.teks));
         const baris = el('div', 'sc-opsi');
         soal.opsi.forEach((o) => {
           const b = el('button', 'tombol sc-besar', fmt(o) + (soal.tanya4.satuan ? ' <small>' + soal.tanya4.satuan + '</small>' : ''));

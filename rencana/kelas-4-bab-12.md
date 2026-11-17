@@ -24,7 +24,7 @@ Contoh kunci yang sudah dihitung ulang (muncul ± 12% soal, sama dengan video da
 - Kue Bu Ani, skala 5: Senin 15, Selasa 20, Rabu 10, Kamis 25 → Kamis − Rabu = 15 · jumlah 15 + 20 + 10 + 25 = 70.
 
 ## Tahap 2 (belum)
-📖 Soal Cerita (membaca diagram untuk cerita: selisih dan jumlah, cerita tanpa angka dulu, model gambar batang; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir (campuran: turus → batang → pertanyaan, skala 5, dua diagram dibandingkan).
+📖 Soal Cerita (**selesai 17 Nov 2026**, lihat catatan di bawah) · 🏆 Tantangan Akhir (campuran: turus → batang → pertanyaan, skala 5, dua diagram dibandingkan).
 
 ## Keputusan (17 Nov 2026, usulan default; Ayah boleh ubah setelah dicoba)
 1. **Cara menjawab angka**: 4 pilihan dengan pengecoh dari salah umum.
@@ -41,3 +41,12 @@ Hal yang diputuskan saat membangun (di luar tabel rencana):
 - **Baca Batang**: diagram minimal 4 batang supaya "paling banyak / sedikit" punya 4 pilihan nama; kotak samping menampilkan arti skala; penjelasan menggambar garis bantu (putus-putus kuning) dan dua garis di bawah dan di atas batang yang berada di antara dua garis.
 - **Bangun Batang**: ▲ ▼ ada di baris tabel (tombol 52-58 px), ketuk kolom batang juga mengatur tinggi (dibulatkan ke langkah terdekat); batang kosong di awal; setelah "Sudah" benar muncul satu pertanyaan (tingkat 1 soal 5, tingkat 2 soal 3-5, tingkat 3 semua soal).
 - Tes tampilan: Chrome headless + CDP dengan ketukan sentuh sungguhan, 1180x820 dan 1024x768, ronde penuh tiap mini game tiap tingkat dengan jawaban benar dan salah.
+
+## Catatan pembangunan 📖 Soal Cerita (17 Nov 2026)
+- Data `js/kelas-4/bab-12/soal-cerita-data.js`, id `k4b12`. Dua jenis (video Jago Soal Cerita Ep. 5, "Lebih Banyak atau Seluruhnya?"): **Lebih banyak / selisih (kurang)** (lebih banyak, lebih sedikit, atau selisih dua batang: besar dikurangi kecil) dan **Seluruhnya (tambah)** (seluruhnya, jumlah semua batang; di tingkat 3 kadang jumlah dua batang saja). Satu ronde 5 soal memuat kedua jenis.
+- 9 topik original (kue, botol bekas, pengunjung perpustakaan, es lilin, kantong sampah, hewan, olahraga, buah, sepeda) x 2 jenis = 18 templat. Cerita tidak memuat angka: angka dibaca dari diagram batang bernomor sumbu, jadi anak **harus membaca skala dulu**. Langkah Tandai: ketuk nama batang yang dipakai (kuning) + kalimat tanya (biru). Langkah Gambar: tiga diagram dengan batang disorot (tanda **?** = dua batang dibandingkan, tanda **+** = digabung, satu batang); anak memilih batang mana yang dibandingkan atau dijumlah.
+- Tingkat 1: 2 batang, skala 1 atau 2 (nilai ganjil terbaca di tengah), tanpa angka pengecoh. Tingkat 2: skala 5, 3-4 batang, 1 angka pengecoh, contoh video muncul. Tingkat 3: skala 5 atau 10 (35 terbaca di tengah garis 30 dan 40), 4-5 batang, jumlah dua batang saja, 2 angka pengecoh.
+- Contoh yang sama dengan video Ep. 5 dan Buku Saku (tingkat 2, ± 12%): kue Bu Ani skala 5 (Kamis lebih banyak dari Rabu 15; seluruhnya 70), olahraga skala 2 (Bola 9, Renang 6, Bulu tangkis 12, Voli 3: jumlah 30; Bulu tangkis lebih banyak dari Renang 6), sepeda skala 5 (Ali 10, Dini 25, Eka 15: selisih Dini dan Eka 10).
+- Jebakan jadi pengecoh dengan penjelasan: menjumlah untuk "lebih banyak", mengurangi untuk "seluruhnya", membaca banyak garis bukan nilainya (kotak, bukan skala), memakai satu batang saja, ada batang yang terlewat, semua batang dijumlah padahal hanya dua yang ditanya.
+- Mesin bersama `js/soal-cerita.js` bertambah: `GAMBAR.diagramBatang` (diagram SVG bernomor sumbu dengan sorotan), kolom opsional `soal.diagram` (diagram ikut tampil di langkah Tandai dan Hitung), `soal.arahAngka` dan `soal.hintKurang` (teks arahan langkah Tandai bila yang ditandai bukan angka). Bab 3, 5, 7, 11 tidak berubah perilakunya.
+- Aturan pos dan bintang sama dengan bab lain: terbuka setelah Bangun Batang minimal 1 bintang. Cek logika: `node tools/cek-soal-cerita-bab12.js` (3.600 ronde; nilai batang dibaca kembali dari SVG, kunci dihitung ulang dari nama batang di kalimat tanya, tiga contoh video dicek angka persisnya).
