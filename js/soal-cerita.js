@@ -342,7 +342,7 @@
           const lebih = tok.filter((t) => t.s.k === 'angka' && !t.s.penting && dipilih(t));
           const kurang = tok.filter((t) => t.s.k === 'angka' && t.s.penting && !dipilih(t));
           const tanyaKurang = tok.filter((t) => t.s.k === 'tanya' && !dipilih(t));
-          if (lebih.length) { efek('boing'); hint('<b>' + lebih[0].s.t + '</b> tidak dipakai untuk menghitung, jadi tidak perlu ditandai. Ketuk lagi untuk melepas.'); return; }
+          if (lebih.length) { efek('boing'); hint((/^\d/.test(lebih[0].s.t) ? 'Angka ' : '') + '<b>' + lebih[0].s.t + '</b> tidak dipakai untuk menghitung, jadi tidak perlu ditandai. Ketuk lagi untuk melepas.'); return; }
           if (kurang.length) { efek('boing'); hint(soal.hintKurang || 'Masih ada angka penting yang belum kuning. Angka penting = angka yang dipakai untuk menghitung.'); return; }
           if (tanyaKurang.length) { efek('boing'); hint('Kalimat pertanyaan belum biru. Ketuk kalimat yang bertanya "kapan" atau "berapa".'); return; }
           efek('ding'); langkah(2, PUJI[1]);

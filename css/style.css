@@ -625,7 +625,7 @@ h1, h2 { margin: 0; }
 .sc-isi.sc-cek-mode .sc-cerita.sc-kecil { display: none; }
 .sc-diagram { width: 100%; display: flex; justify-content: center; }
 .sc-diagram svg { width: auto; height: 205px; max-width: 100%; }
-@media (max-height: 790px) { .sc-diagram svg { height: 150px; } }
+@media (max-height: 790px) { .sc-diagram svg { height: 172px; } }
 .sc-isi.sc-cek-mode .sc-diagram { display: none; }
 @media (max-width: 1100px) { .sc-langkah { font-size: 16px; padding: 8px 6px; gap: 6px; white-space: nowrap; } .sc-langkah b { width: 26px; height: 26px; font-size: 15px; } }
 
