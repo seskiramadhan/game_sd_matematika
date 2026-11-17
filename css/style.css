@@ -759,3 +759,57 @@ button.sb-potong.dipilih { box-shadow: 0 0 0 5px var(--kuning), var(--bayang); b
 .lk-info b { font-size: 1.25em; }
 .lk-tiga { align-items: center; }
 .lk-kel-besar { font-size: 27px; white-space: nowrap; background: #FFF3C4; border-radius: 14px; padding: 10px 16px; }
+
+/* ---------- Bab 12 · Grafik Batang ---------- */
+.gb-diagram { display: block; filter: drop-shadow(0 6px 0 rgba(31,42,68,.12)); }
+.gb-ketuk { cursor: pointer; }
+.gb-tabel { display: flex; flex-direction: column; gap: 8px; background: #fff; border-radius: 20px; box-shadow: var(--bayang); padding: 10px 14px; min-width: 340px; }
+.gb-baris { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 2px 6px; border-radius: 12px; }
+.gb-baris.gb-sorot { background: #FFF3C4; box-shadow: 0 0 0 3px var(--kuning); }
+.gb-nama { font-size: 21px; font-weight: 700; min-width: 124px; display: flex; align-items: center; gap: 6px; }
+.gb-ikon { font-size: 30px; line-height: 1; }
+.gb-chip { display: inline-block; width: 18px; height: 18px; border-radius: 5px; flex: none; }
+.gb-turus-wadah { flex: 1; min-width: 70px; display: flex; align-items: center; }
+.gb-turus { display: block; }
+.gb-angka { font-size: 19px; font-weight: 600; white-space: nowrap; }
+.gb-angka b { color: var(--biru); font-size: 1.25em; }
+.gb-tabel-kecil { min-width: 0; padding: 8px 10px; gap: 4px; }
+.gb-tabel-kecil .gb-nama { font-size: 17px; min-width: 100px; }
+.gb-tabel-kecil .gb-ikon { font-size: 24px; }
+.gb-tabel-kecil .gb-baris { min-height: 40px; }
+.gb-tabel-kecil .gb-angka { font-size: 16px; }
+.gb-kiri { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 450px; }
+.gb-area { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-content: center; background: #fff; border-radius: 20px; box-shadow: var(--bayang); padding: 12px; min-height: 130px; width: 100%; }
+.gb-benda { border: 0; background: #FFF9E8; border-radius: 16px; font-size: 40px; line-height: 1; width: 64px; height: 64px; padding: 0; box-shadow: 0 4px 0 rgba(31,42,68,.14); font-family: inherit; }
+.gb-benda.gb-sudah { opacity: .22; box-shadow: none; }
+.gb-satu { flex-direction: column; align-items: center; min-height: 190px; }
+.gb-benda.gb-besar { font-size: 92px; width: 140px; height: 140px; border-radius: 26px; background: #FFF3C4; }
+.gb-urut { font-size: 18px; font-weight: 700; opacity: .75; width: 100%; text-align: center; }
+.gb-selesai { font-size: 80px; color: var(--hijau); font-weight: 800; }
+.gb-info { min-height: 56px; }
+.gb-pikto { display: flex; flex-direction: column; gap: 6px; background: #fff; border-radius: 20px; box-shadow: var(--bayang); padding: 10px 16px; min-width: 520px; }
+.gb-pikto-judul { font-size: 19px; text-align: center; background: #FFF3C4; border-radius: 12px; padding: 4px 10px; }
+.gb-pikto .gb-nama { min-width: 110px; }
+.gb-pikto-ikon { display: flex; flex-wrap: wrap; gap: 2px; flex: 1; }
+.gb-pk { font-size: 30px; line-height: 1.1; }
+.gb-data { min-width: 300px; }
+.gb-data .gb-nama { white-space: nowrap; font-size: 19px; min-width: 0; }
+.gb-data .gb-nilai { font-size: 30px; font-weight: 800; color: var(--biru); min-width: 40px; text-align: center; flex: 1; }
+.gb-ud { min-width: 58px; min-height: 52px; padding: 4px 10px; font-size: 22px; border-radius: 14px; }
+.gb-bawah { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
+.gb-cek { font-size: 28px; min-width: 220px; }
+.gb-kanan-diagram svg { max-width: 100%; height: auto; }
+@media (max-height: 790px) {
+  .gb-tabel { min-width: 300px; gap: 4px; padding: 8px 12px; }
+  .gb-nama { font-size: 18px; min-width: 108px; }
+  .gb-baris { min-height: 46px; }
+  .gb-ud { min-height: 46px; min-width: 52px; }
+  .gb-kiri { width: 390px; }
+  .gb-benda { width: 52px; height: 52px; font-size: 32px; border-radius: 13px; }
+  .gb-area { gap: 6px; padding: 8px; min-height: 100px; }
+  .gb-benda.gb-besar { width: 112px; height: 112px; font-size: 72px; }
+  .gb-satu { min-height: 150px; }
+  .gb-pikto { min-width: 470px; padding: 8px 12px; }
+  .gb-pk { font-size: 25px; }
+  .gb-cek { font-size: 24px; }
+}
