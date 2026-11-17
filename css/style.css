@@ -621,7 +621,8 @@ h1, h2 { margin: 0; }
   .sc-gambar svg { max-height: 140px; }
   .sc-gambar { font-size: 17px; }
 }
-.ronde-isi:has(.sc) { justify-content: flex-start; padding-top: 4px; }
+.ronde-isi:has(.sc) { justify-content: flex-start; padding-top: 4px; overflow-y: auto; }
+.sc-isi.sc-cek-mode .sc-cerita.sc-kecil { display: none; }
 @media (max-width: 1100px) { .sc-langkah { font-size: 16px; padding: 8px 6px; gap: 6px; white-space: nowrap; } .sc-langkah b { width: 26px; height: 26px; font-size: 15px; } }
 
 /* ---------- Bab 7 · Persentase ---------- */

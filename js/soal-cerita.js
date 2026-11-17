@@ -97,6 +97,41 @@
     },
   };
 
+
+  // Model batang pecahan: batang dibagi n bagian, `arsir` bagian pertama dipakai (diarsir), sisanya ditandai (garis putus-putus).
+  // o.tidakSama = bagian dibuat tidak sama besar (gambar pengecoh). Tanpa angka di gambar.
+  let _bp = 0;
+  GAMBAR.batangPecahan = function (n, arsir, o) {
+    o = o || {};
+    const id = 'bp' + (++_bp), x0 = 20, lebar = 280, y = 38, tinggi = 62;
+    const bobot = []; for (let i = 0; i < n; i++) bobot.push(o.tidakSama ? (i % 2 === 0 ? 1.7 : 0.55) : 1);
+    const jml = bobot.reduce((p, q) => p + q, 0);
+    const xs = [x0]; bobot.forEach((w) => xs.push(xs[xs.length - 1] + (w / jml) * lebar));
+    let s = '<defs><pattern id="' + id + '" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="' + WARNA.oranye + '"/><rect width="5" height="12" fill="#FFB877"/></pattern></defs>';
+    s += '<rect x="' + x0 + '" y="' + y + '" width="' + (xs[arsir] - x0) + '" height="' + tinggi + '" fill="url(#' + id + ')"/>';
+    if (arsir < n) {
+      s += '<rect x="' + xs[arsir] + '" y="' + y + '" width="' + (x0 + lebar - xs[arsir]) + '" height="' + tinggi + '" fill="#EAF7EF"/>';
+      s += '<rect x="' + (xs[arsir] + 3) + '" y="' + (y + 3) + '" width="' + (x0 + lebar - xs[arsir] - 6) + '" height="' + (tinggi - 6) + '" rx="6" fill="none" stroke="' + WARNA.merah + '" stroke-width="4" stroke-dasharray="9 6"/>';
+    }
+    for (let i = 1; i < n; i++) s += '<line x1="' + xs[i] + '" y1="' + y + '" x2="' + xs[i] + '" y2="' + (y + tinggi) + '" stroke="' + WARNA.teks + '" stroke-width="3"/>';
+    s += '<rect x="' + x0 + '" y="' + y + '" width="' + lebar + '" height="' + tinggi + '" rx="8" fill="none" stroke="' + WARNA.teks + '" stroke-width="4"/>';
+    s += '<rect x="40" y="134" width="30" height="22" rx="4" fill="url(#' + id + ')" stroke="' + WARNA.teks + '" stroke-width="2"/><text x="78" y="152" font-size="18" font-weight="700" fill="' + WARNA.teks + '">dipakai</text>';
+    s += '<rect x="178" y="134" width="30" height="22" rx="4" fill="#EAF7EF" stroke="' + WARNA.merah + '" stroke-width="3" stroke-dasharray="6 4"/><text x="216" y="152" font-size="18" font-weight="700" fill="' + WARNA.teks + '">sisa</text>';
+    return svg(s);
+  };
+  // Tiga pilihan model batang untuk pecahan arsir/n: 1 benar + 3 jenis salah (dipilih 2): bagian tertukar, jumlah bagian keliru, bagian tidak sama besar.
+  function pilihanBatang(n, arsir) {
+    const benar = { id: 'p-benar', ket: 'Model batang', n, arsir, tidakSama: false, svg: GAMBAR.batangPecahan(n, arsir) };
+    const salah = [
+      { id: 'p-tukar', ket: 'Model batang', n, arsir: n - arsir, tidakSama: false },
+      { id: 'p-n', ket: 'Model batang', n: n + 1, arsir, tidakSama: false },
+      { id: 'p-beda', ket: 'Model batang', n, arsir, tidakSama: true },
+    ];
+    const dua = kocok(salah).slice(0, 2);
+    dua.forEach((p) => { p.svg = GAMBAR.batangPecahan(p.n, p.arsir, { tidakSama: p.tidakSama }); });
+    return { benar: benar.id, pilihan: kocok([benar].concat(dua)) };
+  }
+
   // Tiga pilihan gambar standar (garis, bagi, batang) dengan keterangan. benarId = id gambar yang cocok.
   const KET = {
     garis: 'Dua katak loncat dari 0',
@@ -249,6 +284,7 @@
       }
       function tampilCek() {
         hint('');
+        isi.classList.add('sc-cek-mode'); // cerita ringkas disembunyikan supaya Lanjut tetap terlihat di iPad
         const cek = el('div', 'sc-cek', '<div class="sc-cek-judul">Cek jawabannya</div>' + soal.cek);
         const lanjut = el('button', 'tombol tombol-utama', 'Lanjut ▶');
         lanjut.onclick = () => kirim(salah4 === null ? { benar: true, pilih: soal.kunci } : periksa(soal, salah4));
@@ -271,7 +307,7 @@
     return { id: 'soal-cerita', tingkat: data.tingkat, ingat: data.ingat, buatRonde, soalMirip, periksa, tampilkan, alasan, pujian };
   }
 
-  const alat = { acak, pilih, kocok, fmt, faktor, fpb, kpk, kelipatan, daftar, buatOpsi, urutanJenis, pilihanGambar, GAMBAR };
+  const alat = { acak, pilih, kocok, fmt, faktor, fpb, kpk, kelipatan, daftar, buatOpsi, urutanJenis, pilihanGambar, pilihanBatang, GAMBAR };
   const api = Object.assign({ untuk }, alat);
   if (modul) module.exports = api; else root.GameSoalCerita = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -23,7 +23,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 5 · Pecahan (2) | 🥐 Roti Utuh (pecahan campuran) | ✅ bisa dicoba |
 | 4 | 5 · Pecahan (2) | 🔄 Tukar Bentuk (tidak murni ↔ campuran) | ✅ bisa dicoba |
 | 4 | 5 · Pecahan (2) | 🍓 Bagi Kelompok (pecahan dari kelompok) | ✅ bisa dicoba |
-| 4 | 5 · Pecahan (2) | 📖 Soal Cerita · Pecahan Campuran di Garis Bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 5 · Pecahan (2) | 📖 Soal Cerita (model batang, bekerja mundur dari sisa) | ✅ bisa dicoba |
+| 4 | 5 · Pecahan (2) | Pecahan Campuran di Garis Bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 6 · Desimal | 🟦 Kotak Seratus (persepuluhan, perseratusan, pecahan → desimal) | ✅ bisa dicoba |
 | 4 | 6 · Desimal | 📏 Garis Desimal (letak desimal di garis bilangan, zoom) | ✅ bisa dicoba |
 | 4 | 6 · Desimal | ⚖️ Mana Lebih Besar (bandingkan & urutkan desimal) | ✅ bisa dicoba |
