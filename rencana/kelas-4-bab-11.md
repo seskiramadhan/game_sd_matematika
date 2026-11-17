@@ -36,8 +36,8 @@ Contoh kunci yang sudah dihitung ulang:
 - `js/kelas-4/bab-10/bangun.js` (usulan Bab 10, **belum dibangun**): bila sudah ada, dipakai untuk menggambar segi banyak dari daftar titik dan tanda sisi sama panjang; bila belum, fungsi gambar dibuat di alat Bab 11 dan dipindah nanti.
 - Usul: alat baru `js/kelas-4/bab-11/luas.js` (`window.Luas`): `keliling(sisi)`, `luas2(titik)` (luas × 2, tali sepatu), `petakDalam(titik)` → daftar petak utuh & setengah, bangun gabungan sebagai daftar persegi panjang (`luasGabungan`, `kelilingGabungan` dari sisi luar), `pengecohLuas` / `pengecohKeliling`, dan animasi Garuda berjalan di tepi bangun (pakai `assets/garuda/garuda-senang.svg` ukuran kecil).
 
-## Tahap 2 (belum)
-📖 Soal Cerita (pagar kebun, bingkai foto, ubin lantai, karpet kamar, taman bermain; cerita tanpa angka dulu; model gambar denah; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir (biaya pagar per meter, ubin yang dibutuhkan, cari sisi dari luas dan keliling).
+## Tahap 2
+📖 Soal Cerita (denah berpetak; selesai 17 Nov 2026, lihat catatan di bawah) · 🏆 Tantangan Akhir (belum; ide: biaya pagar per meter, ubin yang dibutuhkan, cari sisi dari luas dan keliling).
 
 ## Keputusan (15 Nov 2026, usulan default; Ayah boleh ubah setelah mencoba)
 1. **Cara menjawab angka**: **4 pilihan dengan pengecoh dari salah umum** (p + l, luas ditukar keliling, sisi terlewat).
@@ -56,3 +56,12 @@ Hal yang diputuskan saat membangun (di luar tabel rencana):
 - **Hitung Petak**: dua setengah petak diketuk berpasangan (kuning, lalu menyatu biru dengan nomor sama); bentuk setengah petak: segitiga siku-siku, segitiga sama kaki, trapesium, jajargenjang dengan miring 45 derajat (luas selalu bulat). Persegi panjang tingkat 1: hanya baris dan kolom pertama digambar. Tingkat 3: pengecoh beda satuan (angka benar tetapi cm atau m), cari lebar dari luas, cari sisi persegi dari luas, pilih satuan (10 benda original, cm / cm² / m / m²).
 - **Potong Bangun**: dua garis potong (mendatar jingga, tegak ungu) bisa diketuk langsung di gambar atau lewat tombol ✂️; tiap bagian ditanya luasnya (4 pilihan), lalu jumlahnya. Salah di langkah mana pun = soal salah, penjelasan memperlihatkan semua bagian dan di tingkat 3 cara kurang. Jebakan: luas sama (3 pasang persegi panjang), keliling sama, dua-duanya beda, dua-duanya sama (bangun L dan persegi panjang), geser 1 petak (persegi panjang w x 3 dan tangga), dan "keliling paling pendek" (tiga persegi panjang luas 12, 24, atau 36).
 - Tes tampilan: Chrome headless + CDP dengan ketukan sentuh sungguhan, 1180x820 dan 1024x768, ronde penuh tiap mini game tiap tingkat dengan jawaban benar dan salah.
+
+## Catatan pembangunan 📖 Soal Cerita (17 Nov 2026)
+- Data `js/kelas-4/bab-11/soal-cerita-data.js`, id `k4b11`. Tiga jenis (video Jago Soal Cerita Ep. 4, "Tepi atau Dalam?"): **Tepi (keliling)** (pagar kebun, pita bingkai foto, berlari satu putaran, tali hias lukisan), **Dalam (luas)** (rumput, keramik, cat dinding, kertas warna) dan **Bentuk L** (teras dicat, kebun sayur dengan kolam di pojok, karpet ruang tamu; luas = kotak besar dikurangi pojok). Satu ronde 5 soal memuat ketiga jenis.
+- Mesin bersama `js/soal-cerita.js` ditambah umum: `GAMBAR.denah(p, l, mode, {c, d})` dan `pilihanDenah(benar, p, l, c, d)` (3 denah berpetak sesuai ukuran soal: jalan di tepi disorot dengan semut, semua petak diisi, bentuk L dengan pojok putus-putus; tanpa angka di gambar). Bab 3 dan Bab 5 tidak berubah.
+- Tingkat 1: persegi panjang panjang 4-10 x lebar 2-6, L kecil, tanpa angka pengecoh. Tingkat 2: panjang 6-15, L sedang, 1 angka pengecoh. Tingkat 3: panjang sampai 25, L besar, 2 angka pengecoh. Panjang selalu lebih besar dari lebar; pojok L paling lebar P-2 dan paling tinggi Q-2.
+- Contoh yang sama dengan video Ep. 4 dan Buku Saku (tingkat 1, ± 12%): kebun 8 x 5 (pagar 26 m, rumput 40 m persegi), bingkai foto 6 x 4 (pita 20 cm), teras L 7 x 5 pojok 3 x 2 = 29 m persegi.
+- Jebakan jadi pengecoh dengan penjelasan: panjang + lebar saja (setengah keliling), luas tertukar dengan keliling, satu sisi terlewat, kotak besar belum dikurangi pojok, pojok ditambah, pojok dikurangi c + d (bukan c x d), hanya satu potongan yang dihitung.
+- Aturan pos dan bintang sama dengan Bab 3 dan 5: terbuka setelah Potong Bangun minimal 1 bintang.
+- Cek logika: `node tools/cek-soal-cerita-bab11.js` (kunci dihitung ulang dengan menghitung petak dan sisi satu-satu pada kisi; 3.600 ronde; keliling bentuk L sama dengan keliling kotak besarnya).
