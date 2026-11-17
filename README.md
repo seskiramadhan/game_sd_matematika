@@ -48,6 +48,10 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 11 · Luas & Keliling | 🟦 Hitung Petak (ketuk petak, setengah petak, p × l, cm² dan m²) | ✅ bisa dicoba |
 | 4 | 11 · Luas & Keliling | ✂️ Potong Bangun (bangun L, T, U jadi persegi panjang; luas sama keliling beda) | ✅ bisa dicoba |
 | 4 | 11 · Luas & Keliling | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 12 · Grafik Batang | 📝 Catat Turus (ketuk benda, ikat 5, baca tabel turus) | ✅ bisa dicoba |
+| 4 | 12 · Grafik Batang | 📊 Baca Batang (piktogram, skala 1 / 2 / 5, selisih & jumlah) | ✅ bisa dicoba |
+| 4 | 12 · Grafik Batang | 🏗️ Bangun Batang (atur tinggi batang dari tabel data) | ✅ bisa dicoba |
+| 4 | 12 · Grafik Batang | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 2 · Perkalian & Pembagian | 🧮 Tabel Kilat (fakta, kali puluhan/ratusan, keluarga fakta) | ✅ bisa dicoba |
 | 4 | 2 · Perkalian & Pembagian | 🟦 Kali Kotak (model luas, perkalian bersusun) | ✅ bisa dicoba |
 | 4 | 2 · Perkalian & Pembagian | 🍰 Bagi Bersusun (porogapit, sisa, cek) | ✅ bisa dicoba |
