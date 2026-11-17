@@ -132,6 +132,80 @@
     return { benar: benar.id, pilihan: kocok([benar].concat(dua)) };
   }
 
+
+  // Kotak seratus (10 kolom): segs = persen bagian yang disebut, diisi berurutan dari kiri atas. o.bagian = true: bagian itu yang ditanya (diarsir),
+  // sisanya polos; o.bagian = false: bagian disebut berwarna penuh, SISANYA yang ditanya (diarsir). o.n = banyak sel (100, atau 90 untuk gambar pengecoh).
+  GAMBAR.kotakPersen = function (segs, o) {
+    o = o || {};
+    const n = o.n || 100, id = 'kp' + (++_bp), kol = 10, sel = 15, x0 = 14, y0 = 14;
+    const warna = [WARNA.oranye, WARNA.biru];
+    let s = '<defs><pattern id="' + id + '" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="' + WARNA.merah + '"/><rect width="4" height="10" fill="#FFB3C1"/></pattern></defs>';
+    const batas = []; let jml = 0; segs.forEach((p) => { jml += p; batas.push(jml); });
+    for (let i = 0; i < n; i++) {
+      const bx = x0 + (i % kol) * sel, by = y0 + Math.floor(i / kol) * sel;
+      let isi = '#F3F5FA', k = batas.findIndex((b) => i < b);
+      if (o.bagian) { if (k >= 0) isi = 'url(#' + id + ')'; }
+      else if (k >= 0) isi = warna[k % 2]; else isi = 'url(#' + id + ')';
+      s += '<rect x="' + bx + '" y="' + by + '" width="' + (sel - 1.5) + '" height="' + (sel - 1.5) + '" rx="2" fill="' + isi + '"/>';
+    }
+    const tinggi = Math.ceil(n / kol) * sel;
+    s += '<rect x="' + (x0 - 1) + '" y="' + (y0 - 1) + '" width="' + (kol * sel) + '" height="' + tinggi + '" rx="4" fill="none" stroke="' + WARNA.teks + '" stroke-width="3"/>';
+    let ly = 42;
+    const leg = (isi, teks) => { s += '<rect x="186" y="' + ly + '" width="26" height="22" rx="4" fill="' + isi + '" stroke="' + WARNA.teks + '" stroke-width="2"/><text x="220" y="' + (ly + 18) + '" font-size="17" font-weight="700" fill="' + WARNA.teks + '">' + teks + '</text>'; ly += 34; };
+    if (o.bagian) { leg('url(#' + id + ')', 'ditanya'); leg('#F3F5FA', 'sisa'); }
+    else { segs.forEach((p, i) => leg(warna[i % 2], 'disebut')); leg('url(#' + id + ')', 'ditanya'); }
+    return svg(s);
+  };
+  // Tiga pilihan kotak seratus: 1 cocok + 2 pengecoh (persen tertukar, kotak bukan 100 sel, persen bergeser 10). Tanpa angka di gambar.
+  function pilihanKotak(segs, bagian) {
+    const jml = segs.reduce((a, b) => a + b, 0);
+    const geser = segs.slice(); geser[0] = geser[0] + 10 + (jml - segs[0]) <= 100 ? geser[0] + 10 : geser[0] - 10;
+    const tukar = segs.length === 1 ? [100 - segs[0]] : segs.slice().reverse();
+    const kunci = (c) => JSON.stringify([c.n, c.segs, c.bagian]);
+    const benar = { id: 'k-benar', ket: 'Kotak seratus', n: 100, segs: segs.slice(), bagian };
+    const calon = [
+      { id: 'k-tukar', ket: 'Kotak seratus', n: 100, segs: tukar, bagian },
+      { id: 'k-90', ket: 'Kotak seratus', n: 90, segs: segs.slice(), bagian },
+      { id: 'k-geser', ket: 'Kotak seratus', n: 100, segs: geser, bagian },
+    ].filter((c) => kunci(c) !== kunci(benar));
+    const dua = kocok(calon).slice(0, 2);
+    [benar].concat(dua).forEach((c) => { c.svg = GAMBAR.kotakPersen(c.segs, { n: c.n, bagian: c.bagian }); });
+    return { benar: benar.id, pilihan: kocok([benar].concat(dua)) };
+  }
+
+  // Denah berpetak p kolom x l baris. mode 'tepi' = jalan di tepi disorot (keliling), 'isi' = semua petak diisi (luas),
+  // 'L' = bangun L (pojok kanan atas c x d dibuang) diisi. Tanpa angka di gambar.
+  GAMBAR.denah = function (p, l, mode, o) {
+    o = o || {};
+    const sel = Math.min(Math.floor(250 / p), Math.floor(140 / l), 34);
+    const w = sel * p, h = sel * l, x0 = Math.round((320 - w) / 2), y0 = Math.round((190 - h) / 2);
+    const c = o.c || 0, d = o.d || 0;
+    let s = '';
+    for (let r = 0; r < l; r++) for (let k = 0; k < p; k++) {
+      const potong = mode === 'L' && k >= p - c && r < d;
+      const isi = mode === 'tepi' ? '#F3F5FA' : potong ? '#FFFFFF' : (mode === 'L' ? '#BFEBD3' : '#BFD8FF');
+      s += '<rect x="' + (x0 + k * sel) + '" y="' + (y0 + r * sel) + '" width="' + sel + '" height="' + sel + '" fill="' + isi + '" stroke="#9AA6C0" stroke-width="1.5"/>';
+    }
+    if (mode === 'tepi') {
+      s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" rx="3" fill="none" stroke="' + WARNA.oranye + '" stroke-width="7" stroke-linejoin="round"/>';
+      s += '<text x="' + (x0 + 6) + '" y="' + (y0 - 4) + '" font-size="24">🐜</text>';
+    } else if (mode === 'L') {
+      const X = x0 + (p - c) * sel, Y = y0 + d * sel;
+      s += '<path d="M' + x0 + ' ' + y0 + ' H' + X + ' V' + Y + ' H' + (x0 + w) + ' V' + (y0 + h) + ' H' + x0 + ' Z" fill="none" stroke="' + WARNA.teks + '" stroke-width="4" stroke-linejoin="round"/>';
+      s += '<rect x="' + X + '" y="' + y0 + '" width="' + (c * sel) + '" height="' + (d * sel) + '" fill="none" stroke="' + WARNA.merah + '" stroke-width="3" stroke-dasharray="6 5"/>';
+    } else {
+      s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" fill="none" stroke="' + WARNA.teks + '" stroke-width="4"/>';
+    }
+    return svg(s);
+  };
+  // Tiga gambar denah: jalan di tepi / petak diisi penuh / bentuk L. benar = 'tepi' | 'isi' | 'L'. (c, d) = pojok yang dibuang untuk bentuk L.
+  function pilihanDenah(benar, p, l, c, d) {
+    const cc = c || Math.max(1, Math.floor(p / 3)), dd = d || Math.max(1, Math.floor(l / 2));
+    const KET2 = { tepi: 'Jalan di tepi', isi: 'Petak diisi penuh', L: 'Bentuk L berpetak' };
+    const pilihan = ['tepi', 'isi', 'L'].map((m) => ({ id: m, ket: KET2[m], mode: m, p, l, svg: GAMBAR.denah(p, l, m, { c: cc, d: dd }) }));
+    return { benar, pilihan: kocok(pilihan) };
+  }
+
   // Tiga pilihan gambar standar (garis, bagi, batang) dengan keterangan. benarId = id gambar yang cocok.
   const KET = {
     garis: 'Dua katak loncat dari 0',
@@ -307,7 +381,7 @@
     return { id: 'soal-cerita', tingkat: data.tingkat, ingat: data.ingat, buatRonde, soalMirip, periksa, tampilkan, alasan, pujian };
   }
 
-  const alat = { acak, pilih, kocok, fmt, faktor, fpb, kpk, kelipatan, daftar, buatOpsi, urutanJenis, pilihanGambar, pilihanBatang, GAMBAR };
+  const alat = { acak, pilih, kocok, fmt, faktor, fpb, kpk, kelipatan, daftar, buatOpsi, urutanJenis, pilihanGambar, pilihanBatang, pilihanKotak, pilihanDenah, GAMBAR };
   const api = Object.assign({ untuk }, alat);
   if (modul) module.exports = api; else root.GameSoalCerita = api;
 })(typeof window !== 'undefined' ? window : globalThis);
