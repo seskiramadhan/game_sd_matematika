@@ -265,6 +265,8 @@
       return data.buatSoal(tingkat, soal.jenis, new Set([soal.kode]));
     }
     const periksa = (soal, pilihan) => ({ pilih: pilihan, benar: pilihan === soal.kunci });
+    // Jawaban berupa nama (mis. Bab 10 "Bangun apa?"): soal.labelOpsi = { kode: 'Nama' }, kunci & opsi tetap kode bilangan.
+    const lab = (soal, v) => (soal.labelOpsi && soal.labelOpsi[v] ? soal.labelOpsi[v] : fmt(v));
 
     // ---------- Tampilan (browser) ----------
     const el = (tag, kelas, html) => { const e = document.createElement(tag); if (kelas) e.className = kelas; if (html != null) e.innerHTML = html; return e; };
@@ -375,7 +377,7 @@
         isi.append(el('div', 'sc-tanya', soal.tanya4.teks));
         const baris = el('div', 'sc-opsi');
         soal.opsi.forEach((o) => {
-          const b = el('button', 'tombol sc-besar', fmt(o) + (soal.tanya4.satuan ? ' <small>' + soal.tanya4.satuan + '</small>' : ''));
+          const b = el('button', 'tombol sc-besar' + (soal.labelOpsi ? ' sc-nama' : ''), soal.labelOpsi ? lab(soal, o) : fmt(o) + (soal.tanya4.satuan ? ' <small>' + soal.tanya4.satuan + '</small>' : ''));
           b.onclick = () => {
             if (o === soal.kunci) {
               efek('ding');
@@ -386,7 +388,7 @@
             }
             efek('boing'); b.disabled = true; b.classList.add('salah');
             if (salah4 === null) salah4 = o;
-            hint('<b>' + fmt(o) + '</b>: ' + (soal.sebab[o] || 'Belum tepat.') + ' Coba hitung lagi.');
+            hint('<b>' + lab(soal, o) + '</b>: ' + (soal.sebab[o] || 'Belum tepat.') + ' ' + (soal.coba || 'Coba hitung lagi.'));
           };
           baris.appendChild(b);
         });
@@ -409,10 +411,10 @@
     function alasan(soal, jawaban, wadah) {
       const sebab = soal.sebab[jawaban.pilih];
       wadah.appendChild(el('div', 'des-alasan',
-        '<div class="kotak-teks"><small>Di langkah Hitung, pilihan pertamamu ' + fmt(jawaban.pilih) + (sebab ? ': ' + sebab : '.') + '</small></div>' +
+        '<div class="kotak-teks"><small>Di langkah Hitung, pilihan pertamamu ' + lab(soal, jawaban.pilih) + (sebab ? ': ' + sebab : '.') + '</small></div>' +
         '<div class="kotak-teks sc-cek-kecil">' + soal.cek + '</div>'));
     }
-    function pujian(soal) { return { html: 'Jawabannya <b>' + fmt(soal.kunci) + (soal.tanya4.satuan ? ' ' + soal.tanya4.satuan : '') + '</b>, langkahnya lengkap!' }; }
+    function pujian(soal) { return { html: 'Jawabannya <b>' + lab(soal, soal.kunci) + (soal.tanya4.satuan ? ' ' + soal.tanya4.satuan : '') + '</b>, langkahnya lengkap!' }; }
 
     return { id: 'soal-cerita', tingkat: data.tingkat, ingat: data.ingat, buatRonde, soalMirip, periksa, tampilkan, alasan, pujian };
   }

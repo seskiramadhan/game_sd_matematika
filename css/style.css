@@ -603,6 +603,7 @@ h1, h2 { margin: 0; }
 .sc-baris, .sc-opsi { display: flex; gap: 22px; justify-content: center; width: 100%; }
 .sc-besar { min-width: 220px; min-height: 84px; font-size: 32px; padding: 14px 30px; }
 .sc-besar small { font-size: 20px; font-weight: 600; }
+.sc-besar.sc-nama { font-size: 26px; line-height: 1.15; }
 .sc-opsi .sc-besar { flex: 1; min-width: 0; padding: 14px 10px; }
 .sc-besar.ok, .sc-gambar.ok { background: var(--hijau); color: #fff; }
 .sc-besar.salah, .sc-gambar.salah { background: #FFD3DB; opacity: .6; }
