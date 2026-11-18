@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 6 (Desimal)
 
-Status: **disetujui Ayah 7 Nov 2026**; **Tahap 1 dibangun 7 Nov 2026** (3 mini game, lihat catatan di bawah); Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–5.
+Status: **disetujui Ayah 7 Nov 2026**; **Tahap 1 dibangun 7 Nov 2026** (3 mini game, lihat catatan di bawah); pos **📖 Soal Cerita selesai 18 Nov 2026** (cek `node tools/cek-soal-cerita-bab6.js`); Tantangan Akhir belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–5.
 
 Topik: A. Persepuluhan · B. Perseratusan (& perseribuan) · C. Membandingkan & mengurutkan desimal · D. Pecahan → desimal.
 Format Indonesia: **koma** sebagai tanda desimal (0,75), bukan titik.
@@ -19,8 +19,18 @@ Pos di peta: 🟦 Kotak Seratus → 📏 Garis Desimal → ⚖️ Mana Lebih Bes
 Penekanan: jebakan **"angka lebih panjang = lebih besar"** (0,45 > 0,5 salah); 0,6 = 0,60; 2,05 ≠ 2,5; pecahan → desimal lewat penyebut 10/100 (3/4 = 75/100 = 0,75).
 Semua jawaban dihitung kode (bilangan bulat perseratusan/perseribuan, hindari galat floating point); skrip cek `tools/cek-bab6.js`.
 
-## Tahap 2 (belum)
-📖 Soal Cerita (desimal dalam ukuran: liter, km) · 🏆 Tantangan Akhir.
+## Tahap 2
+- ✅ 📖 Soal Cerita (di bawah). Terbuka setelah ⚖️ Mana Lebih Besar berbintang.
+- 🏆 Tantangan Akhir (belum).
+
+### 📖 Soal Cerita (pesan inti: *Angka panjang belum tentu besar: samakan banyak angka di belakang koma dulu*)
+Data: `js/kelas-4/bab-6/soal-cerita-data.js` (mesin `js/soal-cerita.js`). Nilai = bilangan bulat perseratus (1,25 = 125), tanpa floating point; pecahan (1/2, 1/4, 3/4, 1/5-4/5, 1/10, 3/10, 7/10, k/20) diubah ke perseratus. Format koma Indonesia.
+- Jenis **Bandingkan** (mana lebih banyak/jauh/panjang; jawaban nama tokoh atau "Sama ...") dan **Cari selisih** (jawaban desimal, 4 pilihan).
+- Tingkat 1: banding dua tokoh, persepuluhan, atau satu persepuluhan + satu perseratusan (0,6 lawan 0,45; 0,6 = 0,60). Tingkat 2: banding + selisih perseratusan (1,5 lawan 1,25). Tingkat 3: desimal lawan pecahan, tiga tokoh (paling banyak/sedikit), selisih desimal-pecahan, 1-2 angka pengecoh di Tandai.
+- Gambar: semua nilai < 1 -> **kotak seratus** (1 kotak besar = 1 utuh = 100 kotak kecil); ada nilai >= 1 -> **garis bilangan**. 3 pilihan, 2 pengecoh dari: angka belakang koma dibaca perseratus (0,6 jadi 0,06), nilai tertukar, dua angka terbalik, bergeser 0,1.
+- Pengecoh selisih: tidak meratakan koma (1,5 - 1,25 jadi 1,10 atau 0,20), koma salah tempat (2,5), menjumlah, hanya nilai besar, pecahan salah ubah (3/4 jadi 0,34).
+- Contoh dari video Ep. 9 / Buku Saku (muncul +-12%): dua botol 1,5 dan 1,25 liter (selisih 0,25); Dodi 0,8 km dan Sari 3/4 km (selisih 0,05); tali Ali 0,6 m dan Beni 0,45 m (selisih 0,15).
+- Cek logika: `node tools/cek-soal-cerita-bab6.js` (dihitung ulang dari teks angka: diratakan dan dibandingkan per huruf, dikurangi per digit dengan pinjam, pecahan dengan pembagian bersusun; gambar dibaca dari SVG).
 
 ## Catatan pembangunan Tahap 1 (7 Nov 2026)
 Berkas: `js/kelas-4/bab-6/` (`desimal.js` alat bersama, `kotak-seratus.js`, `garis-desimal.js`, `mana-lebih-besar.js`, `bab.js`), `tools/cek-bab6.js`.

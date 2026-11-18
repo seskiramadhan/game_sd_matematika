@@ -29,7 +29,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 6 · Desimal | 🟦 Kotak Seratus (persepuluhan, perseratusan, pecahan → desimal) | ✅ bisa dicoba |
 | 4 | 6 · Desimal | 📏 Garis Desimal (letak desimal di garis bilangan, zoom) | ✅ bisa dicoba |
 | 4 | 6 · Desimal | ⚖️ Mana Lebih Besar (bandingkan & urutkan desimal) | ✅ bisa dicoba |
-| 4 | 6 · Desimal | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 6 · Desimal | 📖 Soal Cerita (angka panjang belum tentu besar: samakan banyak angka di belakang koma; kotak seratus / garis bilangan) | ✅ bisa dicoba |
+| 4 | 6 · Desimal | 🏆 Tantangan Akhir (📖 Soal Cerita sudah ada, lihat di atas) | 🚧 Tahap 2 |
 | 4 | 7 · Persentase | 🟥 Kotak Persen (persen = per seratus, kotak 10×10) | ✅ bisa dicoba |
 | 4 | 7 · Persentase | 🔄 Tukar Bentuk (persen ↔ pecahan ↔ desimal) | ✅ bisa dicoba |
 | 4 | 7 · Persentase | 🏷️ Persen dari… (persen dari suatu banyak, cerita diskon/kelas/kebun) | ✅ bisa dicoba |
@@ -77,6 +78,6 @@ Jalankan server kecil di folder ini, lalu buka `http://localhost:8000/`:
 ```
 python -m http.server 8000
 ```
-Cek logika soal (jawaban dihitung kode): `node tools/cek-soal-cerita.js` (📖 Soal Cerita, mesin bersama `js/soal-cerita.js`), `node tools/cek-soal-cerita-bab2.js` / `cek-soal-cerita-bab5.js` / `cek-soal-cerita-bab7.js` / `cek-soal-cerita-bab10.js` / `cek-soal-cerita-bab11.js` / `cek-soal-cerita-bab12.js` (📖 Soal Cerita Bab 2, 4, 5, 7, 10, 11, 12), `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat), `node tools/cek-bab4.js` (Pecahan: Potong Pizza, Cokelat Kembar, Mana Lebih Besar), `node tools/cek-bab5.js` (Pecahan 2: Roti Utuh, Tukar Bentuk, Bagi Kelompok), `node tools/cek-bab6.js` (Desimal: Kotak Seratus, Garis Desimal, Mana Lebih Besar), `node tools/cek-bab7.js` (Persentase: Kotak Persen, Tukar Bentuk, Persen dari…), `node tools/cek-bab1.js` (Bilangan Cacah: Susun Angka, Mana Lebih Besar, Bulatkan!; juga menjalankan cek Bab 3-6), `node tools/cek-bab2.js` (Perkalian & Pembagian: Tabel Kilat, Kali Kotak, Bagi Bersusun; juga menjalankan cek Bab 1, 3-6).
+Cek logika soal (jawaban dihitung kode): `node tools/cek-soal-cerita.js` (📖 Soal Cerita, mesin bersama `js/soal-cerita.js`), `node tools/cek-soal-cerita-bab2.js` / `cek-soal-cerita-bab5.js` / `cek-soal-cerita-bab6.js` / `cek-soal-cerita-bab7.js` / `cek-soal-cerita-bab10.js` / `cek-soal-cerita-bab11.js` / `cek-soal-cerita-bab12.js` (📖 Soal Cerita Bab 2, 4, 5, 6, 7, 10, 11, 12), `node tools/cek-prima.js` dan `node tools/cek-bab3.js` (Bagi Rata & Katak Loncat), `node tools/cek-bab4.js` (Pecahan: Potong Pizza, Cokelat Kembar, Mana Lebih Besar), `node tools/cek-bab5.js` (Pecahan 2: Roti Utuh, Tukar Bentuk, Bagi Kelompok), `node tools/cek-bab6.js` (Desimal: Kotak Seratus, Garis Desimal, Mana Lebih Besar), `node tools/cek-bab7.js` (Persentase: Kotak Persen, Tukar Bentuk, Persen dari…), `node tools/cek-bab1.js` (Bilangan Cacah: Susun Angka, Mana Lebih Besar, Bulatkan!; juga menjalankan cek Bab 3-6), `node tools/cek-bab2.js` (Perkalian & Pembagian: Tabel Kilat, Kali Kotak, Bagi Bersusun; juga menjalankan cek Bab 1, 3-6).
 
 Urutan pos di peta: pos berikutnya terbuka setelah pos sebelumnya dapat ≥ 1 ⭐. Pos yang sudah pernah dimainkan selalu tetap terbuka (progres lama tidak terkunci bila ada pos baru).
