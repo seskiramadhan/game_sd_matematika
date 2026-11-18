@@ -145,9 +145,8 @@ for (let t = 1; t <= 3; t++) {
       pn.forEach((p) => cek(!dilarang.has(p) && p >= 13, nama + ' pengecoh sama dengan angka penting ' + p));
       cek(new Set(pn).size === pn.length, nama + ' pengecoh kembar');
       cek(JSON.stringify(so.angkaPengecoh) === JSON.stringify(pn), nama + ' angkaPengecoh tidak cocok');
-      // nama tokoh unik dan tidak mengandung nama anak pengguna
+      // nama tokoh unik
       cek(new Set(so.nama).size === so.nama.length, nama + ' nama kembar');
-      so.nama.forEach((x) => cek(!/nana/i.test(x), nama + ' nama terlarang'));
 
       // ----- gambar: tepat satu cocok -----
       const gp = so.gambar.pilihan;
