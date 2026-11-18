@@ -45,7 +45,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 9 · Garis & Sudut | 🛤️ Jenis Garis (sejajar, berpotongan, tegak lurus) | ✅ bisa dicoba |
 | 4 | 9 · Garis & Sudut | ✏️ Tarik Garis (kertas bertitik: garis sejajar & tegak lurus) | ✅ bisa dicoba |
 | 4 | 9 · Garis & Sudut | ✖️ Sudut Silang (sudut lurus 180°, sudut bersebelahan & seberang) | ✅ bisa dicoba |
-| 4 | 9 · Garis & Sudut | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 9 · Garis & Sudut | 📖 Soal Cerita (garis lurus = 180°, silang = berseberangan sama besar; sudut di garis lurus, perempatan, sejajar atau tegak lurus?) | ✅ bisa dicoba |
+| 4 | 9 · Garis & Sudut | 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 10 · Segi Banyak | 🔷 Hitung Sisi (ketuk titik sudut, nama segi-n, beraturan) | ✅ bisa dicoba |
 | 4 | 10 · Segi Banyak | 🔍 Cek Sifat (jenis segitiga, nama segi empat, lengkapi titik keempat) | ✅ bisa dicoba |
 | 4 | 10 · Segi Banyak | 🧩 Susun Bangun (tangram: susun potongan jadi bangun) | ✅ bisa dicoba |

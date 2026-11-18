@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 9 (Garis & Sudut)
 
-Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); **Tahap 1 dibangun 15 Nov 2026** (3 mini game, lihat catatan pembangunan di bawah); Tahap 2 belum. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
+Status: **disetujui Ayah 15 Nov 2026** (keputusan di bagian akhir); **Tahap 1 dibangun 15 Nov 2026** (3 mini game, lihat catatan pembangunan di bawah); **📖 Soal Cerita dibangun 18 Nov 2026**; 🏆 Tantangan Akhir belum. Lanjutan Bab 8 (Sudut). Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–8 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-8/`.
 
 Topik: A. Garis sejajar, berpotongan, tegak lurus · B. Menggambar garis sejajar & tegak lurus (kertas bertitik) · C. Sudut pada garis berpotongan, sudut lurus = 180° · D. Mengenali garis pada benda di sekitar.
 Format: derajat menempel pada angka (90°), garis diberi nama dua huruf (garis AB), titik sudut huruf tengah (∠PQR) seperti Bab 8. Arti kata selalu tampil: **sejajar** = tidak pernah bertemu walau diperpanjang; **berpotongan** = bertemu di satu titik; **tegak lurus** = berpotongan dan membentuk sudut siku-siku (90°).
@@ -27,8 +27,8 @@ Contoh kunci yang sudah dihitung ulang: 180° − 70° = 110° · 180° − 65°
 - Pola tombol putar ◀◀ ◀ ▶ ▶▶ dari `baca-busur.js` (untuk animasi "putar garis" pada penjelasan Sudut Silang).
 - Usul: alat baru `js/kelas-4/bab-9/garis.js` (kertas bertitik, garis + tombol Perpanjang, cek sejajar/tegak lurus dengan vektor bulat). Fungsi bantu `titik()` dan `jalurLengkung()` di `sudut.js` belum diekspor; cukup **menambah ekspor** (perilaku Bab 8 tidak berubah), atau disalin kecil di `garis.js`.
 
-## Tahap 2 (belum)
-📖 Soal Cerita (garis di denah jalan & kelas, sudut lurus pada benda; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir.
+## Tahap 2
+📖 Soal Cerita: **sudah ada** (lihat catatan di bawah) · 🏆 Tantangan Akhir: belum.
 
 ## Keputusan Ayah (15 Nov 2026)
 1. **Tegak lurus vs berpotongan** di 🛤️ Jenis Garis: kunci tunggal **"Tegak lurus"**; "Berpotongan" untuk garis siku dianggap salah, dengan penjelasan bahwa tegak lurus juga berpotongan.
@@ -47,3 +47,9 @@ Hal yang diputuskan saat membangun (di luar tabel rencana):
 - **Sudut Silang**: tingkat 1 = 3 soal sudut lurus 1 sinar (kelipatan 10) + 2 soal ketuk; tingkat 2 = 3 soal sudut sebelah di dua garis (kelipatan 5; tepat satu soal garis tegak lurus = 90) + 2 ketuk; tingkat 3 = 2 soal sudut lurus 3 bagian (180 - x - y), 1 soal sudut sebelah (1 derajat), 1 ketuk, 1 soal "isi keempat sudut" (pilih urutan sudut ① ② ③; jumlah 360). Ketuk memilih daerah dari arah ketukan terhadap titik potong; sudut kecil dibatasi >= 35 derajat supaya daerahnya >= 80 px di iPad 1024 px. Mengetuk sudut yang sudah diketahui tidak dihitung (hanya bunyi). Soal ketuk: "yang besarnya (180 - a)" (dua daerah benar) atau "yang juga a" (sudut seberang, satu daerah benar); a = 90 tidak dipakai di ketuk. Penjelasan: pengecoh 90 - a, 360 - a, a dijelaskan satu per satu; pada dua garis berpotongan garis "diputar sedikit" (animasi nilai berubah, sudut seberang ikut sama).
 - Tes tampilan: Chrome headless + CDP dengan ketukan sentuh sungguhan, 1180x820 dan 1024x768, ronde penuh tiap mini game termasuk jawaban salah, tanpa error konsol.
 
+## Catatan pembangunan 📖 Soal Cerita (18 Nov 2026)
+File: `js/kelas-4/bab-9/soal-cerita-data.js` (data untuk mesin `js/soal-cerita.js`), pos ke-4 di `bab.js` (terbuka setelah pos Tahap 1 terakhir berbintang), cek logika `tools/cek-soal-cerita-bab9.js`. Pesan inti: **garis lurus = 180°, silang = berseberangan sama besar**; derajat bilangan bulat, kunci dihitung kode.
+- **Sudut di garis lurus** (balok, jalan, lampu sorot, kue): 180° dikurangi semua sudut yang diketahui. T1 satu sudut, T2 dua, T3 tiga. Pengecoh: dihitung dari 360° atau 90°, lupa satu sudut, menjumlah saja.
+- **Perempatan / silang**: dua garis lurus berpotongan, satu sudut diketahui. T2 satu sudut ditanya (seberang atau sebelah); T3 ketiga sudut sekaligus ("seberang, sebelah, sebelah", mis. 55°, 125°, 125°). Pengecoh: seberang dikira 180° - x, sebelah dikira sama, dihitung dari 90° atau 360°.
+- **Sejajar atau tegak lurus?** (hanya T1): tiga jalan / rel / selokan, hitung pasangan (3 garis = 3 pasang): tidak pernah bertemu = sejajar, tepat 90° = tegak lurus.
+- Tiap tingkat memuat dua jenis (T1: sejajar + lurus; T2: lurus + silang; T3: silang + lurus). T3 + 1-2 angka pengecoh di Tandai. Gambar: sudut berwarna di garis lurus, dua garis bersilang, atau denah garis (pengecoh: garis patah, tanda seberang salah, bentuk lain). Contoh video Ep. 12 / Buku Saku muncul sekitar 12% (Tali Lampu 40° + 85° di T2; perempatan Cemara-Dahlia 55° dan dua penggaris 70° di T3; denah Mawar-Melati-Kenanga di T1).
