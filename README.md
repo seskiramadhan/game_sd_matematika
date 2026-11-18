@@ -40,7 +40,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 8 · Sudut | 📐 Jenis Sudut (lancip, siku-siku, tumpul, nama ∠PQR) | ✅ bisa dicoba |
 | 4 | 8 · Sudut | 🔍 Baca Busur (busur derajat dua skala) | ✅ bisa dicoba |
 | 4 | 8 · Sudut | 🧭 Putar Arah (putaran & 8 arah mata angin) | ✅ bisa dicoba |
-| 4 | 8 · Sudut | 📖 Soal Cerita · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 8 · Sudut | 📖 Soal Cerita (berapa derajat, sudut apa? bukaan digabung, sisa dari 180° atau 90°, busur; menghadap ke mana? putaran kanan dan kiri) | ✅ bisa dicoba |
+| 4 | 8 · Sudut | 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 9 · Garis & Sudut | 🛤️ Jenis Garis (sejajar, berpotongan, tegak lurus) | ✅ bisa dicoba |
 | 4 | 9 · Garis & Sudut | ✏️ Tarik Garis (kertas bertitik: garis sejajar & tegak lurus) | ✅ bisa dicoba |
 | 4 | 9 · Garis & Sudut | ✖️ Sudut Silang (sudut lurus 180°, sudut bersebelahan & seberang) | ✅ bisa dicoba |

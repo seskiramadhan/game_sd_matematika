@@ -1,6 +1,6 @@
 # Rencana Game · Kelas 4 Bab 8 (Sudut)
 
-Status: **disetujui Ayah 13 Nov 2026**; **Tahap 1 dibangun 13 Nov 2026** (3 mini game, lihat catatan di bawah); Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–7 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-7/`.
+Status: **disetujui Ayah 13 Nov 2026**; **Tahap 1 dibangun 13 Nov 2026** (3 mini game, lihat catatan di bawah); 📖 Soal Cerita dibangun 18 Nov 2026; Tantangan Akhir belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–7 (`js/engine.js`, `js/app.js`); contoh struktur mini game: `js/kelas-4/bab-7/`.
 
 Topik: A. Menamai & jenis sudut · B. Mengukur sudut dengan busur derajat · C. Putaran & 8 arah mata angin.
 Format: derajat menempel pada angka (90°), simbol sudut ∠, titik sudut selalu huruf tengah (∠PQR, titik sudut Q).
@@ -18,5 +18,18 @@ Pos di peta: 📐 Jenis Sudut → 🔍 Baca Busur → 🧭 Putar Arah (Tahap 1).
 
 Penekanan: **tebak lancip/tumpul dulu** sebelum membaca busur (jebakan 50° terbaca 130°) dan **huruf titik sudut selalu di tengah**. Jembatan keledai arah ditulis original (bukan dari buku penerbit). Semua sudut derajat bilangan bulat, arah = indeks 0–7 mod 8 (U, TL, T, TG, S, BD, B, BL); tidak ada floating point untuk kunci. Contoh original. Skrip cek `tools/cek-bab8.js`.
 
-## Tahap 2 (belum)
-📖 Soal Cerita (sudut jarum jam, arah jalan; mesin `js/soal-cerita.js`) · 🏆 Tantangan Akhir.
+## 📖 Soal Cerita (dibangun 18 Nov 2026)
+Pos keempat di peta, terbuka setelah 🧭 Putar Arah berbintang. Mesin `js/soal-cerita.js`, data `js/kelas-4/bab-8/soal-cerita-data.js`, cek `node tools/cek-soal-cerita-bab8.js`. Pesan inti: **Berapa derajat, sudut apa?** (derajat bilangan bulat; lancip < 90°, siku-siku = 90°, tumpul 90°-180°, lurus = 180°).
+
+| | 📐 Besar & jenis sudut | 🧭 Arah putar |
+|---|---|---|
+| Tingkat 1 | Derajat diketahui, sebut jenisnya (Lancip / Siku-siku / Tumpul / Lurus) | Satu putaran ¼ atau ½ (kanan atau kiri): arah akhir, atau berapa derajat putarannya |
+| Tingkat 2 | Dua bukaan dijumlah: jawaban "derajat, jenis" (mis. "110°, tumpul") | Dua putaran searah: "arah akhir, total derajat" (mis. "Timur, 270°") |
+| Tingkat 3 | Sisa dari 180° atau 90°; membaca busur (dua angka, "lebih sempit / lebih lebar dari pojok buku"); jumlah; + 1-2 angka pengecoh di Tandai | Putaran kanan lalu kiri: arah akhir; + angka pengecoh |
+| Gambar (3 pilihan) | Sudut dengan bukaan berwarna + kotak pojok 90°; pengecoh: bukaan menumpuk / total salah / besar salah, mawar arah | Mawar arah dengan panah putaran; pengecoh: arah putar terbalik, besar putaran salah, gambar sudut |
+| Pengecoh jawaban | Lupa menjumlah (satu bukaan), jenis salah di batas (90° bukan lancip), mengurangi padahal menambah, angka skala busur yang satunya | Putar ke arah sebaliknya, ¼ dikira 25°, berhenti di putaran pertama, semua putaran dianggap ke kanan |
+
+Contoh dari video Ep. 11 / Buku Saku (muncul ± 12% di Tingkat 2): Pintu Kelas 70° + 40° = 110° tumpul; pintu lain 50° + 40° = 90° siku-siku; Pak Tani menghadap Selatan, ½ putaran kanan lalu ¼ putaran kanan: Timur, 180° + 90° = 270°. Kunci dihitung kode; skrip cek menghitung ulang dengan cara lain (jenis lewat tanda selisih, arah lewat derajat mod 360).
+
+## Tahap 2 (sisa)
+🏆 Tantangan Akhir.
