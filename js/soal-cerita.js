@@ -8,6 +8,7 @@
 //   window.SoalCeritaData['k<k>b<n>'] = { jenis, tingkat, ingat, buatSoal }  (lihat js/kelas-4/bab-3/soal-cerita-data.js)
 // lalu di bab.js:  game: () => GameSoalCerita.untuk(window.SoalCeritaData.k4b3)
 // Bentuk data:
+//   jenisTingkat(tingkat) -> [id jenis] (opsional; bila ada, ronde hanya memuat jenis itu; id boleh berulang untuk bobot)
 //   jenis: [{ id, nama, petunjuk, gambar }]   gambar = id gambar yang cocok ('garis' | 'bagi' | 'batang' | id buatan sendiri)
 //   buatSoal(tingkat, jenisId, pakai:Set) -> soal (lihat tools/cek-soal-cerita.js untuk bentuk & pemeriksaan):
 //     { jenis, kode, cerita0 (tanpa digit), kata:[frasa kunci di cerita0], segmen:[{k:'teks'|'angka'|'tanya', t, penting?}],
@@ -259,7 +260,7 @@
 
     function buatRonde(tingkat) {
       const pakai = new Set();
-      return urutanJenis(idJenis, 5).map((id) => data.buatSoal(tingkat, id, pakai));
+      return urutanJenis(data.jenisTingkat ? data.jenisTingkat(tingkat) : idJenis, 5).map((id) => data.buatSoal(tingkat, id, pakai));
     }
     function soalMirip(soal, tingkat) {
       return data.buatSoal(tingkat, soal.jenis, new Set([soal.kode]));
