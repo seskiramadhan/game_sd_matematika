@@ -1,11 +1,11 @@
 # Rencana Game · Kelas 4 Bab 1 (Bilangan Cacah sampai 100.000)
 
-Status: **disetujui Ayah 7 Nov 2026**; **Tahap 1 dibangun 7 Nov 2026** (3 mini game, catatan di bawah); Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–6.
+Status: **disetujui Ayah 7 Nov 2026**; **Tahap 1 dibangun 7 Nov 2026** (3 mini game, catatan di bawah); pos **📖 Soal Cerita selesai 18 Nov 2026** (cek `node tools/cek-soal-cerita-bab1.js`); sisa Tahap 2 belum. Aturan umum: `rencana/aturan-game.md`. Maskot: `rencana/maskot-garuda.md`. Pola & mesin sama dengan Bab 3–6.
 
 Topik: A. Membaca & menulis bilangan · B. Nilai tempat · C. Membandingkan & mengurutkan · D. Pembulatan & penaksiran.
 Format Indonesia: **titik** pemisah ribuan (62.408).
 
-Pos di peta: 🧱 Susun Angka → 🏔️ Mana Lebih Besar → 🎯 Bulatkan! (Tahap 1).
+Pos di peta: 🧱 Susun Angka → 🏔️ Mana Lebih Besar → 🎯 Bulatkan! (Tahap 1) → 📖 Soal Cerita (terbuka setelah 🎯 Bulatkan! berbintang).
 
 ## Tahap 1: mini game
 | | 🧱 Susun Angka | 🏔️ Mana Lebih Besar | 🎯 Bulatkan! |
@@ -19,8 +19,8 @@ Pos di peta: 🧱 Susun Angka → 🏔️ Mana Lebih Besar → 🎯 Bulatkan! (T
 Penekanan: angka **0** tetap ditulis (30.015, bukan 3.015); bandingkan dari kiri; **5 ke atas**; taksiran = bulatkan dulu baru hitung (tulis hasil taksiran, bukan hasil asli); teka-teki batas pembulatan.
 Semua jawaban dihitung kode; skrip cek `tools/cek-bab1.js`.
 
-## Tahap 2 (belum)
-📖 Soal Cerita (taksiran jumlah penonton/belanja) · pola bilangan (+10.000, +10.100) · 🏆 Tantangan Akhir.
+## Tahap 2
+✅ 📖 Soal Cerita (di bawah) · belum: pola bilangan (+10.000, +10.100) · 🏆 Tantangan Akhir.
 
 ## Catatan pembangunan Tahap 1 (7 Nov 2026)
 Berkas: `js/kelas-4/bab-1/` (`bilangan.js` alat bersama, `susun-angka.js`, `mana-lebih-besar.js`, `bulatkan.js`, `bab.js`), `tools/cek-bab1.js`. Objek global: `GameSusunAngka`, `GameBilManaLebihBesar` (beda nama dari Bab 6), `GameBulatkan`.
@@ -30,3 +30,11 @@ Berkas: `js/kelas-4/bab-1/` (`bilangan.js` alat bersama, `susun-angka.js`, `mana
 - **🎯 Bulatkan!**: soal 1-3 bulatkan (tingkat 1 puluhan, 2 ratusan, 3 ribuan; satu naik, satu turun, satu dekat batas; kadang melewati angka 9: 49.700 -> 50.000). Pengecoh: arah salah (lupa 5 ke atas), tempat salah. Soal 4: teka-teki batas, 6 bilangan, pilih semua yang cocok (2-3 benar, pengecoh tepat di luar batas). Soal 5: taksiran jumlah (tingkat 3 juga selisih); pengecoh wajib memuat hasil asli, kunci selalu beda dari hasil asli. Kalau salah: garis bilangan dengan titik tengah ditandai + angka penentu; teka-teki batas: daerah hijau + daftar "bilangan -> pembulatan"; taksiran: bulatkan dulu, baru hitung.
 - Cek logika: `node tools/cek-bab1.js` (200 ronde x 3 tingkat x 3 mini game + soal mirip; himpunan jawaban teka-teki dicek; menjalankan cek Bab 3-6). Tes sentuh Chrome headless 1180x820 & 1024x768, tiap tingkat, 2 pola salah, 1 ronde penuh tiap mini game + regresi Bab 6.
 - Belum / catatan: Tahap 2 (Soal Cerita taksiran, pola bilangan, Tantangan Akhir). Susun Angka: bilangan 100.000 hanya muncul di soal tulisan (kata).
+
+## 📖 Soal Cerita (dibangun 18 Nov 2026; pesan inti: *Pas atau kira-kira?*)
+Berkas: `js/kelas-4/bab-1/soal-cerita-data.js` (data untuk mesin `js/soal-cerita.js`), `tools/cek-soal-cerita-bab1.js`. Alur 4 langkah: Baca (cerita tanpa angka; pilih **Bandingkan (pas)** atau **Taksiran (kira-kira)**, kata "kira-kira" = taksiran) → Tandai → Gambar (3 pilihan) → Hitung dan Cek.
+- **Bandingkan (pas)**: "mana lebih ramai / banyak / mahal?", dibandingkan dari kiri, berhenti di angka pertama yang berbeda. Jawaban nama (hari, toko, barang, sekolah, pabrik) atau "Sama ...". Jebakan: angka sama urutan beda (23.850 lawan 23.580), banyak angka beda (9.990 lawan 10.100). Gambar: **tabel nilai tempat** (puluh ribuan ... satuan); pengecoh: judul kolom terbalik, garis bilangan.
+- **Taksiran (kira-kira)**: tiap bilangan dibulatkan dulu (ribuan atau ratusan, disebut di soal), lalu jumlah / selisih / "cukup tidak uangnya?". Jawaban dengan titik ribuan (Rp40.000). Gambar: **garis bilangan** (bilangan di antara dua ribuan / ratusan, titik tengah ditandai); pengecoh: tempat pembulatan salah, tabel nilai tempat. Pengecoh jawaban: hitung pas (7.020), bulat ke bawah padahal 5 ke atas (2.970 jadi 2.000), hanya hasil yang dibulatkan, tempat pembulatan salah, semua dibulatkan ke atas, menjumlah padahal selisih.
+- Tingkat 1: banding dua bilangan 4-5 angka; taksiran dua bilangan ke ribuan, jumlah. Tingkat 2: banding 4-5 angka + taksiran jumlah atau selisih ke ratusan atau ribuan. Tingkat 3: banding tiga pilihan (paling ... / paling ...), taksiran tiga bilangan atau "cukup tidak uangnya?" (kira-kira; uang selalu >= 2.000 dari taksiran supaya taksiran dan hasil pas searah), + 1-2 angka pengecoh di Tandai. Semua bilangan dan hasil <= 100.000.
+- Contoh dari video Ep. 10 / Buku Saku (muncul +-12%): stadion Sabtu 23.850 lawan Minggu 23.580 (Sabtu, selisih 270); toko buku 2.970 + 4.050 (7.000, pas 7.020); belanja Rp18.900 + Rp21.200 (Rp40.000).
+- Cek logika: `node tools/cek-soal-cerita-bab1.js` (dihitung ulang dari teks angka: banding per digit dari kiri, pembulatan lewat sisa bagi; gambar: tepat satu cocok, judul kolom & digit di kolom benar, batas garis bilangan; sebaran jebakan).

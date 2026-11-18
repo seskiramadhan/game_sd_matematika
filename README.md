@@ -10,7 +10,8 @@ Game web gratis untuk latihan Matematika SD (Kurikulum Merdeka). Dimainkan langs
 | 4 | 1 · Bilangan Cacah | 🧱 Susun Angka (nilai tempat, membaca & menulis bilangan sampai 100.000) | ✅ bisa dicoba |
 | 4 | 1 · Bilangan Cacah | 🏔️ Mana Lebih Besar (bandingkan & urutkan bilangan cacah) | ✅ bisa dicoba |
 | 4 | 1 · Bilangan Cacah | 🎯 Bulatkan! (pembulatan, teka-teki batas, taksiran) | ✅ bisa dicoba |
-| 4 | 1 · Bilangan Cacah | 📖 Soal Cerita · pola bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
+| 4 | 1 · Bilangan Cacah | 📖 Soal Cerita (pas atau kira-kira? bandingkan dari kiri dengan tabel nilai tempat; taksiran: bulatkan tiap bilangan dulu, garis bilangan) | ✅ bisa dicoba |
+| 4 | 1 · Bilangan Cacah | pola bilangan · 🏆 Tantangan Akhir | 🚧 Tahap 2 |
 | 4 | 3 · Faktor & Kelipatan | 🍬 Bagi Rata (faktor) | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🐸 Katak Loncat (kelipatan) | ✅ bisa dicoba |
 | 4 | 3 · Faktor & Kelipatan | 🧱 Prima atau Bukan | ✅ bisa dicoba |
