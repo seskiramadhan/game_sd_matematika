@@ -39,7 +39,7 @@
     const b = $('tombol-pesan');
     if (LINK_PESAN) {
       b.href = LINK_PESAN; b.target = '_blank'; b.rel = 'noopener';
-      b.removeAttribute('aria-disabled'); b.textContent = 'Lihat & pesan paket';
+      b.removeAttribute('aria-disabled'); b.textContent = 'Lihat paket · Rp49.000 →';
     } else {
       b.onclick = (e) => { e.preventDefault(); Suara.efek('boing'); toast('Link pemesanan segera hadir.'); };
     }

@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Matematika SD">
 <meta name="theme-color" content="#FFF6E5">
-<meta name="versi" content="20261120-1200">
+<meta name="versi" content="20261120-1400">
 <meta http-equiv="Cache-Control" content="no-cache">
 <title>Game Matematika SD</title>
 <link rel="icon" href="assets/garuda/garuda-senang.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261120-1200">
+<link rel="stylesheet" href="css/style.css?v=20261120-1400">
 </head>
 <body>
 <div id="putar-layar">Putar iPad ke posisi <b>mendatar</b> ya.</div>
@@ -31,23 +31,34 @@
       <button class="tombol tombol-utama" id="tombol-main">▶ Main</button>
     </div>
   </div>
-  <button class="tombol-ortu" data-ke="ortu">Untuk Ayah/Bunda</button>
+  <button class="kartu-ortu" data-ke="ortu">
+    <span class="kartu-ortu-ikon" aria-hidden="true">👨‍👩‍👧</span>
+    <span class="kartu-ortu-teks">
+      <b>Ayah/Bunda, anak "blocking" di soal cerita?</b>
+      <span>Video + Buku Saku 12 bab Kelas 4 · <s>Rp79.000</s> <b class="harga-promo">Rp49.000</b> · 100 pertama</span>
+    </span>
+    <span class="kartu-ortu-panah" aria-hidden="true">→</span>
+  </button>
   <button class="versi-kecil" id="tombol-cek-versi">v <span id="label-versi"></span> · 🔄 Cek pembaruan</button>
 </section>
 
-<!-- Untuk Ayah/Bunda (info paket berbayar; link pemesanan masih placeholder) -->
+<!-- Untuk Ayah/Bunda (info paket berbayar + link Lynk) -->
 <section class="layar" id="layar-ortu">
   <header class="atas"><button class="tombol-ikon" data-ke="beranda" aria-label="Kembali">←</button><h2>Untuk Ayah/Bunda</h2></header>
   <div class="ortu-isi">
-    <p class="ortu-lead">Game ini <b>gratis</b> untuk melatih "berapa jawabannya". Untuk mengajarkan <b>cara berpikirnya</b>, terutama soal cerita, tersedia paket belajar <b>Kelas 4 (1 tahun, 12 bab)</b>:</p>
-    <ul class="ortu-daftar">
-      <li><b>Video konsep</b> lengkap tiap bab (animasi + narasi)</li>
-      <li><b>Video Jago Soal Cerita</b>: 4 langkah baca, tandai, gambar, hitung &amp; cek</li>
-      <li><b>Buku Saku PDF</b> untuk anak: ringkasan, contoh bergambar, latihan + kunci</li>
-      <li><b>Panduan Ayah/Bunda PDF</b>: cara mendampingi, jebakan umum, kegiatan 5 hari</li>
-    </ul>
-    <p class="ortu-gratis">Contoh gratis: video Bab 1 dan cuplikan tiap bab lewat tombol 🎬 di peta bab.</p>
-    <a class="tombol tombol-utama ortu-pesan" id="tombol-pesan" href="#" aria-disabled="true">Pesan paket (segera hadir)</a>
+    <img class="ortu-sampul" src="assets/paket/sampul-k4.jpg" alt="Sampul paket Jago Soal Cerita Kelas 4">
+    <div class="ortu-teks">
+      <p class="ortu-lead">Game ini <b>gratis</b> untuk melatih "berapa jawabannya". Anak masih <b>"blocking" di soal cerita</b>? Paket <b>Jago Soal Cerita Kelas 4</b> (1 tahun, 12 bab) mengajarkan <b>cara berpikirnya</b>:</p>
+      <ul class="ortu-daftar">
+        <li><b>Video konsep</b> lengkap tiap bab (animasi + narasi)</li>
+        <li><b>Video Jago Soal Cerita</b>: 4 langkah baca, tandai, gambar, hitung &amp; cek</li>
+        <li><b>Buku Saku PDF</b> untuk anak: ringkasan, contoh bergambar, latihan + kunci</li>
+        <li><b>Panduan Ayah/Bunda PDF</b>: cara mendampingi, jebakan umum, kegiatan 5 hari</li>
+      </ul>
+      <p class="ortu-harga"><s>Rp79.000</s> <b class="harga-promo">Rp49.000</b> <span class="ortu-promo">promo 100 pembeli pertama</span></p>
+      <a class="tombol tombol-utama ortu-pesan" id="tombol-pesan" href="#" aria-disabled="true">Pesan paket (segera hadir)</a>
+      <a class="ortu-coba" href="https://youtu.be/rIiEmOYlpTg" target="_blank" rel="noopener">Coba dulu gratis: video Bab 1 ▶</a>
+    </div>
   </div>
 </section>
 
@@ -122,82 +133,82 @@
 <div class="toast" id="toast" hidden></div>
 <button class="tombol tombol-perbarui" id="tombol-perbarui" hidden>🔄 Ada versi baru · Perbarui</button>
 
-<script src="js/simpan.js?v=20261120-1200"></script>
-<script src="js/suara.js?v=20261120-1200"></script>
-<script src="js/engine.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/bilangan.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/susun-angka.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/mana-lebih-besar.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/bulatkan.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/hitung.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/tabel-kilat.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/kali-kotak.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/bagi-bersusun.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-3/bagi-rata.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-3/katak-loncat.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-3/prima.js?v=20261120-1200"></script>
-<script src="js/soal-cerita.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-1/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-2/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-3/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-3/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/pecahan.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/potong-pizza.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/cokelat-kembar.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/bandingkan.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-4/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/campuran.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/roti-utuh.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/tukar-bentuk.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/bagi-kelompok.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-5/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/desimal.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/kotak-seratus.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/garis-desimal.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/mana-lebih-besar.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-6/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/persen.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/kotak-persen.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/tukar-persen.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/persen-dari.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-7/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/sudut.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/jenis-sudut.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/baca-busur.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/putar-arah.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-8/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/garis.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/jenis-garis.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/tarik-garis.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/sudut-silang.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-9/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/bangun.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/hitung-sisi.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/cek-sifat.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/susun-bangun.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-10/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/luas.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/jalan-keliling.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/hitung-petak.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/potong-bangun.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-11/bab.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/grafik.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/catat-turus.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/baca-batang.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/bangun-batang.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/soal-cerita-data.js?v=20261120-1200"></script>
-<script src="js/kelas-4/bab-12/bab.js?v=20261120-1200"></script>
-<script src="js/app.js?v=20261120-1200"></script>
-<script src="js/versi.js?v=20261120-1200"></script>
+<script src="js/simpan.js?v=20261120-1400"></script>
+<script src="js/suara.js?v=20261120-1400"></script>
+<script src="js/engine.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/bilangan.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/susun-angka.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/mana-lebih-besar.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/bulatkan.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/hitung.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/tabel-kilat.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/kali-kotak.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/bagi-bersusun.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-3/bagi-rata.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-3/katak-loncat.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-3/prima.js?v=20261120-1400"></script>
+<script src="js/soal-cerita.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-1/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-2/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-3/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-3/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/pecahan.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/potong-pizza.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/cokelat-kembar.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/bandingkan.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-4/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/campuran.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/roti-utuh.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/tukar-bentuk.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/bagi-kelompok.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-5/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/desimal.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/kotak-seratus.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/garis-desimal.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/mana-lebih-besar.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-6/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/persen.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/kotak-persen.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/tukar-persen.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/persen-dari.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-7/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/sudut.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/jenis-sudut.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/baca-busur.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/putar-arah.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-8/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/garis.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/jenis-garis.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/tarik-garis.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/sudut-silang.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-9/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/bangun.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/hitung-sisi.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/cek-sifat.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/susun-bangun.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-10/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/luas.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/jalan-keliling.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/hitung-petak.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/potong-bangun.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-11/bab.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/grafik.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/catat-turus.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/baca-batang.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/bangun-batang.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/soal-cerita-data.js?v=20261120-1400"></script>
+<script src="js/kelas-4/bab-12/bab.js?v=20261120-1400"></script>
+<script src="js/app.js?v=20261120-1400"></script>
+<script src="js/versi.js?v=20261120-1400"></script>
 </body>
 </html>
