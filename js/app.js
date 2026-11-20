@@ -34,7 +34,7 @@
 
   // ---------- Untuk Ayah/Bunda ----------
   // Link pemesanan paket (Lynk). Kosong = placeholder "segera hadir".
-  const LINK_PESAN = '';
+  const LINK_PESAN = 'https://lynk.id/seskiramadhan/33ydj5lzzlgg';
   (function aturPesan() {
     const b = $('tombol-pesan');
     if (LINK_PESAN) {
